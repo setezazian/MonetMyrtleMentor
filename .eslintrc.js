@@ -18,6 +18,7 @@ module.exports = {
     'react',
   ],
   rules: {
+    'import/extensions': 'off',
     'no-console': 'off',
   },
 };
