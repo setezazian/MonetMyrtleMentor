@@ -12,6 +12,7 @@ CREATE TABLE profiles (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(50) NOT NULL,
   password VARCHAR(60) NOT NULL,
+  photo VARCHAR(255) NOT NULL,
   mentor boolean,
   PRIMARY KEY (ID)
 );
@@ -42,7 +43,8 @@ CREATE TABLE schedules (
 
 CREATE TABLE offerings (
   id INT NOT NULL AUTO_INCREMENT,
-  offering_name VARCHAR(60),
+  name VARCHAR(60),
+  description VARCHAR(1000),
   PRIMARY KEY (ID)
 );
 
