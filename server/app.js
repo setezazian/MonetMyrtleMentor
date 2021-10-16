@@ -11,9 +11,9 @@ app.use(express.urlencoded({ urlencoded: true }));
 app.use(express.static(path.resolve('client', 'dist')));
 
 // Router
-const router = require('./routes');
+const apiRouter = require('./apiRouter');
 
 // Set up routes
-app.use('/api', router);
+app.use('/api', apiRouter);
 
 module.exports = app;
