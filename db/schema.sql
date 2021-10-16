@@ -45,6 +45,7 @@ CREATE TABLE offerings (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(60),
   description VARCHAR(1000),
+  mentor_id INT NOT NULL,
   PRIMARY KEY (ID)
 );
 
@@ -53,3 +54,4 @@ ALTER TABLE schedules ADD FOREIGN KEY (mentor_id) REFERENCES profiles (id);
 ALTER TABLE messages ADD FOREIGN KEY (message_from_id) REFERENCES profiles (id);
 ALTER TABLE messages ADD FOREIGN KEY (message_to_id) REFERENCES profiles (id);
 ALTER TABLE ratings ADD FOREIGN KEY (profile_id) REFERENCES profiles (id);
+ALTER TABLE offerings ADD FOREIGN KEY (mentor_id) REFERENCES profiles (id);
