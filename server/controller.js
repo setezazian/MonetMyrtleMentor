@@ -1,21 +1,37 @@
-const getActivities = (page = 1, count = 10) => {
-  // use Model to retrieve [all?] activities
-  // page and count?
-  // shape the data and return
+const profileModel = require('./models/profile.js');
+const offeringsModel = require('./models/offerings.js');
+const messagesModel = require('./models/messages.js');
+
+const getOfferings = (req, res) => {
+  // Read req params into vars
+  // const page = 1;
+  // const count = 10;
+  offeringsModel.getOfferings() // (count, page)
+    .then((data) => {
+      res.status(200).send(data);
+    })
+    .catch((err) => console.log('Error retrieving offerings from model: ', err));
 };
 
-const getProfile = (userId) => {
-  // use a model to retrieve information about a user
-  // shape and return data
+const getProfile = (req, res) => {
+  const profileId = 1;
+  profileModel.getProfile(profileId)
+    .then((data) => {
+      res.status(200).send(data);
+    })
+    .catch((err) => console.log('Error retrieving profile from model: ', err));
 };
 
-const getMessages = (userId, withId = null, page = 1, count = 10) => {
-  // model to retrieve messages
-  // shape and return data
+const getMessages = (req, res) => {
+  messagesModel.getMessages() // (userId, withId = null, page = 1, count = 10)
+    .then((data) => {
+      res.status(200).send(data);
+    })
+    .catch((err) => console.log('Error retrieving messages from model: ', err));
 };
 
 module.exports = {
-  getActivities,
+  getOfferings,
   getProfile,
   getMessages,
 };
