@@ -1,6 +1,5 @@
 import React from 'react';
 import Navbar from './Navbar.jsx';
-//import landingPagePic from '../../dist/landingPage.jpg'
 
 export default function () {
   return (
