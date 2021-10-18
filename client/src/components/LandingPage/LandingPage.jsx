@@ -1,10 +1,9 @@
 import React from 'react';
-import Navbar from './Navbar.jsx';
+import Navbar from '../Navbar.jsx';
 
 export default function LandingPage() {
   return (
     <React.Fragment>
-      <Navbar />
       <div className='landingPage-container'>
         <img src='./landingPage.jpg' alt='style image' className='image' />
         <div className='title'>

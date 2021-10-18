@@ -9,7 +9,7 @@ export default function Navbar(props) {
       <ul className="navbar-nav">
         <li className='logo-container'>
           <a herf="#" className='logo'>
-            <span>M</span>
+            <span onClick={ () => history.push('/')}>M</span>
           </a>
         </li>
         <li className='searchBar-container'>
