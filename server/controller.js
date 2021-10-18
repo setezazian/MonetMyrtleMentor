@@ -14,6 +14,14 @@ const getMessages = (userId, withId = null, page = 1, count = 10) => {
   // shape and return data
 };
 
+const createUser = () => {
+
+};
+
+const getUserAuth = () => {
+
+};
+
 module.exports = {
   getActivities,
   getProfile,
