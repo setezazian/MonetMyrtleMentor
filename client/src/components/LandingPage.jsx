@@ -13,9 +13,10 @@ export default function () {
           </a>
         </li>
         <li className='searchBar-container'>
-          <a herf="#" className='searchBar'>
+          <div className='searchBar'>
+          <input type="text" id="searchBar" name="searchInput"  />
             <span className='fas fa-search fa-lg searchIcon' />
-          </a>
+          </div>
         </li>
         <li className='login-container'>
           <a herf="#" className='login-button'>
