@@ -44,7 +44,6 @@ CREATE TABLE availabilities (
   start_time DATETIME NOT NULL,
   end_time DATETIME NOT NULL,
   offering_id INT NOT NULL,
-  booked boolean,
   PRIMARY KEY (ID)
 );
 
@@ -56,8 +55,10 @@ CREATE TABLE offerings (
   PRIMARY KEY (ID)
 );
 
-ALTER TABLE bookings ADD FOREIGN KEY (offering_id) REFERENCES offerings (id);
-ALTER TABLE bookings ADD FOREIGN KEY (mentor_id) REFERENCES profiles (id);
 ALTER TABLE messages ADD FOREIGN KEY (from_id) REFERENCES profiles (id);
 ALTER TABLE messages ADD FOREIGN KEY (to_id) REFERENCES profiles (id);
-ALTER TABLE ratings ADD FOREIGN KEY (profile_id) REFERENCES profiles (id);
+ALTER TABLE ratings ADD FOREIGN KEY (mentor_id) REFERENCES profiles (id);
+ALTER TABLE bookings ADD FOREIGN KEY (booked_by_student_id) REFERENCES profiles (id);
+ALTER TABLE bookings ADD FOREIGN KEY (availability_id) REFERENCES availabilities (id);
+ALTER TABLE availabilities ADD FOREIGN KEY (offering_id) REFERENCES offerings (id);
+ALTER TABLE offerings ADD FOREIGN KEY (mentor_id) REFERENCES profiles (id);
