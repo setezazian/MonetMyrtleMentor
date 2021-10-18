@@ -12,8 +12,10 @@ app.use(express.static(path.resolve('client', 'dist')));
 
 // Router
 const apiRouter = require('./apiRouter');
+const reactRouter = require('./reactRouter');
 
 // Set up routes
 app.use('/api', apiRouter);
+app.use('/', reactRouter);
 
 module.exports = app;
