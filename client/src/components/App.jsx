@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import LandingPage from './LandingPage/LandingPage.jsx';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Offerings from './offeringPage/Offerings.jsx';
 
 const App = () => (
@@ -8,7 +9,10 @@ const App = () => (
   // </div>
   <div>
     <BrowserRouter>
-      <Route exact path="/offerings" component={Offerings} />
+      <Switch>
+        <Route exact path="/" component={LandingPage} />
+        <Route path="/offerings" component={Offerings} />
+      </Switch>
     </BrowserRouter>
   </div>
 );
