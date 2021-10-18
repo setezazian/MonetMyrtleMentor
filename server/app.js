@@ -8,14 +8,14 @@ const app = express();
 
 require('./auth.js')();
 
-// Handle JSON and query strings
+// Handle 'application/json' and 'application/x-www-form-urlencoded'
 app.use(express.json());
 app.use(express.urlencoded({ urlencoded: true }));
 
 // Serve site/client from root path
 app.use(express.static(path.resolve('client', 'dist')));
 
-// Session and auth
+// Session handling
 app.use(session({
   cookie: { maxAge: 86400000 },
   store: new MemoryStore({
@@ -25,7 +25,7 @@ app.use(session({
   secret: 'keyboard cat',
 }));
 app.use(passport.initialize());
-app.use(passport.authenticate('session'));
+app.use(passport.session());
 
 // Router
 const apiRouter = require('./apiRouter');
