@@ -10,7 +10,7 @@ export default function LandingPage() {
           MentorUP
         </div>
         <div className='subtitle'>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et j
+        The easist way to learn anything you are intrested, and share your talented and passion. Find the mentor from all over the world, flex timeline, flex structure, learn in the way you always imagine.
         </div>
         <button className='imStudent'>I'm a student</button>
         <button className='imMentor'>I'm a mentor</button>
