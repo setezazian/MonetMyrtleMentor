@@ -184,7 +184,9 @@ a {
   cursor: default;
 }
 
-button {
+.imStudent {
+  top: 300px;
+  left: 120px;
   position: relative;
   z-index: 1;
   background-color: #D97014; /* Green */
@@ -197,18 +199,95 @@ button {
   font-size: 16px;
 }
 
-button:hover{
+.imStudent:hover {
   filter: brightness(1.2);
-}
-
-.imStudent {
-  top: 300px;
-  left: 120px;
 }
 
 
 .imMentor {
   top: 300px;
   left: 150px;
+  position: relative;
+  z-index: 1;
+  background-color: #D97014; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+}
 
+.imMentor:hover {
+  filter: brightness(1.2);
+}
+/*
+==============================
+=====offering page styles=====
+==============================
+*/
+
+.offering-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  margin: 2rem;
+  border: solid grey 1px;
+  border-radius: 10px;
+  padding: 1rem;
+  min-width: fit-content;
+  max-width: 100%;
+}
+
+.offering-picture {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+  align-self: center;
+  padding: 0.5rem;
+}
+
+.offering-body {
+  grid-column: 2 / 3;
+  grid-row: 1 / 3;
+  word-break: break-all;
+  padding: 0.5rem;
+  display: grid;
+}
+
+.offering-button {
+  background-color: white;
+  margin: 1rem;
+  border-radius: 15px;
+  align-self: center;
+}
+
+.contact-button {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+}
+
+.availability-button {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+}
+
+.offering-name {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+.offering-teaches {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+
+.offering-star {
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
+}
+
+.offering-desc {
+  grid-column: 1 / 2;
+  grid-row: 4 / 5;
 }

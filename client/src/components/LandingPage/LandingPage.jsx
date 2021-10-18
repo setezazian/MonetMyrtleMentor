@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar.jsx';
 
-export default function () {
+export default function LandingPage() {
   return (
     <React.Fragment>
       <Navbar />

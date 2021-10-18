@@ -1,22 +1,8 @@
-const express = require('express');
-const path = require('path');  // Need to be removed, just for personal visualize use
-const app = express();
-const PORT = 3000;
+require('dotenv');
+const app = require('./app.js');
 
-// Router
-const router = require('./routes');
+const SERVER_PORT = process.env.SERVER_PORT || 3000;
 
-// Set up routes
-app.use('/', router);
-
-
-app.use(express.static(path.join(__dirname, '..', 'client', 'dist')));// Need to be removed, just for personal visualize use
-app.use(express.json());// Need to be removed, just for personal visualize use
-app.use(express.urlencoded({ extended: true }));// Need to be removed, just for personal visualize use
-
-
-
-
-app.listen(PORT, () => {
-  console.log(`Listening at http://localhost:${PORT}`);
+app.listen(SERVER_PORT, () => {
+  console.log(`Listening at http://localhost:${SERVER_PORT}`);
 });
