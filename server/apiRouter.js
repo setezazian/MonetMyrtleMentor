@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const { getActivities, getProfile, getMessages } = require('./controller');
+const { getOfferings, getProfile, getMessages } = require('./controller');
 
-router.get('/activities', getActivities);
+router.get('/offerings', getOfferings);
 
 router.get('/profile', getProfile);
 
