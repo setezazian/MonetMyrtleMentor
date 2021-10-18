@@ -15,11 +15,11 @@ const getMessages = (userId, withId = null, page = 1, count = 10) => {
 };
 
 const createUser = () => {
-
+  // create a user/profile in the database
 };
 
 const getUserAuth = () => {
-
+  // get the information needed to authenticate - e.g. username and/or email and password
 };
 
 module.exports = {
