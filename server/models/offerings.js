@@ -47,9 +47,10 @@ module.exports = {
         }
       }
       console.log('extraStr', extraStr);
-      let sql = 'SELECT o.offering_name, o.description, p.name, p.photo '
+      let sql = 'SELECT o.offering_name, o.description, p.name, p.photo, r.rating '
       + 'FROM offerings AS o '
       + 'JOIN profiles AS p ON p.id = o.mentor_id '
+      + 'JOIN ratings as r  ON o.mentor_id = r.mentor_id '
       + 'WHERE o.id IN ('
       +  extraStr
       + ')';
@@ -67,3 +68,8 @@ module.exports = {
     })
   }
 };
+
+// SELECT o.id, o.offering_name, o.description, o.mentor_id, p.name, r.rating
+// FROM offerings AS o
+// JOIN profiles AS p ON p.id = o.mentor_id
+// JOIN ratings as r  ON o.mentor_id = r.mentor_id WHERE o.id IN(1,2);
