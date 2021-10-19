@@ -1,10 +1,14 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const crypto = require('crypto');
-const db = require('../db');
+const db = require('./db');
 
 module.exports = () => {
-  passport.use(new LocalStrategy((username, password, cb) => {
+  passport.use(new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password',
+  },
+  (email, password, cb) => {
     /*
       Given a username and password, this function should verify that the
       credentials are correct:
@@ -14,20 +18,20 @@ module.exports = () => {
       If correct, return the user object to the callback;
       if not, return false and an error message to the callback.
     */
-    db.get('SELECT rowid AS id, * FROM users WHERE username = ?', [username], (errDb, row) => {
+    db.get('SELECT id, email, password, salt FROM auth WHERE email = ?', [email], (errDb, row) => {
       if (errDb) { return cb(errDb); }
       if (!row) { return cb(null, false, { message: 'Incorrect username or password.' }); }
 
       crypto.pbkdf2(password, row.salt, 310000, 32, 'sha256', (errCrypto, hashedPassword) => {
         if (errCrypto) { return cb(errCrypto); }
-        if (!crypto.timingSafeEqual(row.hashed_password, hashedPassword)) {
+        if (!crypto.timingSafeEqual(row.password, hashedPassword)) {
           return cb(null, false, { message: 'Incorrect username or password.' });
         }
 
         const user = {
           id: row.id.toString(),
-          username: row.username,
-          displayName: row.name,
+          email: row.email,
+          name: row.name,
         };
         return cb(null, user);
       });
@@ -45,7 +49,7 @@ module.exports = () => {
   // deserializing.
   passport.serializeUser((user, cb) => {
     process.nextTick(() => {
-      cb(null, { id: user.id, username: user.username });
+      cb(null, { id: user.id, email: user.email });
     });
   });
 
