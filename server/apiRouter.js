@@ -4,7 +4,7 @@ const {
   getOfferings,
   getProfile,
   getMessages,
-  createUser,
+  createAuthUser,
 } = require('./controller');
 
 router.get('/offerings', getOfferings);
@@ -13,7 +13,7 @@ router.get('/profile', getProfile);
 
 router.get('/messages', getMessages);
 
-router.post('/user/new', createUser);
+router.post('/user/new', createAuthUser);
 
 router.post('/user/login', passport.authenticate('local',
   {
