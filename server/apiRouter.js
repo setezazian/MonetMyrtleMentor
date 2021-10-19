@@ -3,6 +3,7 @@ const passport = require('passport');
 const {
   getOfferings,
   getAllOfferings,
+  getMultiOfferings,
   getProfile,
   getMessages,
   createAuthUser,
@@ -11,6 +12,8 @@ const {
 router.get('/offerings', getOfferings);
 
 router.get('/allOfferings', getAllOfferings);
+
+router.get('/multiOfferings', getMultiOfferings);
 
 router.get('/profile', getProfile);
 
