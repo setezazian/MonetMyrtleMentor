@@ -18,7 +18,7 @@ module.exports = () => {
       If correct, return the user object to the callback;
       if not, return false and an error message to the callback.
     */
-    db.get('SELECT id, email, name, password, salt FROM users WHERE email = ?', [email], (errDb, row) => {
+    db.get('SELECT id, email, password, salt FROM auth WHERE email = ?', [email], (errDb, row) => {
       if (errDb) { return cb(errDb); }
       if (!row) { return cb(null, false, { message: 'Incorrect username or password.' }); }
 
