@@ -64,6 +64,21 @@ module.exports = {
           resolve(results);
         }
       });
-    })
-  }
+    });
+  },
+  insertOne(offering) {
+    return new Promise((resolve, reject) => {
+      // offering is an object
+      // {name, description, mentor_id}
+      const sql = 'INSERT INTO offerings (offering_name, description, mentor_id) VALUES (?, ?, ?)';
+      const params = [offering.name, offering.description, offering.mentor_id];
+      db.query(sql, params, (err, results) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(results);
+        }
+      });
+    });
+  },
 };
