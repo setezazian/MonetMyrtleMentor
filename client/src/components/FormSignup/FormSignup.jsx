@@ -11,8 +11,8 @@ export default function FormSignup() {
   const [offeringName, setOfferingName] = useState('');
   const [offeringDesc, setOfferingDesc] = useState('');
   const [availability, setAvailability] = useState([]);
-  const [startTime, setStartTime] = useState(new Date().toLocaleString());
-  const [endTime, setEndTime] = useState(new Date().toLocaleString());
+  const [startTime, setStartTime] = useState(new Date().toISOString());
+  const [endTime, setEndTime] = useState(new Date().toISOString());
 
   useEffect(() => {
     console.log('Availability array has changed to: ', availability);
@@ -23,8 +23,8 @@ export default function FormSignup() {
     console.log(startTime);
     console.log(endTime);
     const newTimeBlock = {
-      startTime: new Date(startTime),
-      endTime: new Date(endTime),
+      startTime: new Date(startTime).toISOString(),
+      endTime: new Date(endTime).toISOString(),
     };
     const newAvailability = [...availability];
     newAvailability.push(newTimeBlock);
