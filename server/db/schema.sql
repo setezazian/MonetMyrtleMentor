@@ -49,7 +49,7 @@ CREATE TABLE availabilities (
 
 CREATE TABLE offerings (
   id INT NOT NULL AUTO_INCREMENT,
-  name VARCHAR(60),
+  offering_name VARCHAR(60),
   description VARCHAR(1000),
   mentor_id INT NOT NULL,
   PRIMARY KEY (ID)
@@ -63,3 +63,19 @@ ALTER TABLE bookings ADD FOREIGN KEY (availability_id) REFERENCES availabilities
 ALTER TABLE availabilities ADD FOREIGN KEY (offering_id) REFERENCES offerings (id);
 ALTER TABLE offerings ADD FOREIGN KEY (mentor_id) REFERENCES profiles (id);
 
+INSERT INTO profiles (id, name, photo, mentor) VALUES (1, "James Jones", "http://i.imgur.com/SETiE.png", false);
+INSERT INTO profiles (id, name, photo, mentor) VALUES (2, "Lisa Simpson", "https://upload.wikimedia.org/wikipedia/en/e/ec/Lisa_Simpson.png", true);
+INSERT INTO profiles (id, name, photo, mentor) VALUES (3, "Homer Simpson", "https://upload.wikimedia.org/wikipedia/en/0/02/Homer_Simpson_2006.png", true);
+INSERT INTO profiles (id, name, photo, mentor) VALUES (4, "Bart Simpson", "https://upload.wikimedia.org/wikipedia/en/a/aa/Bart_Simpson_200px.png", false);
+
+INSERT INTO offerings (id, offering_name, description, mentor_id) VALUES (1, "painting", "painting is fun. I will teach you to become Van Gogh!", 2);
+INSERT INTO offerings (id, offering_name, description, mentor_id) VALUES (2, "carpentry", "With over a decade experience in the field, I will teach you the craft of carpentry", 3);
+
+INSERT INTO availabilities (id, start_time, end_time, offering_id) VALUES (1, "2021-10-31 01:15:00", "2021-10-31 02:15:00", 1);
+INSERT INTO availabilities (id, start_time, end_time, offering_id) VALUES (2, "2021-10-31 04:15:00", "2021-10-31 05:15:00", 1);
+INSERT INTO availabilities (id, start_time, end_time, offering_id) VALUES (3, "2021-10-31 02:15:00", "2021-10-31 03:15:00", 2);
+INSERT INTO availabilities (id, start_time, end_time, offering_id) VALUES (4, "2021-10-31 01:15:00", "2021-10-31 02:15:00", 2);
+
+INSERT INTO bookings (id, booked_by_student_id, availability_id) VALUES (1, 1, 1);
+INSERT INTO bookings (id, booked_by_student_id, availability_id) VALUES (2, 1, 3);
+INSERT INTO bookings (id, booked_by_student_id, availability_id) VALUES (3, 4, 2);
