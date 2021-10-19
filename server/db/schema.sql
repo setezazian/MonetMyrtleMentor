@@ -10,9 +10,10 @@ USE mentorUp;
 
 CREATE TABLE auth (
   id INT NOT NULL AUTO_INCREMENT,
+  profile_id INT NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
   password VARCHAR(255) NOT NULL,
   salt VARCHAR(255) NOT NULL,
-  email VARCHAR(255) NOT NULL UNIQUE,
   PRIMARY KEY (ID)
 );
 
@@ -68,3 +69,4 @@ ALTER TABLE bookings ADD FOREIGN KEY (mentor_id) REFERENCES profiles (id);
 ALTER TABLE messages ADD FOREIGN KEY (from_id) REFERENCES profiles (id);
 ALTER TABLE messages ADD FOREIGN KEY (to_id) REFERENCES profiles (id);
 ALTER TABLE ratings ADD FOREIGN KEY (profile_id) REFERENCES profiles (id);
+ALTER TABLE auth ADD FOREIGN KEY (profile_id) REFERENCES profiles (id);
