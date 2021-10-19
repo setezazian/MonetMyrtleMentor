@@ -14,12 +14,16 @@ const getOfferings = (req, res) => {
 };
 
 const getProfile = (req, res) => {
-  const profileId = 1;
-  profileModel.getProfile(profileId)
+  if (req.body.id === undefined) {
+    res.status(400).send('Profile ID required');
+  }
+
+  profileModel.getById(req.body.id)
     .then((data) => {
+      console.log('successfully retrieved profile');
       res.status(200).send(data);
     })
-    .catch((err) => console.log('Error retrieving profile from model: ', err));
+    .catch((err) => console.log('Error retrieving profile: ', err));
 };
 
 const getMessages = (req, res) => {
@@ -30,8 +34,17 @@ const getMessages = (req, res) => {
     .catch((err) => console.log('Error retrieving messages from model: ', err));
 };
 
+const createUser = (req, res) => {
+  profileModel.create(req.body)
+    .then(() => {
+      res.status(201).send('Created');
+    })
+    .catch((err) => console.log('Error creating user" ', err));
+};
+
 module.exports = {
   getOfferings,
   getProfile,
   getMessages,
+  createUser,
 };
