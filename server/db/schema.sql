@@ -66,7 +66,6 @@ CREATE TABLE offerings (
 
 ALTER TABLE messages ADD FOREIGN KEY (from_id) REFERENCES profiles (id);
 ALTER TABLE messages ADD FOREIGN KEY (to_id) REFERENCES profiles (id);
-ALTER TABLE ratings ADD FOREIGN KEY (profile_id) REFERENCES profiles (id);
 ALTER TABLE auth ADD FOREIGN KEY (profile_id) REFERENCES profiles (id);
 ALTER TABLE ratings ADD FOREIGN KEY (mentor_id) REFERENCES profiles (id);
 ALTER TABLE bookings ADD FOREIGN KEY (booked_by_student_id) REFERENCES profiles (id);
