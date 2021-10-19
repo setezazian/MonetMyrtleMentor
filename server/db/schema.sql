@@ -62,3 +62,4 @@ ALTER TABLE bookings ADD FOREIGN KEY (booked_by_student_id) REFERENCES profiles 
 ALTER TABLE bookings ADD FOREIGN KEY (availability_id) REFERENCES availabilities (id);
 ALTER TABLE availabilities ADD FOREIGN KEY (offering_id) REFERENCES offerings (id);
 ALTER TABLE offerings ADD FOREIGN KEY (mentor_id) REFERENCES profiles (id);
+

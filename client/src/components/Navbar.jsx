@@ -16,7 +16,7 @@ export default function Navbar(props) {
         </li>
         <li className='searchBar-container'>
           <div className='searchBar'>
-            <input type="text" id="searchBar" name="searchInput" />
+            <input type="text" id="searchBar" name="searchInput" placeholder="What do you want to learn?"/>
             <span className='fas fa-search fa-lg searchIcon' onClick={() => {setPageIdx(1); history.push('/offerings'); }}/>
           </div>
         </li>
