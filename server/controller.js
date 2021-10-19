@@ -1,6 +1,7 @@
 const profileModel = require('./models/profile.js');
 const offeringsModel = require('./models/offerings.js');
 const messagesModel = require('./models/messages.js');
+const AuthModel = require('./models/AuthModel.js');
 
 const getOfferings = (req, res) => {
   // Read req params into vars
@@ -34,7 +35,7 @@ const getMessages = (req, res) => {
     .catch((err) => console.log('Error retrieving messages from model: ', err));
 };
 
-const createUser = (req, res) => {
+const createProfile = (req, res) => {
   profileModel.create(req.body)
     .then(() => {
       res.status(201).send('Created');
@@ -42,9 +43,23 @@ const createUser = (req, res) => {
     .catch((err) => console.log('Error creating user" ', err));
 };
 
+const createAuthUser = (req, res) => {
+  profileModel.create(req.body)
+    .then(() => AuthModel.create(req.body))
+    .then((dbResponse) => {
+      console.log('Response from adding to auth table: ', dbResponse);
+      res.status(201).send('Created');
+    })
+    .catch((err) => {
+      console.log('Error adding an entry to auth table: ', err);
+      res.status(500).send('Internal server error');
+    });
+};
+
 module.exports = {
   getOfferings,
   getProfile,
   getMessages,
-  createUser,
+  createProfile,
+  createAuthUser,
 };
