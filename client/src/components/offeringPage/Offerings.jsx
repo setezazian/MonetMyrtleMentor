@@ -10,8 +10,6 @@ const Offerings = (props) => {
   let testArray = props.location.state.detail;
   console.log('arrSend to offer', testArray)
 
-
-
   function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
   }
