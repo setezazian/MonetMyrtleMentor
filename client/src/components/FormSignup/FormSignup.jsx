@@ -5,12 +5,14 @@ export default function FormSignup() {
   const [fname, setFName] = useState('');
   const [lname, setLName] = useState('');
   const [email, setEmail] = useState('');
+  const [photoUrl, setPhotoUrl] = useState('');
   const [password, setPassword] = useState('');
+  const [isMentor, setIsMentor] = useState(true);
   const [offeringName, setOfferingName] = useState('');
   const [offeringDesc, setOfferingDesc] = useState('');
   const [availability, setAvailability] = useState([]);
-  const [startTime, setStartTime] = useState();
-  const [endTime, setEndTime] = useState();
+  const [startTime, setStartTime] = useState(new Date().toLocaleString());
+  const [endTime, setEndTime] = useState(new Date().toLocaleString());
 
   useEffect(() => {
     console.log('Availability array has changed to: ', availability);
@@ -35,7 +37,9 @@ export default function FormSignup() {
       firstName: fname,
       lastName: lname,
       email,
+      photoUrl,
       password,
+      isMentor,
       offeringName,
       offeringDesc,
       availability,
@@ -68,9 +72,20 @@ export default function FormSignup() {
         <input id="input-email" name="email" type="text" placeholder="Enter your email address" value={email} onChange={(e) => setEmail(e.target.value)} />
       </label>
       <br />
+      <label htmlFor="input-photourl">
+        URL to your photo:&nbsp;
+        <input id="input-photourl" name="photourl" type="text" placeholder="Enter your last name" value={photoUrl} onChange={(e) => setPhotoUrl(e.target.value)} />
+      </label>
+      <br />
       <label htmlFor="input-password">
         Password:&nbsp;
         <input id="input-password" name="password" type="password" placeholder="Create a password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      </label>
+      <br />
+      <label htmlFor="input-ismentor">
+        Are you signing up as a mentor?
+        <br />
+        <input id="input-ismentor" name="ismentor" type="checkbox" value={isMentor} onChange={() => setIsMentor(!isMentor)} />
       </label>
       <br />
       <label htmlFor="input-offeringname">

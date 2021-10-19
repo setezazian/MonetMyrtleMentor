@@ -67,16 +67,23 @@ const createProfile = (req, res) => {
 const createAuthUser = (req, res) => {
   console.log('req.body: ', req.body);
   res.status(200).send('request received');
-  /* profileModel.create(req.body)
-    .then(() => AuthModel.create(req.body))
-    .then((dbResponse) => {
-      console.log('Response from adding to auth table: ', dbResponse);
+  const profile = {
+    name: `${req.body.firstName} ${req.body.lastName}`,
+    photo: req.body.photoUrl,
+    mentor: req.body.isMentor,
+  };
+  profileModel.create(req.body)
+    .then((results) => {
+      AuthModel.create(req.body)
+    })
+    .then((results) => {
+      console.log('Response from adding to auth table: ', results);
       res.status(201).send('Created');
     })
     .catch((err) => {
       console.log('Error adding an entry to auth table: ', err);
       res.status(500).send('Internal server error');
-    }); */
+    });
 /*
   {
     firstName: 'Fanno',
