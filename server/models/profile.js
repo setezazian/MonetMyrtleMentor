@@ -1,16 +1,44 @@
 const db = require('../db');
 
-module.exports = {
-  getProfile(profileId, callback) {
-    const sql = '';
-    db.query(sql, (err, results) => {
+// create a profile given an object containing all the necessary information
+function create(profile) {
+  const sql = 'INSERT INTO profiles (name, photo, mentor) VALUES (?, ?, ?)';
+  const params = [
+    profile.name,
+    profile.photo,
+    profile.mentor,
+  ];
+
+  return new Promise((resolve, reject) => {
+    db.query(sql, params, (err, results) => {
       if (err) {
-        console.log('error retrieving profile');
-        callback(err);
+        reject(err);
       } else {
-        console.log('successfully retrieved profile');
-        callback(null, results);
+        resolve(null, results);
       }
     });
-  },
+  });
+}
+
+// get a profile's information by its ID (primary key)
+function getById(id) {
+  const sql = 'SELECT id, email, name, photo, mentor FROM profiles WHERE id = ?';
+  const params = [id];
+
+  return new Promise((resolve, reject) => {
+    db.query(sql, params, (err, results) => {
+      if (err) {
+        console.log('error retrieving profile');
+        reject(err, null);
+      } else {
+        console.log('successfully retrieved profile');
+        resolve(null, results);
+      }
+    });
+  });
+}
+
+module.exports = {
+  create,
+  getById,
 };
