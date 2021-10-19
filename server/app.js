@@ -22,7 +22,7 @@ app.use(session({
     checkPeriod: 86400000, // prune expired entries every 24h (milliseconds)
   }),
   resave: false,
-  secret: 'keyboard cat',
+  secret: 'deep blue ocean',
 }));
 app.use(passport.initialize());
 app.use(passport.session());
