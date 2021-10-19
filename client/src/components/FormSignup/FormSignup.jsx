@@ -39,12 +39,6 @@ export default function FormSignup() {
 }
 
 /*
-first name,
-last name,
-email,
-password,
-offering name,
-offering description,
+TODO:
 availabilities of offering - an arbitrary (!?) number of start and end times...
-
 */
