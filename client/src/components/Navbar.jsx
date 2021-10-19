@@ -32,7 +32,7 @@ export default function Navbar(props) {
       // console.log(matchArr);
       history.push({
         pathname: '/offerings',
-        state: { detail: matchArr}
+        state: { detail: matchArr },
       });
       while(matchArr.length > 0) {
         matchArr.pop();

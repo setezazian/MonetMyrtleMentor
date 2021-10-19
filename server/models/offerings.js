@@ -17,9 +17,9 @@ module.exports = {
           resolve(results);
         }
       });
-    })
+    });
   },
-  getAllOfferings(offeringIds) {
+  getAllOfferings() {
     return new Promise((resolve, reject) => {
       const sql = 'SELECT o.offering_name, o.description, p.name '
         + 'FROM offerings AS o '
@@ -27,23 +27,23 @@ module.exports = {
       db.query(sql, (err, results) => {
         if (err) {
           console.log('error retrieving offerings');
-          reject(err)
+          reject(err);
         } else {
           console.log('successfully retrieved all offerings');
           resolve(results);
         }
       });
-    })
+    });
   },
   getMultiOfferings(offeringIds) {
     return new Promise((resolve, reject) => {
       const params = offeringIds;
-      console.log('params',params);
+      console.log('params', params);
       let extraStr = '';
-      for(let i = 0; i < params.length; i++) {
-        extraStr += '?'
-        if(i !== params.length - 1) {
-          extraStr += ','
+      for (let i = 0; i < params.length; i++) {
+        extraStr += '?';
+        if (i !== params.length - 1) {
+          extraStr += ',';
         }
       }
       console.log('extraStr', extraStr);

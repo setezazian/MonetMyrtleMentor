@@ -13,7 +13,7 @@ router.get('/offerings', getOfferings);
 
 router.get('/allOfferings', getAllOfferings);
 
-router.get('/multiOfferings', getMultiOfferings);
+router.post('/multiOfferings', getMultiOfferings);
 
 router.get('/profile', getProfile);
 
