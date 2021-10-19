@@ -7,7 +7,28 @@ const getOfferings = (req, res) => {
   // Read req params into vars
   // const page = 1;
   // const count = 10;
-  offeringsModel.getOfferings() // (count, page)
+  const {id} = req.body;
+  offeringsModel.getOfferings(id) // (count, page)
+    .then((data) => {
+      res.status(200).send(data);
+    })
+    .catch((err) => console.log('Error retrieving offerings from model: ', err));
+};
+
+const getAllOfferings = (req, res) => {
+  // Read req params into vars
+  // const page = 1;
+  // const count = 10;
+  offeringsModel.getAllOfferings() // (count, page)
+    .then((data) => {
+      res.status(200).send(data);
+    })
+    .catch((err) => console.log('Error retrieving offerings from model: ', err));
+};
+
+const getMultiOfferings = (req, res) => {
+  const {ids} = req.body;
+  offeringsModel.getMultiOfferings(ids) // (count, page)
     .then((data) => {
       res.status(200).send(data);
     })
@@ -58,6 +79,8 @@ const createAuthUser = (req, res) => {
 
 module.exports = {
   getOfferings,
+  getAllOfferings,
+  getMultiOfferings,
   getProfile,
   getMessages,
   createProfile,
