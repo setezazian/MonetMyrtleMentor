@@ -21,7 +21,7 @@ module.exports = {
   },
   getAllOfferings() {
     return new Promise((resolve, reject) => {
-      const sql = 'SELECT o.id, o.offering_name, o.description, o.mentor_id, p.name '
+      const sql = 'SELECT o.offering_name, o.description, p.name '
         + 'FROM offerings AS o '
         + 'JOIN profiles AS p ON p.id = o.mentor_id ';
       db.query(sql, (err, results) => {
