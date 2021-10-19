@@ -34,6 +34,15 @@ export default function FormSignup() {
         Offering Description:
         <input id="input-offeringdesc" name="offeringdesc" type="text" placeholder="A longer description of what you are offering" value={offeringDesc} onChange={(e) => setOfferingDesc(e.target.value)} />
       </label>
+      <p>Add the blocks of time you want to have available to mentees:</p>
+      <label htmlFor="input-starttime">
+        Start Time:
+        <input id="input-starttime" type="datetime-local" />
+      </label>
+      <label htmlFor="input-endtime">
+        End Time:
+        <input id="input-endtime" type="datetime-local" />
+      </label>
     </form>
   );
 }
