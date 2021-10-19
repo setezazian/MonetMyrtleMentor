@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function FormSignup() {
@@ -12,25 +12,34 @@ export default function FormSignup() {
   const [startTime, setStartTime] = useState();
   const [endTime, setEndTime] = useState();
 
+  useEffect(() => {
+    console.log('Availability array has changed to: ', availability);
+  }, [availability]);
+
   const addAvailabilityHandler = () => {
+    console.log('What format does the date/time picker have? ', typeof startTime);
+    console.log(startTime);
+    console.log(endTime);
     const newTimeBlock = {
-      startTime,
-      endTime,
+      startTime: new Date(startTime),
+      endTime: new Date(endTime),
     };
-    setAvailability([].concat(availability).push(newTimeBlock));
+    const newAvailability = [...availability];
+    newAvailability.push(newTimeBlock);
+    setAvailability(newAvailability);
   };
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
-    const formData = new FormData();
-
-    formData.append('firstName', fname);
-    formData.append('lastName', lname);
-    formData.append('email', email);
-    formData.append('password', password);
-    formData.append('offeringName', offeringName);
-    formData.append('offeringDesc', offeringDesc);
-    formData.append('availability', availability);
+    const formData = {
+      firstName: fname,
+      lastName: lname,
+      email,
+      password,
+      offeringName,
+      offeringDesc,
+      availability,
+    };
 
     axios.post('/api/user/new', formData)
       .then(() => {
