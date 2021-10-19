@@ -3,14 +3,18 @@ const db = require('../db');
 
 function create({ profileId, email, password }) {
   const salt = crypto.randomBytes(16);
-  const sql = 'INSERT INTO auth (profile_id, email, password, salt) VALUES (?, ?, ?, ?)';
-  const params = [profileId, email, password, salt];
 
   return new Promise((resolve, reject) => {
-    db.query(sql, params, (err, dbData) => {
-      if (err) reject(err);
+    crypto.pbkdf2(password, salt, 310000, 32, 'sha256', (errCrypto, hashedPassword) => {
+      if (errCrypto) reject(errCrypto);
 
-      resolve(dbData);
+      const sql = 'INSERT INTO auth (profile_id, email, password, salt) VALUES (?, ?, ?, ?)';
+      const params = [profileId, email, hashedPassword, salt];
+
+      db.query(sql, params, (err, dbData) => {
+        if (err) reject(err);
+        resolve(dbData);
+      });
     });
   });
 }
