@@ -66,7 +66,9 @@ const createProfile = (req, res) => {
 };
 
 const createAuthUser = (req, res) => {
-  profileModel.create(req.body)
+  console.log('req.body: ', req.body);
+  res.status(200).send('request received');
+  /* profileModel.create(req.body)
     .then(() => AuthModel.create(req.body))
     .then((dbResponse) => {
       console.log('Response from adding to auth table: ', dbResponse);
@@ -75,7 +77,23 @@ const createAuthUser = (req, res) => {
     .catch((err) => {
       console.log('Error adding an entry to auth table: ', err);
       res.status(500).send('Internal server error');
-    });
+    }); */
+/*
+  {
+    firstName: 'Fanno',
+    lastName: 'Chea',
+    email: 'fanno.chea@gmail.com',
+    password: 'helloworld',
+    offeringName: 'Form creation',
+    offeringDesc: 'I can teach you poorly how to create a web form',
+    availability: [
+      {
+        startTime: '2021-10-20T02:00:00.000Z',
+        endTime: '2021-10-20T03:00:00.000Z'
+      }
+    ]
+  }
+     */
 };
 
 module.exports = {
