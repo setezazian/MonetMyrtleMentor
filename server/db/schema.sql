@@ -93,3 +93,17 @@ INSERT INTO bookings (id, booked_by_student_id, availability_id) VALUES (3, 4, 2
 INSERT INTO ratings (id, mentor_id, rating) VALUES (1, 2, 4.99);
 INSERT INTO ratings (id, mentor_id, rating) VALUES (2, 3, 4.99);
 
+INSERT INTO messages (from_id, to_id, body, time) VALUES (1, 2, "message", "2021-10-20 01:15:00");
+INSERT INTO messages (from_id, to_id, body, time) VALUES (1, 3, "message", "2021-10-20 01:15:00");
+INSERT INTO messages (from_id, to_id, body, time) VALUES (1, 4, "message", "2021-10-20 01:15:00");
+INSERT INTO messages (from_id, to_id, body, time) VALUES (2, 1, "message", "2021-10-20 01:15:00");
+INSERT INTO messages (from_id, to_id, body, time) VALUES (2, 3, "message", "2021-10-20 01:15:00");
+INSERT INTO messages (from_id, to_id, body, time) VALUES (2, 4, "message", "2021-10-20 01:15:00");
+INSERT INTO messages (from_id, to_id, body, time) VALUES (3, 1, "message", "2021-10-20 01:15:00");
+INSERT INTO messages (from_id, to_id, body, time) VALUES (3, 2, "message", "2021-10-20 01:15:00");
+INSERT INTO messages (from_id, to_id, body, time) VALUES (3, 4, "message", "2021-10-20 01:15:00");
+INSERT INTO messages (from_id, to_id, body, time) VALUES (4, 1, "message", "2021-10-20 01:15:00");
+INSERT INTO messages (from_id, to_id, body, time) VALUES (4, 2, "message", "2021-10-20 01:15:00");
+INSERT INTO messages (from_id, to_id, body, time) VALUES (4, 3, "message", "2021-10-20 01:15:00");
+
+
