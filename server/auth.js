@@ -1,6 +1,7 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const crypto = require('crypto');
+const { Buffer } = require('buffer');
 const db = require('./db');
 
 module.exports = () => {
@@ -18,20 +19,27 @@ module.exports = () => {
       If correct, return the user object to the callback;
       if not, return false and an error message to the callback.
     */
-    db.get('SELECT id, email, password, salt FROM auth WHERE email = ?', [email], (errDb, row) => {
+    db.query('SELECT id, email, password, salt FROM auth WHERE email = ?', [email], (errDb, row) => {
       if (errDb) { return cb(errDb); }
       if (!row) { return cb(null, false, { message: 'Incorrect username or password.' }); }
+      if (row.length > 1) {
+        console.log('Multiple auth accounts found. Are DB fields properly UNIQUE?');
+        return cb(null, false, { message: 'Non-unique auth account. Contact server administrator' });
+      }
+      console.log('found row(s) while verifiying creds: ', row);
+      const authData = row[0];
 
-      crypto.pbkdf2(password, row.salt, 310000, 32, 'sha256', (errCrypto, hashedPassword) => {
+      crypto.pbkdf2(password, Buffer.from(authData.salt, 'hex'), 310000, 32, 'sha256', (errCrypto, hashedPassword) => {
         if (errCrypto) { return cb(errCrypto); }
-        if (!crypto.timingSafeEqual(row.password, hashedPassword)) {
+
+        if (!crypto.timingSafeEqual(Buffer.from(authData.password, 'hex'), hashedPassword)) {
           return cb(null, false, { message: 'Incorrect username or password.' });
         }
 
         const user = {
-          id: row.id.toString(),
-          email: row.email,
-          name: row.name,
+          id: authData.id.toString(),
+          email: authData.email,
+          name: authData.name,
         };
         return cb(null, user);
       });
