@@ -83,10 +83,15 @@ export default function FormSignup() {
           <input id="input-password" name="password" type="password" placeholder="Create a password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </label>
         <br />
-        <label htmlFor="input-ismentor">
-          Are you signing up as a mentor?
-          <br />
-          <input id="input-ismentor" name="ismentor" type="checkbox" value={isMentor} onChange={() => setIsMentor(!isMentor)} />
+        <p>Are you signing up as a mentor?</p>
+        <label htmlFor="input-ismentor-yes">
+          Yes&nbsp;
+          <input id="input-ismentor-yes" name="ismentor" type="radio" value="true" onChange={(e) => setIsMentor(e.target.value === 'true')} checked />
+        </label>
+        <br />
+        <label htmlFor="input-ismentor-no">
+          No&nbsp;
+          <input id="input-ismentor-no" name="ismentor" type="radio" value="false" onChange={(e) => setIsMentor(e.target.value === 'true')} />
         </label>
         <br />
         <label htmlFor="input-offeringname">
