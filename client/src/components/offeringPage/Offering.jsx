@@ -9,6 +9,7 @@ const Offering = (props) => {
 
   const contactHandler = () => {
     history.push('/offerings/contact');
+  };
 
   const availHandler = () => {
     history.push('/offerings/availabillity');
