@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export default function FormSignup({ location }) {
+export default function FormSignup({ location, history }) {
   const { isMentor } = location.state;
   const [fname, setFName] = useState('');
   const [lname, setLName] = useState('');
@@ -53,6 +53,8 @@ export default function FormSignup({ location }) {
         console.log('Error POSTing form data: ', err);
         // figure out the error and have user correct their form
       });
+
+    history.push('/offerings');
   };
 
   const mentorFormComponents = (
