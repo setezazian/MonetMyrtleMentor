@@ -394,17 +394,18 @@ a {
 
 .messages-from {
   grid-column: 1 / 2;
-  align-self: left;
+}
+
+.messages-to {
+  grid-column: 2 / 3;
 }
 
 .messages-message {
-  grid-column: 2 / 3;
-  align-self: left;
+  grid-column: 3 / 4;
 }
 
 .messages-time {
-  grid-column: 3 / 4;
-  align-content: left;
+  grid-column: 4 / 5;
 }
 
 /*

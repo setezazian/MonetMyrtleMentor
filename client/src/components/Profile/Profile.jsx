@@ -21,8 +21,8 @@ export default function Profile() {
         {messages.map((element) => (
           <Messages
             key={element.id}
-            from={element.from_id}
-            to={element.to_id}
+            fromName={element.fromname}
+            toName={element.toname}
             body={element.body}
             time={element.time}
           />

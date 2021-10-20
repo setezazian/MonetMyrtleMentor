@@ -1,9 +1,16 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 const Offering = (props) => {
   const {
     name, teaches, star, desc, photo,
   } = props;
+  const history = useHistory();
+
+  const contactHandler = () => {
+    history.push('/offerings/contact');
+  };
+
   return (
     <div className="offering-container">
       <div className="offering-wrapper">
@@ -21,7 +28,7 @@ const Offering = (props) => {
           </div>
           <div className="offering-desc">{desc}</div>
         </div>
-        <button className="offering-button contact-button" type="button">Contact</button>
+        <button className="offering-button contact-button" type="button" onClick={contactHandler}>Contact</button>
         <button className="offering-button availablity-button" type="button">Availablity</button>
       </div>
     </div>
