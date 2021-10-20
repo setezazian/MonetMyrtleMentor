@@ -64,12 +64,35 @@ a {
 .searchBar input:focus{
   outline: none;
 }
+
+.searchBar2 input {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  font: 13px sans-serif;
+  width: 80%;
+  height: 90%;
+  font-size: 1rem;
+}
+
+.searchBar2 input:focus{
+  outline: none;
+}
 .navbar {
   height: var(--nav-size);
   background-color: var(--bg);
   padding: 0 1rem;
   margin: 0;
   border-bottom: var(--border);
+}
+
+.navbar2 {
+  height: 300px;
+  background: rgb(85,85,88);
+  background: linear-gradient(0deg, rgba(85,85,88,1) 0%, rgba(115,115,115,1) 16%, rgba(255,255,255,1) 100%);  padding: 0 1rem;
+  margin: 0;
+
 }
 
 .navbar-nav {
@@ -79,12 +102,28 @@ a {
   justify-content: flex-end;
 }
 
+.navbar-nav2 {
+  padding: 10px;
+  max-width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
 .login-container {
   width: calc(var(--nav-size) * 1.2);
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
+.login-container2 {
+  width: 1000px;
+  display: flex;
+  align-items: space-between;
+  justify-content: flex-end;
+}
+
 
 .login-button {
   --button-size: calc(var(--nav-size) * 0.6);
@@ -126,12 +165,36 @@ a {
   cursor: text;
 }
 
+.searchBar2 {
+  position: relative;
+  top: 50px;
+  --button-size: calc(var(--nav-size) * 0.6);
+  width: 350px;
+  height: 50px;
+  background-color: #fcfcfc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .searchBar-container {
   width: calc(var(--nav-size) * 3.5);
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 30px;
+}
+
+.searchBar-container2 {
+  width: calc(var(--nav-size) * 8);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 20px;
 }
 
 .logo-container {
@@ -142,10 +205,23 @@ a {
   padding-left: 1.5rem;
 }
 
+.logo-container2 {
+  width: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-left: 1.5rem;
+}
+
 .logo {
   font-size: 2.5rem;
 }
 
+.logo2 {
+  font-size: 3.5rem;
+  margin-top: 10px;
+}
 .logo:hover{
   filter: brightness(1.2);
 }
@@ -233,6 +309,17 @@ a {
 =====offering page styles=====
 ==============================
 */
+.offering-title {
+  font-size: 2rem;
+  font-family: 'Playfair Display'
+}
+
+.offering-sub {
+  font-size: 1.2rem;
+  font-family: 'Source Serif Pro';
+
+  color: #707070;
+}
 
 .offering-container {
   display: flex;

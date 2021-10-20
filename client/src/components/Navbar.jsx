@@ -62,21 +62,25 @@ export default function Navbar(props) {
   };
 
   return (
-    <nav className="navbar">
-      <ul className="navbar-nav">
-        <li className="logo-container">
+    <nav className={`${pageIdx === 0 ? 'navbar' : 'navbar2'}`}>
+      <ul className={`${pageIdx === 0 ? 'navbar-nav' : 'navbar-nav2'}`}>
+        <li className={`${pageIdx === 0 ? 'logo-container' : 'logo-container2'}`}>
           <span
             role="button"
             tabIndex={0}
             onClick={() => { setPageIdx(0); history.push('/'); }}
             onKeyDown={onKeyDown}
-            className="logo"
+            className={`${pageIdx === 0 ? 'logo' : 'logo2'}`}
           >
             M
           </span>
         </li>
-        <li className="searchBar-container">
-          <div className="searchBar">
+        <li className={`${pageIdx === 0 ? 'searchBar-container' : 'searchBar-container2'}`}>
+          {pageIdx === 0 ? null
+            : <div className="offering-title">Immersive learning with the best mentors
+                <div className="offering-sub">Teach or learn anything you want, learning can be so easy here</div>
+              </div>}
+          <div className={`${pageIdx === 0 ? 'searchBar' : 'searchBar2'}`}>
             <input
               type="text"
               id="searchBar"
@@ -97,7 +101,7 @@ export default function Navbar(props) {
 
           </div>
         </li>
-        <li className="login-container">
+        <li className={`${pageIdx === 0 ? 'login-container' : 'login-container2'}`}>
           <button
             type="button"
             className="login-button"
