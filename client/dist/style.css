@@ -311,7 +311,16 @@ a {
 */
 .offering-title {
   font-size: 2rem;
+  font-family: 'Playfair Display'
 }
+
+.offering-sub {
+  font-size: 1.2rem;
+  font-family: 'Source Serif Pro';
+
+  color: #707070;
+}
+
 .offering-container {
   display: flex;
   justify-content: center;
