@@ -14,7 +14,7 @@ module.exports.insertMany = (offeringId, availabilities) => new Promise((resolve
   // eslint-disable-next-line no-restricted-syntax
   for (const timeBlock of availabilities) {
     const values = '(?, ?, ?)';
-    const params = [timeBlock.startTime, timeBlock.endTime, offeringId];
+    const params = [new Date(timeBlock.startTime), new Date(timeBlock.endTime), offeringId];
     sqlValues.push(mysql.format(values, params));
   }
 
