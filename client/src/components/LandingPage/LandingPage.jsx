@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
+import { pageIdxContext } from '../App.jsx';
 
 export default function LandingPage({ history }) {
+  const { pageIdx, setPageIdx } = useContext(pageIdxContext);
+
   const studentSignupHandler = () => {
     history.push('/signup', { isMentor: false });
   };
@@ -8,6 +11,10 @@ export default function LandingPage({ history }) {
   const mentorSignupHandler = () => {
     history.push('/signup', { isMentor: true });
   };
+
+  useEffect(() => {
+    setPageIdx(0);
+  }, []);
 
   return (
     <>
