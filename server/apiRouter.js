@@ -8,6 +8,7 @@ const {
   getMessages,
   createAuthUser,
   postMessage,
+  getSchedule,
 } = require('./controller');
 
 router.get('/offerings', getOfferings);
@@ -21,6 +22,7 @@ router.get('/profile', getProfile);
 router.get('/messages', getMessages);
 
 router.post('/messages', postMessage);
+router.get('/schedule', getSchedule);
 
 router.post('/user/new', createAuthUser);
 
@@ -33,7 +35,17 @@ router.post('/user/login', passport.authenticate('local',
 
 router.get('/logout', (req, res) => {
   req.logout();
-  res.redirect('/');
+  res.status(200).send('Logged out');
+});
+
+router.get('/me', (req, res) => {
+  let user = 'null';
+  if (req.user !== undefined) {
+    user = req.user;
+  }
+  console.log('=== This is in the request\'s \'session\' property: \n', req.session);
+  console.log('=== This is the user: ', user);
+  res.status(200).send(user);
 });
 
 module.exports = router;
