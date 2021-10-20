@@ -53,7 +53,7 @@ module.exports = {
       + 'WHERE o.id IN ('
       +  extraStr
       + ')';
-      console.log('sql',sql);
+      console.log('sql', sql);
 
       db.query(sql, params, (err, results) => {
         if (err) {
