@@ -54,22 +54,17 @@ module.exports = {
       + 'WHERE o.id IN ('
       +  extraStr
       + ')';
-      console.log('sql',sql);
+      console.log('sql', sql);
 
       db.query(sql, params, (err, results) => {
         if (err) {
           console.log('error retrieving offerings');
-          reject(err)
+          reject(err);
         } else {
           console.log('successfully retrieved all offerings');
-          resolve(results);
+          resolve(null, results);
         }
       });
-    })
-  }
+    });
+  },
 };
-
-// SELECT o.id, o.offering_name, o.description, o.mentor_id, p.name, r.rating
-// FROM offerings AS o
-// JOIN profiles AS p ON p.id = o.mentor_id
-// JOIN ratings as r  ON o.mentor_id = r.mentor_id WHERE o.id IN(1,2);
