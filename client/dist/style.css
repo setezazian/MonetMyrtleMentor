@@ -250,7 +250,13 @@ a {
   min-width: fit-content;
   max-width: 70%;
   max-height: 300px;
+  transition: transform 300ms ease-out;
+}
 
+.offering-wrapper:hover{
+  transform: scale(1.01);
+  transform-origin: center;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .5);
 }
 
 .offering-picture {
