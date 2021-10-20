@@ -8,6 +8,7 @@ const {
   getMessages,
   createAuthUser,
   postMessage,
+  getSchedule,
 } = require('./controller');
 
 router.get('/offerings', getOfferings);
@@ -21,6 +22,7 @@ router.get('/profile', getProfile);
 router.get('/messages', getMessages);
 
 router.post('/messages', postMessage);
+router.get('/schedule', getSchedule);
 
 router.post('/user/new', createAuthUser);
 

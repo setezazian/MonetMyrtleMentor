@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { pageIdxContext } from './App.jsx';
@@ -7,6 +7,7 @@ export default function Navbar(props) {
   const history = useHistory();
   const { pageIdx, setPageIdx } = useContext(pageIdxContext);
   const [searchTerm, setSearchTerm] = useState('');
+  const searchRef = useRef(null);
   const matchArr = [];
   const handleClick = (e) => {
     e.preventDefault();
@@ -53,8 +54,11 @@ export default function Navbar(props) {
     setSearchTerm(e.target.value);
   };
 
-  const onKeyDown = () => {
-    console.log('keydown');
+  const onKeyDown = (e) => {
+    if (e.keyCode === 13) {
+      console.log('value', e.target.value);
+      searchRef.current.click();
+    }
   };
 
   return (
@@ -73,7 +77,14 @@ export default function Navbar(props) {
         </li>
         <li className="searchBar-container">
           <div className="searchBar">
-            <input type="text" id="searchBar" name="searchInput" placeholder="What do you want to learn?" onChange={handleChange} />
+            <input
+              type="text"
+              id="searchBar"
+              name="searchInput"
+              placeholder="What do you want to learn?"
+              onChange={handleChange}
+              onKeyDown={onKeyDown}
+            />
             <span
               role="button"
               tabIndex={0}
@@ -81,6 +92,7 @@ export default function Navbar(props) {
               onClick={handleClick}
               onKeyDown={onKeyDown}
               aria-label="Search Bar"
+              ref={searchRef}
             />
 
           </div>
