@@ -12,8 +12,8 @@ CREATE TABLE auth (
   id INT NOT NULL AUTO_INCREMENT,
   profile_id INT NOT NULL,
   email VARCHAR(255) NOT NULL UNIQUE,
-  password VARCHAR(255) NOT NULL,
-  salt VARCHAR(255) NOT NULL,
+  password CHAR(64) NOT NULL,
+  salt CHAR(32) NOT NULL,
   PRIMARY KEY (ID)
 );
 
