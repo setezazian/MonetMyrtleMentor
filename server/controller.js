@@ -67,7 +67,6 @@ const createProfile = (req, res) => {
 
 const createAuthUser = (req, res) => {
   console.log('req.body: ', req.body);
-  res.status(200).send('request received');
   const profile = {
     name: `${req.body.firstName} ${req.body.lastName}`,
     photo: req.body.photoUrl,
@@ -75,49 +74,38 @@ const createAuthUser = (req, res) => {
   };
 
   profileModel.create(profile)
-    .then((results) => {
+    .then((profileModelResults) => {
+      console.log('Results from profiles insertion: ', profileModelResults);
       const authUser = {
-        profileId: results.insertId,
+        profileId: profileModelResults.insertId,
         email: req.body.email,
         password: req.body.password,
       };
-      AuthModel.create(authUser);
+      AuthModel.create(authUser)
+        .then((authModelResults) => {
+          console.log(`Inserted ${authModelResults.affectedRows} rows into auth table`);
+        })
+        .catch((err) => console.log('Error inserting into auth table: ', err));
 
       const offering = {
         name: req.body.offeringName,
         description: req.body.offeringDesc,
-        mentor_id: results.insertId,
+        mentor_id: profileModelResults.insertId,
       };
       return offeringsModel.insertOne(offering);
     })
-    .then((results) => {
-      console.log('Response from adding to offerings table: ', results);
-      return AvailabilityModel.insertMany(results.insertId, req.body.availabilities);
+    .then((offeringModelResults) => {
+      console.log('Response from adding to offerings table: ', offeringModelResults);
+      return AvailabilityModel.insertMany(offeringModelResults.insertId, req.body.availabilities);
     })
-    .then((results) => {
-      console.log(`Inserted ${results.affectedRows} rows into availabilities table`);
+    .then((availabilityModelResults) => {
+      console.log(`Inserted ${availabilityModelResults.affectedRows} row(s) into availabilities table`);
       res.status(201).send('Created');
     })
     .catch((err) => {
-      console.log('Error adding an entry to auth table: ', err);
+      console.log('Error inserting new user: ', err);
       res.status(500).send('Internal server error');
     });
-/*
-  {
-    firstName: 'Fanno',
-    lastName: 'Chea',
-    email: 'fanno.chea@gmail.com',
-    password: 'helloworld',
-    offeringName: 'Form creation',
-    offeringDesc: 'I can teach you poorly how to create a web form',
-    availability: [
-      {
-        startTime: '2021-10-20T02:00:00.000Z',
-        endTime: '2021-10-20T03:00:00.000Z'
-      }
-    ]
-  }
-     */
 };
 
 module.exports = {
