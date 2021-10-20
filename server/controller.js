@@ -94,7 +94,7 @@ const createAuthUser = (req, res) => {
         .then((authModelResults) => {
           console.log(`Inserted ${authModelResults.affectedRows} rows into auth table`);
           if (!req.body.isMentor) {
-            res.status(201).send('Created');
+            res.status(201).send('Created mentee');
             return null;
           }
         })
@@ -104,7 +104,6 @@ const createAuthUser = (req, res) => {
         });
 
       if (!req.body.isMentor) {
-        res.status(201).send('Created mentee');
         return null;
       }
 
