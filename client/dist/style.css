@@ -53,7 +53,7 @@ a {
   font: 13px sans-serif;
   width: 80%;
   height: 90%;
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 .searchBar input:focus{
@@ -121,7 +121,7 @@ a {
 }
 
 .searchBar-container {
-  width: calc(var(--nav-size) * 3);
+  width: calc(var(--nav-size) * 3.5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -315,4 +315,14 @@ a {
   grid-row: 2 / 3;
   width: fit-content;
   margin-top: 1rem;
+}
+
+/*
+===========================
+===== schedule styles =====
+===========================
+*/
+
+.calendar {
+  width: 200px;
 }

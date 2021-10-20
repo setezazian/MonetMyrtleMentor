@@ -10,7 +10,7 @@ require('./auth.js')();
 
 // Handle 'application/json' and 'application/x-www-form-urlencoded'
 app.use(express.json());
-app.use(express.urlencoded({ urlencoded: true }));
+app.use(express.urlencoded({ extended: true }));
 
 // Serve site/client from root path
 app.use(express.static(path.resolve('client', 'dist')));
@@ -23,6 +23,7 @@ app.use(session({
   }),
   resave: false,
   secret: process.env.SESSION_SECRET || 'keyboard cat',
+  saveUninitialized: false,
 }));
 app.use(passport.initialize());
 app.use(passport.session());
