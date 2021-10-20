@@ -2,6 +2,7 @@ const profileModel = require('./models/profile.js');
 const offeringsModel = require('./models/offerings.js');
 const messagesModel = require('./models/messages.js');
 const AuthModel = require('./models/AuthModel.js');
+const AvailabilityModel = require('./models/AvailabilityModel.js');
 
 const getOfferings = (req, res) => {
   // Read req params into vars
@@ -72,12 +73,29 @@ const createAuthUser = (req, res) => {
     photo: req.body.photoUrl,
     mentor: req.body.isMentor,
   };
-  profileModel.create(req.body)
+
+  profileModel.create(profile)
     .then((results) => {
-      AuthModel.create(req.body)
+      const authUser = {
+        profileId: results.insertId,
+        email: req.body.email,
+        password: req.body.password,
+      };
+      AuthModel.create(authUser);
+
+      const offering = {
+        name: req.body.offeringName,
+        description: req.body.offeringDesc,
+        mentor_id: results.insertId,
+      };
+      return offeringsModel.insertOne(offering);
     })
     .then((results) => {
-      console.log('Response from adding to auth table: ', results);
+      console.log('Response from adding to offerings table: ', results);
+      return AvailabilityModel.insertMany(results.insertId, req.body.availabilities);
+    })
+    .then((results) => {
+      console.log(`Inserted ${results.affectedRows} rows into availabilities table`);
       res.status(201).send('Created');
     })
     .catch((err) => {
