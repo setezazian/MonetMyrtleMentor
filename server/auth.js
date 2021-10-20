@@ -36,7 +36,6 @@ module.exports = () => {
           return cb(null, false, { message: 'Incorrect username or password.' });
         }
 
-
         const user = {
           id: authData.id.toString(),
           profile_id: authData.profile_id,

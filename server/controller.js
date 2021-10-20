@@ -95,8 +95,8 @@ const createAuthUser = (req, res) => {
           console.log(`Inserted ${authModelResults.affectedRows} rows into auth table`);
           if (!req.body.isMentor) {
             res.status(201).send('Created mentee');
-            return null;
           }
+          return null;
         })
         .catch((err) => {
           res.status(500).send('Internal server error');
