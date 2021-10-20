@@ -481,17 +481,18 @@ a {
 
 .messages-from {
   grid-column: 1 / 2;
-  align-self: left;
+}
+
+.messages-to {
+  grid-column: 2 / 3;
 }
 
 .messages-message {
-  grid-column: 2 / 3;
-  align-self: left;
+  grid-column: 3 / 4;
 }
 
 .messages-time {
-  grid-column: 3 / 4;
-  align-content: left;
+  grid-column: 4 / 5;
 }
 
 /*
@@ -499,7 +500,21 @@ a {
 ===== schedule styles =====
 ===========================
 */
+.scheduling {
+  display: flex;
+  padding: 10px;
+}
+
+#schedule.hidden {
+  display: none;
+}
+
+#schedule {
+  border-radius: 5px;
+  background-color: lightblue;
+  margin-left: 10px;
+}
 
 .calendar {
-  width: 200px;
+  width: 300px;
 }
