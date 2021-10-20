@@ -9,6 +9,9 @@ const Offering = (props) => {
 
   const contactHandler = () => {
     history.push('/offerings/contact');
+
+  const availHandler = () => {
+    history.push('/offerings/availabillity');
   };
 
   return (
@@ -29,7 +32,7 @@ const Offering = (props) => {
           <div className="offering-desc">{desc}</div>
         </div>
         <button className="offering-button contact-button" type="button" onClick={contactHandler}>Contact</button>
-        <button className="offering-button availablity-button" type="button">Availablity</button>
+        <button className="offering-button availablity-button" type="button" onClick={availHandler}>Availablity</button>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import LandingPage from './LandingPage/LandingPage.jsx';
 import Offerings from './offeringPage/Offerings.jsx';
 import ContactModal from './offeringPage/ContactModal.jsx';
+import ScheduleModal from './offeringPage/ScheduleModal.jsx';
 import Navbar from './Navbar.jsx';
 import Profile from './Profile/Profile.jsx';
 import FormSignup from './FormSignup/FormSignup.jsx';
@@ -23,6 +24,7 @@ const App = () => {
           <Switch>
             <Route exact path="/" component={LandingPage} />
             <Route path="/offerings/contact" component={ContactModal} />
+            <Route path="/offerings/availabillity" component={ScheduleModal} />
             <Route path="/offerings" component={Offerings} />
             <Route path="/profile" component={Profile} />
             <Route exact path="/signup" component={FormSignup} />
