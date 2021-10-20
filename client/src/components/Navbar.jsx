@@ -71,7 +71,6 @@ export default function Navbar(props) {
             onClick={() => { setPageIdx(0); history.push('/'); }}
             onKeyDown={onKeyDown}
             className="logo"
-            ref={searchRef}
           >
             M
           </span>
@@ -93,6 +92,7 @@ export default function Navbar(props) {
               onClick={handleClick}
               onKeyDown={onKeyDown}
               aria-label="Search Bar"
+              ref={searchRef}
             />
 
           </div>
