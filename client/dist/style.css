@@ -92,10 +92,11 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+  border: none;
 }
 
 .login-button:hover {
-  filter: brightness(1.2);
+  filter: brightness(1.6);
 }
 
 .searchIcon:hover {
