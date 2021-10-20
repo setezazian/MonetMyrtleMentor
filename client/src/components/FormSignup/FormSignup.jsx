@@ -10,15 +10,15 @@ export default function FormSignup() {
   const [isMentor, setIsMentor] = useState(true);
   const [offeringName, setOfferingName] = useState('');
   const [offeringDesc, setOfferingDesc] = useState('');
-  const [availability, setAvailability] = useState([]);
+  const [availabilities, setAvailabilities] = useState([]);
   const [startTime, setStartTime] = useState(new Date().toISOString());
   const [endTime, setEndTime] = useState(new Date().toISOString());
 
   useEffect(() => {
-    console.log('Availability array has changed to: ', availability);
-  }, [availability]);
+    console.log('availabilities array has changed to: ', availabilities);
+  }, [availabilities]);
 
-  const addAvailabilityHandler = () => {
+  const addAvailabilitiesHandler = () => {
     console.log('What format does the date/time picker have? ', typeof startTime);
     console.log(startTime);
     console.log(endTime);
@@ -26,9 +26,9 @@ export default function FormSignup() {
       startTime: new Date(startTime).toISOString(),
       endTime: new Date(endTime).toISOString(),
     };
-    const newAvailability = [...availability];
-    newAvailability.push(newTimeBlock);
-    setAvailability(newAvailability);
+    const newAvailabilities = [...availabilities];
+    newAvailabilities.push(newTimeBlock);
+    setAvailabilities(newAvailabilities);
   };
 
   const formSubmitHandler = (e) => {
@@ -42,7 +42,7 @@ export default function FormSignup() {
       isMentor,
       offeringName,
       offeringDesc,
-      availability,
+      availabilities,
     };
 
     axios.post('/api/user/new', formData)
@@ -108,7 +108,7 @@ export default function FormSignup() {
         <input id="input-endtime" type="datetime-local" value={endTime} onChange={(e) => setEndTime(e.target.value)} />
       </label>
       &nbsp;
-      <button id="button-availabilityadd" type="button" onClick={addAvailabilityHandler}>Add</button>
+      <button id="button-availabilityadd" type="button" onClick={addAvailabilitiesHandler}>Add</button>
       <br />
       <br />
       <button id="button-formsubmit" type="submit" onClick={formSubmitHandler}>Submit</button>
