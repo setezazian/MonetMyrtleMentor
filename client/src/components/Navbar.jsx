@@ -53,8 +53,11 @@ export default function Navbar(props) {
     setSearchTerm(e.target.value);
   };
 
-  const onKeyDown = () => {
-    console.log('keydown');
+  const onKeyDown = (e) => {
+    if (e.keyCode === 13) {
+      console.log('value', e.target.value);
+      // put the login here
+    }
   };
 
   return (
@@ -67,13 +70,21 @@ export default function Navbar(props) {
             onClick={() => { setPageIdx(0); history.push('/'); }}
             onKeyDown={onKeyDown}
             className="logo"
+
           >
             M
           </span>
         </li>
         <li className="searchBar-container">
           <div className="searchBar">
-            <input type="text" id="searchBar" name="searchInput" placeholder="What do you want to learn?" onChange={handleChange} />
+            <input
+              type="text"
+              id="searchBar"
+              name="searchInput"
+              placeholder="What do you want to learn?"
+              onChange={handleChange}
+              onKeyDown={onKeyDown}
+            />
             <span
               role="button"
               tabIndex={0}
