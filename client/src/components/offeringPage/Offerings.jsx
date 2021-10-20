@@ -4,11 +4,10 @@ import Offering from './Offering.jsx';
 
 const Offerings = (props) => {
   const testArray = props.location.state.detail;
-  const [renderArr, setRenderArr] = useState([1, 2]);
+  const [renderArray, setRenderArray] = useState([1, 2]);
   function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
   }
-  console.log('testArr', testArray);
   const filterArr = testArray.filter(onlyUnique);
 
   for (let i = 0; i < filterArr.length; i++) {
@@ -16,10 +15,9 @@ const Offerings = (props) => {
   }
 
   useEffect(() => {
-    console.log('test');
     axios.post('/api/multiOfferings', { filterArr: [1, 2] })
       .then((res) => {
-        setRenderArr(res.data);
+        setRenderArray(res.data);
       })
       .catch((err) => console.error(err));
   }, []);
@@ -27,15 +25,14 @@ const Offerings = (props) => {
   useEffect(() => {
     axios.post('/api/multiOfferings', { filterArr })
       .then((res) => {
-        setRenderArr(res.data);
+        setRenderArray(res.data);
       })
       .catch((err) => console.error(err));
-    console.log('useeffect');
   }, [testArray]);
 
   return (
     <div>
-      {renderArr.map((element) => (
+      {renderArray.map((element) => (
         <Offering
           key={Math.random()}
           name={element.name}

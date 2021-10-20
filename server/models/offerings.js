@@ -62,7 +62,7 @@ module.exports = {
           reject(err);
         } else {
           console.log('successfully retrieved all offerings');
-          resolve(null, results);
+          resolve(results);
         }
       });
     });
