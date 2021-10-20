@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { pageIdxContext } from './App.jsx';
@@ -7,6 +7,7 @@ export default function Navbar(props) {
   const history = useHistory();
   const { pageIdx, setPageIdx } = useContext(pageIdxContext);
   const [searchTerm, setSearchTerm] = useState('');
+  const searchRef = useRef(null);
   const matchArr = [];
   const handleClick = (e) => {
     e.preventDefault();
@@ -56,7 +57,7 @@ export default function Navbar(props) {
   const onKeyDown = (e) => {
     if (e.keyCode === 13) {
       console.log('value', e.target.value);
-      // put the login here
+      searchRef.current.click();
     }
   };
 
@@ -70,7 +71,7 @@ export default function Navbar(props) {
             onClick={() => { setPageIdx(0); history.push('/'); }}
             onKeyDown={onKeyDown}
             className="logo"
-
+            ref={searchRef}
           >
             M
           </span>
