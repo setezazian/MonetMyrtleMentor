@@ -3,20 +3,26 @@ import axios from 'axios';
 
 export default function Debug() {
   const [user, setUser] = useState({});
-  const [loginMsg, setLoginMsg] = useState(null);
 
   useEffect(() => {
     axios.get('/api/me')
       .then((response) => {
         console.log('Server responded with: ', response.data);
-        if (response.data === null) {
-          setLoginMsg('You are not logged in.');
-        } else {
+        if (response.data !== null) {
           setUser(response.data);
         }
       })
       .catch((err) => console.log('GET error: ', err));
   }, []);
+
+  const logoutHandler = () => {
+    axios.get('/api/logout')
+      .then((response) => {
+        console.log('Logout response from server: ', response.data);
+        setUser({});
+      })
+      .catch((err) => console.log('Error trying to logout: ', err));
+  };
 
   return (
     <>
@@ -29,7 +35,9 @@ export default function Debug() {
         User Profile ID:
         {user.profile_id}
       </p>
-      <p>{loginMsg}</p>
+      <p>{user.id === undefined ? 'You are not logged in.' : null}</p>
+      <br />
+      <button id="button-logout" type="button" onClick={logoutHandler}>Logout</button>
     </>
   );
 }
