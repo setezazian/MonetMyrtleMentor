@@ -3,7 +3,12 @@ import axios from 'axios';
 import Offering from './Offering.jsx';
 
 const Offerings = (props) => {
-  const testArray = props.location.state.detail;
+  let testArray;
+  if (props.location.state === undefined) {
+    testArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  } else {
+    testArray = props.location.state.detail;
+  }
   const [renderArray, setRenderArray] = useState([1, 2]);
   function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
