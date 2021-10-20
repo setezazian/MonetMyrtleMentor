@@ -13,7 +13,6 @@ function create({ profileId, email, password }) {
 
       const sql = 'INSERT INTO auth (profile_id, email, password, salt) VALUES (?, ?, ?, ?)';
       const params = [profileId, email, hashedPassword.toString(), salt.toString()];
-      console.log('The hashed password: ', hashedPassword);
       db.query(sql, params, (err, dbData) => {
         if (err) {
           reject(err);
