@@ -1,16 +1,20 @@
 const db = require('../db');
 
 module.exports = {
-  getMessages(callback) {
-    const sql = '';
-    db.query(sql, (err, results) => {
-      if (err) {
-        console.log('error retrieving messages');
-        callback(err);
-      } else {
-        console.log('successfully retrieved all messages');
-        callback(null, results);
-      }
+  getMessages() {
+    const sql = 'SELECT * FROM messages WHERE from_id = 1 OR to_id = 1';
+    return new Promise((resolve, reject) => {
+      db.query(sql, (err, results) => {
+        if (err) {
+          console.log('error retrieving messages');
+          reject(err);
+          // callback(err);
+        } else {
+          console.log('successfully retrieved all messages');
+          resolve(results);
+          // callback(null, results);
+        }
+      });
     });
   },
   postMessage(body) {

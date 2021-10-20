@@ -53,6 +53,7 @@ const getProfile = (req, res) => {
 const getMessages = (req, res) => {
   messagesModel.getMessages() // (userId, withId = null, page = 1, count = 10)
     .then((data) => {
+      console.log(data);
       res.status(200).send(data);
     })
     .catch((err) => console.log('Error retrieving messages from model: ', err));
