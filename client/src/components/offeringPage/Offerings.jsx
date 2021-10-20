@@ -16,6 +16,7 @@ const Offerings = (props) => {
   }
 
   useEffect(() => {
+    console.log('test');
     axios.post('/api/multiOfferings', { filterArr: [1, 2] })
       .then((res) => {
         setRenderArr(res.data);

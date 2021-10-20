@@ -1,7 +1,9 @@
 import React from 'react';
 
 const Offering = (props) => {
-  const { name, teaches, star, desc, photo } = props;
+  const {
+    name, teaches, star, desc, photo,
+  } = props;
   return (
     <div className="offering-wrapper">
       <div className="offering-picture"><img src={photo} alt="Mentor" /></div>

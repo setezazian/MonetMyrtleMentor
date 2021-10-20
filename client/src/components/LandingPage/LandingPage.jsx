@@ -13,8 +13,8 @@ export default function LandingPage() {
           Find the mentor from all over the world, flex timeline, flex structure,
           learn in the way you always imagine.
         </div>
-        <button className='imStudent'>I'm a student</button>
-        <button className='imMentor'>I'm a mentor</button>
+        <button type="button" className="imStudent">I&apos;m a student</button>
+        <button type="button" className="imMentor">I&apos;m a mentor</button>
       </div>
     </>
 

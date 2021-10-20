@@ -56,7 +56,8 @@ export default function Navbar(props) {
           <span
             role="button"
             tabIndex={0}
-            onClick={() => { setPageIdx(0); history.push('/'); }} onKeyDown={onKeyDown}
+            onClick={() => { setPageIdx(0); history.push('/'); }}
+            onKeyDown={onKeyDown}
             className="logo"
           >
             M
