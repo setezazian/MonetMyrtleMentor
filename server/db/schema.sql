@@ -76,13 +76,13 @@ ALTER TABLE offerings ADD FOREIGN KEY (mentor_id) REFERENCES profiles (id);
 INSERT INTO profiles (id, name, photo, mentor) VALUES (1, "James Jones", "http://i.imgur.com/SETiE.png", false);
 INSERT INTO profiles (id, name, photo, mentor) VALUES (2, "Lisa Simpson", "https://source.unsplash.com/dUtizJyby4E", true);
 INSERT INTO profiles (id, name, photo, mentor) VALUES (3, "Homer Simpson", "https://source.unsplash.com/8PMvB4VyVXA", true);
-INSERT INTO profiles (id, name, photo, mentor) VALUES (4, "Bart Simpson", "https://upload.wikimedia.org/wikipedia/en/a/aa/Bart_Simpson_200px.png", true);
-INSERT INTO profiles (id, name, photo, mentor) VALUES (5, "Monet Myrtle", "https://upload.wikimedia.org/wikipedia/en/a/aa/Bart_Simpson_200px.png", true);
-INSERT INTO profiles (id, name, photo, mentor) VALUES (6, "Louis Lee", "https://upload.wikimedia.org/wikipedia/en/a/aa/Bart_Simpson_200px.png", true);
-INSERT INTO profiles (id, name, photo, mentor) VALUES (7, "Fanno Chea", "https://upload.wikimedia.org/wikipedia/en/a/aa/Bart_Simpson_200px.png", true);
-INSERT INTO profiles (id, name, photo, mentor) VALUES (8, "Shrin Etezazian", "https://upload.wikimedia.org/wikipedia/en/a/aa/Bart_Simpson_200px.png", true);
-INSERT INTO profiles (id, name, photo, mentor) VALUES (9, "Jason West", "https://upload.wikimedia.org/wikipedia/en/a/aa/Bart_Simpson_200px.png", true);
-INSERT INTO profiles (id, name, photo, mentor) VALUES (10, "Lebron James", "https://upload.wikimedia.org/wikipedia/en/a/aa/Bart_Simpson_200px.png", true);
+INSERT INTO profiles (id, name, photo, mentor) VALUES (4, "Bart Simpson", "https://source.unsplash.com/i4OHxtxiMtk", true);
+INSERT INTO profiles (id, name, photo, mentor) VALUES (5, "Monet Myrtle", "https://source.unsplash.com/6xv4A1VA1rU", true);
+INSERT INTO profiles (id, name, photo, mentor) VALUES (6, "Louis Lee", "https://source.unsplash.com/X6Uj51n5CE8", true);
+INSERT INTO profiles (id, name, photo, mentor) VALUES (7, "Fanno Chea", "https://source.unsplash.com/V-bW-TDTo2c", true);
+INSERT INTO profiles (id, name, photo, mentor) VALUES (8, "Shrin Etezazian", "https://source.unsplash.com/bqe0J0b26RQ", true);
+INSERT INTO profiles (id, name, photo, mentor) VALUES (9, "Jason West", "https://source.unsplash.com/Y7C7F26fzZM", true);
+INSERT INTO profiles (id, name, photo, mentor) VALUES (10, "Lebron James", "https://source.unsplash.com/BBmi4nJjKk8", true);
 
 INSERT INTO offerings (id, offering_name, description, mentor_id) VALUES (1, "Morden and Contempory Art and Design", "Painting is fun. I will teach you to become Van Gogh!", 2);
 INSERT INTO offerings (id, offering_name, description, mentor_id) VALUES (2, "Carpentry", "With over a decade experience in the field, I will teach you the craft of carpentry", 3);
@@ -92,7 +92,7 @@ INSERT INTO offerings (id, offering_name, description, mentor_id) VALUES (5, "Ba
 INSERT INTO offerings (id, offering_name, description, mentor_id) VALUES (6, "Computer Science", "Two times national hackerthon winner, future googler will teach you how to program correctly", 7);
 INSERT INTO offerings (id, offering_name, description, mentor_id) VALUES (7, "Wind Surf", "This is just one of my hobby, join me and I will open your world of all kinds of outdoor activity", 8);
 INSERT INTO offerings (id, offering_name, description, mentor_id) VALUES (8, "Game Design", "Build a game with me in 2 days! Tell me what would you like to play and let's do it", 9);
-INSERT INTO offerings (id, offering_name, description, mentor_id) VALUES (9, "Basketball", "With over a decade experience in the field, I will teach you the craft of carpentry", 10);
+INSERT INTO offerings (id, offering_name, description, mentor_id) VALUES (9, "Basketball", "4 times NBA world championship, what should I said?", 10);
 
 
 INSERT INTO availabilities (id, start_time, end_time, offering_id) VALUES (1, "2021-10-31 01:15:00", "2021-10-31 02:15:00", 1);
