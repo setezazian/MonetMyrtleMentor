@@ -319,6 +319,36 @@ a {
 }
 
 /*
+==============================
+======= messages styles=======
+==============================
+*/
+
+.messages-wrapper {
+  width: 100%;
+}
+
+.message-wrapper {
+  display: grid;
+  width: 100%;
+}
+
+.messages-from {
+  grid-column: 1 / 2;
+  align-self: left;
+}
+
+.messages-message {
+  grid-column: 2 / 3;
+  align-self: left;
+}
+
+.messages-time {
+  grid-column: 3 / 4;
+  align-content: left;
+}
+
+/*
 ===========================
 ===== schedule styles =====
 ===========================
