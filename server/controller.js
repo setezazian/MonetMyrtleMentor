@@ -2,6 +2,7 @@ const profileModel = require('./models/profile.js');
 const offeringsModel = require('./models/offerings.js');
 const messagesModel = require('./models/messages.js');
 const AuthModel = require('./models/AuthModel.js');
+// const ScheduleModel = require('./models/bookings.js');
 
 const getOfferings = (req, res) => {
   // Read req params into vars
@@ -35,6 +36,33 @@ const getMessages = (req, res) => {
     .catch((err) => console.log('Error retrieving messages from model: ', err));
 };
 
+const getSchedule = (req, res) => {
+  console.log(req.query);
+  const dateStr = req.query.date;
+  const date = new Date(dateStr);
+  if (Date.UTC(2021, 9, 31) === Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())) {
+    res.json([{
+      start_time: '2021-10-31 01:15:00',
+      end_time: '2021-10-31 02:15:00',
+      offering_name: 'painting',
+      offering_description: 'painting is fun. I will teach you to become Van Gogh!',
+    }, {
+      start_time: '2021-10-31 04:15:00',
+      end_time: '2021-10-31 05:15:00',
+      offering_name: 'carpentry',
+      offering_description: 'With over a decade experience in the field, I will teach you the craft of carpentry',
+    }]);
+  } else {
+    res.send('no data for this date');
+  }
+  // ScheduleModel.getSchedule()
+  //   .then((data) => {
+  //     console.log('successfully retrieved schedule');
+  //     res.status(200).send(data);
+  //   })
+  //   .catch((err) => console.log('Error retrieving schedule: ', err));
+};
+
 const createProfile = (req, res) => {
   profileModel.create(req.body)
     .then(() => {
@@ -62,4 +90,5 @@ module.exports = {
   getMessages,
   createProfile,
   createAuthUser,
+  getSchedule,
 };
