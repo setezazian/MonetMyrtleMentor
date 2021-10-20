@@ -330,7 +330,7 @@ a {
 
 .message-wrapper {
   display: grid;
-  width: 50%;
+  width: 100%;
 }
 
 .messages-from {
