@@ -25,6 +25,14 @@ export default function Navbar(props) {
         } else if (searchTerm === '') {
           matchArr.push(0);
           matchArr.push(1);
+          matchArr.push(2);
+          matchArr.push(3);
+          matchArr.push(4);
+          matchArr.push(5);
+          matchArr.push(6);
+          matchArr.push(7);
+          matchArr.push(8);
+          matchArr.push(9);
         }
       })
       .then(() => {
