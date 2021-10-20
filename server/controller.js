@@ -93,8 +93,20 @@ const createAuthUser = (req, res) => {
       AuthModel.create(authUser)
         .then((authModelResults) => {
           console.log(`Inserted ${authModelResults.affectedRows} rows into auth table`);
+          if (!req.body.isMentor) {
+            res.status(201).send('Created');
+            return null;
+          }
         })
-        .catch((err) => console.log('Error inserting into auth table: ', err));
+        .catch((err) => {
+          res.status(500).send('Internal server error');
+          console.log('Error inserting into auth table: ', err);
+        });
+
+      if (!req.body.isMentor) {
+        res.status(201).send('Created mentee');
+        return null;
+      }
 
       const offering = {
         name: req.body.offeringName,
@@ -104,12 +116,21 @@ const createAuthUser = (req, res) => {
       return offeringsModel.insertOne(offering);
     })
     .then((offeringModelResults) => {
+      if (!req.body.isMentor) {
+        return null;
+      }
+
       console.log('Response from adding to offerings table: ', offeringModelResults);
       return AvailabilityModel.insertMany(offeringModelResults.insertId, req.body.availabilities);
     })
     .then((availabilityModelResults) => {
+      if (!req.body.isMentor) {
+        return null;
+      }
+
       console.log(`Inserted ${availabilityModelResults.affectedRows} row(s) into availabilities table`);
-      res.status(201).send('Created');
+      res.status(201).send('Created mentor');
+      return null;
     })
     .catch((err) => {
       console.log('Error inserting new user: ', err);
