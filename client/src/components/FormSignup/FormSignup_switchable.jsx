@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export default function FormSignup({ location, history }) {
-  const { isMentor } = location.state;
+export default function FormSignup() {
   const [fname, setFName] = useState('');
   const [lname, setLName] = useState('');
   const [email, setEmail] = useState('');
   const [photoUrl, setPhotoUrl] = useState('');
   const [password, setPassword] = useState('');
+  const [isMentor, setIsMentor] = useState(true);
   const [offeringName, setOfferingName] = useState('');
   const [offeringDesc, setOfferingDesc] = useState('');
   const [availabilities, setAvailabilities] = useState([]);
@@ -53,8 +53,6 @@ export default function FormSignup({ location, history }) {
         console.log('Error POSTing form data: ', err);
         // figure out the error and have user correct their form
       });
-
-    history.push('/offerings');
   };
 
   const mentorFormComponents = (
@@ -123,6 +121,17 @@ export default function FormSignup({ location, history }) {
         <label htmlFor="input-password">
           Password:&nbsp;
           <input id="input-password" name="password" type="password" placeholder="Create a password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        </label>
+        <br />
+        <p>Are you signing up as a mentor?</p>
+        <label htmlFor="input-ismentor-yes">
+          Yes&nbsp;
+          <input id="input-ismentor-yes" name="ismentor" type="radio" value="true" onChange={(e) => setIsMentor(e.target.value === 'true')} checked />
+        </label>
+        <br />
+        <label htmlFor="input-ismentor-no">
+          No&nbsp;
+          <input id="input-ismentor-no" name="ismentor" type="radio" value="false" onChange={(e) => setIsMentor(e.target.value === 'true')} />
         </label>
         <br />
         {isMentor ? mentorFormComponents : null}

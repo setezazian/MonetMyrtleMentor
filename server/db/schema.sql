@@ -12,8 +12,8 @@ CREATE TABLE auth (
   id INT NOT NULL AUTO_INCREMENT,
   profile_id INT NOT NULL,
   email VARCHAR(255) NOT NULL UNIQUE,
-  password VARCHAR(255) NOT NULL,
-  salt VARCHAR(255) NOT NULL,
+  password CHAR(64) NOT NULL,
+  salt CHAR(32) NOT NULL,
   PRIMARY KEY (ID)
 );
 
@@ -114,5 +114,19 @@ INSERT INTO ratings (id, mentor_id, rating) VALUES (7, 8, 4.99);
 INSERT INTO ratings (id, mentor_id, rating) VALUES (8, 9, 4.99);
 INSERT INTO ratings (id, mentor_id, rating) VALUES (9, 10, 4.99);
 
+
+
+INSERT INTO messages (from_id, to_id, body, time) VALUES (1, 2, "message", "2021-10-20 01:15:00");
+INSERT INTO messages (from_id, to_id, body, time) VALUES (1, 3, "message", "2021-10-20 01:15:00");
+INSERT INTO messages (from_id, to_id, body, time) VALUES (1, 4, "message", "2021-10-20 01:15:00");
+INSERT INTO messages (from_id, to_id, body, time) VALUES (2, 1, "message", "2021-10-20 01:15:00");
+INSERT INTO messages (from_id, to_id, body, time) VALUES (2, 3, "message", "2021-10-20 01:15:00");
+INSERT INTO messages (from_id, to_id, body, time) VALUES (2, 4, "message", "2021-10-20 01:15:00");
+INSERT INTO messages (from_id, to_id, body, time) VALUES (3, 1, "message", "2021-10-20 01:15:00");
+INSERT INTO messages (from_id, to_id, body, time) VALUES (3, 2, "message", "2021-10-20 01:15:00");
+INSERT INTO messages (from_id, to_id, body, time) VALUES (3, 4, "message", "2021-10-20 01:15:00");
+INSERT INTO messages (from_id, to_id, body, time) VALUES (4, 1, "message", "2021-10-20 01:15:00");
+INSERT INTO messages (from_id, to_id, body, time) VALUES (4, 2, "message", "2021-10-20 01:15:00");
+INSERT INTO messages (from_id, to_id, body, time) VALUES (4, 3, "message", "2021-10-20 01:15:00");
 
 

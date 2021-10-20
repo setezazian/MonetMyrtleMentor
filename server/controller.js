@@ -2,6 +2,7 @@ const profileModel = require('./models/profile.js');
 const offeringsModel = require('./models/offerings.js');
 const messagesModel = require('./models/messages.js');
 const AuthModel = require('./models/AuthModel.js');
+const AvailabilityModel = require('./models/AvailabilityModel.js');
 
 const getOfferings = (req, res) => {
   // Read req params into vars
@@ -52,9 +53,18 @@ const getProfile = (req, res) => {
 const getMessages = (req, res) => {
   messagesModel.getMessages() // (userId, withId = null, page = 1, count = 10)
     .then((data) => {
+      console.log(data);
       res.status(200).send(data);
     })
     .catch((err) => console.log('Error retrieving messages from model: ', err));
+};
+
+const postMessage = (req, res) => {
+  messagesModel.postMessage(req.body)
+    .then(() => {
+      res.status(201).send('posted message');
+    })
+    .catch((err) => console.log('Error creating message ', err));
 };
 
 const createProfile = (req, res) => {
@@ -67,33 +77,65 @@ const createProfile = (req, res) => {
 
 const createAuthUser = (req, res) => {
   console.log('req.body: ', req.body);
-  res.status(200).send('request received');
-  /* profileModel.create(req.body)
-    .then(() => AuthModel.create(req.body))
-    .then((dbResponse) => {
-      console.log('Response from adding to auth table: ', dbResponse);
-      res.status(201).send('Created');
+  const profile = {
+    name: `${req.body.firstName} ${req.body.lastName}`,
+    photo: req.body.photoUrl,
+    mentor: req.body.isMentor,
+  };
+
+  profileModel.create(profile)
+    .then((profileModelResults) => {
+      console.log('Results from profiles insertion: ', profileModelResults);
+      const authUser = {
+        profileId: profileModelResults.insertId,
+        email: req.body.email,
+        password: req.body.password,
+      };
+      AuthModel.create(authUser)
+        .then((authModelResults) => {
+          console.log(`Inserted ${authModelResults.affectedRows} rows into auth table`);
+          if (!req.body.isMentor) {
+            res.status(201).send('Created mentee');
+          }
+          return null;
+        })
+        .catch((err) => {
+          res.status(500).send('Internal server error');
+          console.log('Error inserting into auth table: ', err);
+        });
+
+      if (!req.body.isMentor) {
+        return null;
+      }
+
+      const offering = {
+        name: req.body.offeringName,
+        description: req.body.offeringDesc,
+        mentor_id: profileModelResults.insertId,
+      };
+      return offeringsModel.insertOne(offering);
+    })
+    .then((offeringModelResults) => {
+      if (!req.body.isMentor) {
+        return null;
+      }
+
+      console.log('Response from adding to offerings table: ', offeringModelResults);
+      return AvailabilityModel.insertMany(offeringModelResults.insertId, req.body.availabilities);
+    })
+    .then((availabilityModelResults) => {
+      if (!req.body.isMentor) {
+        return null;
+      }
+
+      console.log(`Inserted ${availabilityModelResults.affectedRows} row(s) into availabilities table`);
+      res.status(201).send('Created mentor');
+      return null;
     })
     .catch((err) => {
-      console.log('Error adding an entry to auth table: ', err);
+      console.log('Error inserting new user: ', err);
       res.status(500).send('Internal server error');
-    }); */
-/*
-  {
-    firstName: 'Fanno',
-    lastName: 'Chea',
-    email: 'fanno.chea@gmail.com',
-    password: 'helloworld',
-    offeringName: 'Form creation',
-    offeringDesc: 'I can teach you poorly how to create a web form',
-    availability: [
-      {
-        startTime: '2021-10-20T02:00:00.000Z',
-        endTime: '2021-10-20T03:00:00.000Z'
-      }
-    ]
-  }
-     */
+    });
 };
 
 module.exports = {
@@ -104,4 +146,5 @@ module.exports = {
   getMessages,
   createProfile,
   createAuthUser,
+  postMessage,
 };

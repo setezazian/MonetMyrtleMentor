@@ -1,6 +1,14 @@
 import React from 'react';
 
-export default function LandingPage() {
+export default function LandingPage({ history }) {
+  const studentSignupHandler = () => {
+    history.push('/signup', { isMentor: false });
+  };
+
+  const mentorSignupHandler = () => {
+    history.push('/signup', { isMentor: true });
+  };
+
   return (
     <>
       <div className="landingPage-container">
@@ -13,8 +21,8 @@ export default function LandingPage() {
           Find the mentor from all over the world, flex timeline, flex structure,
           learn in the way you always imagine.
         </div>
-        <button type="button" className="imStudent">I&apos;m a student</button>
-        <button type="button" className="imMentor">I&apos;m a mentor</button>
+        <button type="button" className="imStudent" onClick={studentSignupHandler}>I&apos;m a student</button>
+        <button type="button" className="imMentor" onClick={mentorSignupHandler}>I&apos;m a mentor</button>
       </div>
     </>
 

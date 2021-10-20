@@ -347,10 +347,66 @@ a {
 }
 
 /*
+==============================
+=====offering page styles=====
+==============================
+*/
+
+.contact-form {
+  display: grid;
+  height: 100%;
+  margin: 1rem;
+}
+
+.contact-message {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  resize: none;
+}
+
+.contact-submit {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  width: fit-content;
+  margin-top: 1rem;
+}
+
+/*
+==============================
+======= messages styles=======
+==============================
+*/
+
+.messages-wrapper {
+  width: 100%;
+}
+
+.message-wrapper {
+  display: grid;
+  width: 100%;
+}
+
+.messages-from {
+  grid-column: 1 / 2;
+  align-self: left;
+}
+
+.messages-message {
+  grid-column: 2 / 3;
+  align-self: left;
+}
+
+.messages-time {
+  grid-column: 3 / 4;
+  align-content: left;
+}
+
+/*
 ===========================
 ===== schedule styles =====
 ===========================
 */
+
 .calendar {
   width: 200px;
 }
