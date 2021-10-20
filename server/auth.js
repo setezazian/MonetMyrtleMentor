@@ -19,7 +19,7 @@ module.exports = () => {
       If correct, return the user object to the callback;
       if not, return false and an error message to the callback.
     */
-    db.query('SELECT id, email, password, salt FROM auth WHERE email = ?', [email], (errDb, row) => {
+    db.query('SELECT id, profile_id, email, password, salt FROM auth WHERE email = ?', [email], (errDb, row) => {
       if (errDb) { return cb(errDb); }
       if (!row) { return cb(null, false, { message: 'Incorrect username or password.' }); }
       if (row.length > 1) {
@@ -36,10 +36,10 @@ module.exports = () => {
           return cb(null, false, { message: 'Incorrect username or password.' });
         }
 
+
         const user = {
           id: authData.id.toString(),
-          email: authData.email,
-          name: authData.name,
+          profile_id: authData.profile_id,
         };
         return cb(null, user);
       });
@@ -57,7 +57,7 @@ module.exports = () => {
   // deserializing.
   passport.serializeUser((user, cb) => {
     process.nextTick(() => {
-      cb(null, { id: user.id, email: user.email });
+      cb(null, { id: user.id, profile_id: user.profile_id });
     });
   });
 
