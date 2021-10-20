@@ -14,7 +14,7 @@ function create(profile) {
       if (err) {
         reject(err);
       } else {
-        resolve(null, results);
+        resolve(results);
       }
     });
   });
@@ -32,7 +32,7 @@ function getById(id) {
         reject(err, null);
       } else {
         console.log('successfully retrieved profile');
-        resolve(null, results);
+        resolve(results);
       }
     });
   });
