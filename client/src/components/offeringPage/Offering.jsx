@@ -15,7 +15,10 @@ const Offering = (props) => {
         <div className="offering-body">
           <div className="offering-name">{name}</div>
           <div className="offering-teaches">{teaches}</div>
-          <div className="offering-star">{star}</div>
+          <div className="offering-star">
+            <span className="fas fa-star star" />
+            {star}
+          </div>
           <div className="offering-desc">{desc}</div>
         </div>
         <button className="offering-button contact-button" type="button">Contact</button>

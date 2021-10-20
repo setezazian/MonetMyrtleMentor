@@ -78,7 +78,7 @@ INSERT INTO profiles (id, name, photo, mentor) VALUES (2, "Lisa Simpson", "https
 INSERT INTO profiles (id, name, photo, mentor) VALUES (3, "Homer Simpson", "https://source.unsplash.com/8PMvB4VyVXA", true);
 INSERT INTO profiles (id, name, photo, mentor) VALUES (4, "Bart Simpson", "https://upload.wikimedia.org/wikipedia/en/a/aa/Bart_Simpson_200px.png", false);
 
-INSERT INTO offerings (id, offering_name, description, mentor_id) VALUES (1, "Painting", "painting is fun. I will teach you to become Van Gogh!", 2);
+INSERT INTO offerings (id, offering_name, description, mentor_id) VALUES (1, "Painting", "Painting is fun. I will teach you to become Van Gogh!", 2);
 INSERT INTO offerings (id, offering_name, description, mentor_id) VALUES (2, "Carpentry", "With over a decade experience in the field, I will teach you the craft of carpentry", 3);
 
 INSERT INTO availabilities (id, start_time, end_time, offering_id) VALUES (1, "2021-10-31 01:15:00", "2021-10-31 02:15:00", 1);
