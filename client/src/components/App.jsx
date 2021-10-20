@@ -8,8 +8,8 @@ import Profile from './Profile/Profile.jsx';
 import FormSignup from './FormSignup/FormSignup.jsx';
 import FormLogin from './FormSignup/FormLogin.jsx';
 import Debug from './Debug/Debug.jsx';
+import pageIdxContext from '../context.jsx';
 
-const pageIdxContext = React.createContext();
 const App = () => {
   const [pageIdx, setPageIdx] = useState(-1);
   return (

@@ -1,7 +1,7 @@
 import React, { useState, useContext, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import { pageIdxContext } from './App.jsx';
+import pageIdxContext from '../context.jsx';
 
 export default function Navbar(props) {
   const history = useHistory();
