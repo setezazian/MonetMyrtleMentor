@@ -57,6 +57,14 @@ const getMessages = (req, res) => {
     .catch((err) => console.log('Error retrieving messages from model: ', err));
 };
 
+const postMessage = (req, res) => {
+  messagesModel.postMessage(req.body)
+    .then(() => {
+      res.status(201).send('posted message');
+    })
+    .catch((err) => console.log('Error creating message ', err));
+};
+
 const createProfile = (req, res) => {
   profileModel.create(req.body)
     .then(() => {
@@ -104,4 +112,5 @@ module.exports = {
   getMessages,
   createProfile,
   createAuthUser,
+  postMessage,
 };
