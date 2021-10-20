@@ -1,11 +1,14 @@
 import React from 'react';
 
 const Messages = (props) => {
-  const { name, from, body, time } = props;
+  const { fromName, toName, body, time } = props;
   return (
     <div className="message-wrapper">
       <span className="messages-from">
-        From: {name}
+        From: {fromName}
+      </span>
+      <span className="messages-to">
+        To: {toName}
       </span>
       <span className="messages-message">
         Message: {body}
