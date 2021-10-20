@@ -2,7 +2,7 @@ const db = require('../db');
 
 module.exports = {
   getMessages() {
-    const sql = 'SELECT * FROM messages INNER JOIN profiles ON messages.from_id = profiles.id;';
+    const sql = 'SELECT messages.id, fromprofiles.name AS fromname, toprofiles.name AS toname, messages.body, messages.time FROM messages JOIN profiles AS fromprofiles ON messages.from_id=fromprofiles.id JOIN profiles AS toprofiles ON messages.to_id=toprofiles.id WHERE to_id = 1 OR from_id = 1;';
     return new Promise((resolve, reject) => {
       db.query(sql, (err, results) => {
         if (err) {
