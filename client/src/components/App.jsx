@@ -7,6 +7,7 @@ import Navbar from './Navbar.jsx';
 import Profile from './Profile/Profile.jsx';
 import FormSignup from './FormSignup/FormSignup.jsx';
 import FormLogin from './FormSignup/FormLogin.jsx';
+import Debug from './Debug/Debug.jsx';
 
 const pageIdxContext = React.createContext();
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
             <Route path="/profile" component={Profile} />
             <Route exact path="/signup" component={FormSignup} />
             <Route exact path="/login" component={FormLogin} />
+            <Route exact path="/debug" component={Debug} />
           </Switch>
         </BrowserRouter>
       </div>
