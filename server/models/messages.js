@@ -13,4 +13,21 @@ module.exports = {
       }
     });
   },
+  postMessage(body) {
+    const { message } = body;
+    const sql = 'INSERT INTO messages (from_id, to_id, body, time) VALUES (?, ?, ?, ?)';
+    return new Promise((resolve, reject) => {
+      db.query(sql, [1, 2, message, new Date().toISOString().slice(0, 19).replace('T', ' ')], (err, result) => {
+        if (err) {
+          console.log('error posting message ', err);
+          reject(err);
+          // callback(err);
+        } else {
+          console.log('successfully posted message');
+          resolve(null, result);
+          // callback(null, results);
+        }
+      });
+    });
+  },
 };

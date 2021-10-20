@@ -92,10 +92,11 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+  border: none;
 }
 
 .login-button:hover {
-  filter: brightness(1.2);
+  filter: brightness(1.6);
 }
 
 .searchIcon:hover {
@@ -293,10 +294,36 @@ a {
 }
 
 /*
+==============================
+=====offering page styles=====
+==============================
+*/
+
+.contact-form {
+  display: grid;
+  height: 100%;
+  margin: 1rem;
+}
+
+.contact-message {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  resize: none;
+}
+
+.contact-submit {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  width: fit-content;
+  margin-top: 1rem;
+}
+
+/*
 ===========================
 ===== schedule styles =====
 ===========================
 */
+
 .calendar {
   width: 200px;
 }

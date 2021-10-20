@@ -7,17 +7,20 @@ const {
   getProfile,
   getMessages,
   createAuthUser,
+  postMessage,
 } = require('./controller');
 
 router.get('/offerings', getOfferings);
 
 router.get('/allOfferings', getAllOfferings);
 
-router.get('/multiOfferings', getMultiOfferings);
+router.post('/multiOfferings', getMultiOfferings);
 
 router.get('/profile', getProfile);
 
 router.get('/messages', getMessages);
+
+router.post('/messages', postMessage);
 
 router.post('/user/new', createAuthUser);
 

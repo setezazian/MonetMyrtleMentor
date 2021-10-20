@@ -8,7 +8,7 @@ const getOfferings = (req, res) => {
   // Read req params into vars
   // const page = 1;
   // const count = 10;
-  const {id} = req.body;
+  const { id } = req.body;
   offeringsModel.getOfferings(id) // (count, page)
     .then((data) => {
       res.status(200).send(data);
@@ -28,8 +28,9 @@ const getAllOfferings = (req, res) => {
 };
 
 const getMultiOfferings = (req, res) => {
-  const {ids} = req.body;
-  offeringsModel.getMultiOfferings(ids) // (count, page)
+  console.log(req.body);
+  const { filterArr } = req.body;
+  offeringsModel.getMultiOfferings(filterArr) // (count, page)
     .then((data) => {
       res.status(200).send(data);
     })
@@ -55,6 +56,14 @@ const getMessages = (req, res) => {
       res.status(200).send(data);
     })
     .catch((err) => console.log('Error retrieving messages from model: ', err));
+};
+
+const postMessage = (req, res) => {
+  messagesModel.postMessage(req.body)
+    .then(() => {
+      res.status(201).send('posted message');
+    })
+    .catch((err) => console.log('Error creating message ', err));
 };
 
 const createProfile = (req, res) => {
@@ -116,4 +125,5 @@ module.exports = {
   getMessages,
   createProfile,
   createAuthUser,
+  postMessage,
 };

@@ -89,3 +89,7 @@ INSERT INTO availabilities (id, start_time, end_time, offering_id) VALUES (4, "2
 INSERT INTO bookings (id, booked_by_student_id, availability_id) VALUES (1, 1, 1);
 INSERT INTO bookings (id, booked_by_student_id, availability_id) VALUES (2, 1, 3);
 INSERT INTO bookings (id, booked_by_student_id, availability_id) VALUES (3, 4, 2);
+
+INSERT INTO ratings (id, mentor_id, rating) VALUES (1, 2, 4.99);
+INSERT INTO ratings (id, mentor_id, rating) VALUES (2, 3, 4.99);
+

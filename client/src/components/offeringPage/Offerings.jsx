@@ -1,32 +1,48 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Offering from './Offering.jsx';
 
-// testArray is just a temp array to ensure the mapping worked correctly
-// eventually it will be the array of objects returned from server/database
-// that has all the information that will be passed as props to fill the card properly
-// const testArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const Offerings = (props) => {
-  console.log(props)
-  let testArray = props.location.state.detail;
-  console.log('arrSend to offer', testArray)
-
+  const testArray = props.location.state.detail;
+  const [renderArray, setRenderArray] = useState([1, 2]);
   function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
   }
+  const filterArr = testArray.filter(onlyUnique);
 
-  var unique = testArray.filter(onlyUnique);
-  console.log('unique',unique)
+  for (let i = 0; i < filterArr.length; i++) {
+    filterArr[i] += 1;
+  }
+
+  useEffect(() => {
+    axios.post('/api/multiOfferings', { filterArr: [1, 2] })
+      .then((res) => {
+        setRenderArray(res.data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
+  useEffect(() => {
+    axios.post('/api/multiOfferings', { filterArr })
+      .then((res) => {
+        setRenderArray(res.data);
+      })
+      .catch((err) => console.error(err));
+  }, [testArray]);
+
   return (
-    // testArray.map(() => (
-    //   <Offering
-    //     name="Name"
-    //     teaches="Teaches"
-    //     star="Star Rating"
-    //     desc="Course Description"
-    //     photo="img url to be used in sourcecode"
-    //   />
-    // ))
-    <h1>test</h1>
+    <div>
+      {renderArray.map((element) => (
+        <Offering
+          key={Math.random()}
+          name={element.name}
+          teaches={element.offering_name}
+          star={element.rating}
+          desc={element.description}
+          photo={element.photo}
+        />
+      ))}
+    </div>
   );
-}
+};
 export default Offerings;
