@@ -24,21 +24,6 @@ function Schedule() {
       });
   }, [date]);
 
-  useEffect(() => {
-    axios.get('/api/schedule', {
-      params: {
-        date,
-      },
-    })
-      .then((response) => {
-        console.log(response);
-        // setDate(response.data[0]);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  });
-
   return (
     <div className="scheduling">
       <div className="calendar">
