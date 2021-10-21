@@ -111,17 +111,27 @@ export default function Navbar(props) {
 
           </div>
         </li>
-        {login ? <div>test</div>
+        {login
+          ?
+          <li className={`${pageIdx === 0 ? 'login-container' : 'login-container2'}`}>
+            <button
+              type="button"
+              className="login-profile-button"
+              style={ {backgroundImage: `url('https://source.unsplash.com/V-bW-TDTo2c')`}}
+              onClick={() => history.push('/login')}
+            >
+            </button>
+          </li>
           :
-            <li className={`${pageIdx === 0 ? 'login-container' : 'login-container2'}`}>
-              <button
-                type="button"
-                className="login-button"
-                onClick={() => history.push('/login')}
-              >
-                Log in
-              </button>
-            </li>
+          <li className={`${pageIdx === 0 ? 'login-container' : 'login-container2'}`}>
+            <button
+              type="button"
+              className="login-button"
+              onClick={() => history.push('/login')}
+            >
+              Log in
+            </button>
+          </li>
         }
       </ul>
     </nav>

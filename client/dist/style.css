@@ -139,6 +139,14 @@ a {
   border: none;
 }
 
+.login-profile-button {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-size: 60px 60px;
+}
+
 .login-button:hover {
   filter: brightness(1.6);
 }
