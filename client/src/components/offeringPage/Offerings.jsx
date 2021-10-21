@@ -46,6 +46,7 @@ const Offerings = (props) => {
       .catch((err) => console.error(err));
   }, [testArray]);
 
+  console.log(renderArray);
   return (
     <div>
       {renderArray.map((element) => (
@@ -56,6 +57,7 @@ const Offerings = (props) => {
           star={element.rating}
           desc={element.description}
           photo={element.photo}
+          mentorId={element.mentor_id}
         />
       ))}
     </div>
