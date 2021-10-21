@@ -22,10 +22,10 @@ module.exports = {
     const params = [availabilityId, studentId];
     db.query(sql, params, (err, results) => {
       if (err) {
-        console.log('error retrieving offering schedule');
+        console.log('error creating booking');
         callback(err);
       } else {
-        console.log('successfully retrieved offering schedule');
+        console.log('successfully created a booking');
         callback(null, results);
       }
     });
