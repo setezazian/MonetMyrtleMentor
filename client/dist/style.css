@@ -589,7 +589,7 @@ a {
 ===========================
 */
 
-#container-form {
+.container-form {
   box-sizing: border-box;
   padding: 10px;
   max-height: max-content;

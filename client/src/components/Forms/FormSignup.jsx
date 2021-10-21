@@ -107,7 +107,7 @@ export default function FormSignup({ isMentor }) {
         Date:&nbsp;
         <input id="input-date" type="date" value={date} onChange={(e) => setDate(e.target.value)} required />
       </label>
-      &nbsp;&nbsp;
+      <br />
       <label htmlFor="input-starttime">
         Start Time:&nbsp;
         <input id="input-starttime" type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)} />
@@ -117,6 +117,7 @@ export default function FormSignup({ isMentor }) {
         End Time:&nbsp;
         <input id="input-endtime" type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)} />
       </label>
+      &nbsp;&nbsp;
       <button id="button-availabilityadd" type="button" onClick={addAvailabilitiesHandler}>Add</button>
       <br />
       {availabilities.length === 0 ? (<p>You must add at least one block of time for your offering</p>) : null}
@@ -137,7 +138,7 @@ export default function FormSignup({ isMentor }) {
   );
 
   return (
-    <div id="container-form">
+    <div className="container-form">
       <form id="form-newuser">
         <label htmlFor="input-fname">
           First Name:&nbsp;&nbsp;
