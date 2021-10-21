@@ -17,17 +17,19 @@ module.exports = {
     });
   },
 
-  createBooking(studentId, availabilityId, callback) {
+  createBooking(booking) {
     const sql = 'INSERT INTO bookings (booked_by_student_id, availability_id) VALUES (?, ?)';
-    const params = [studentId, availabilityId];
-    db.query(sql, params, (err, results) => {
-      if (err) {
-        console.log('error creating booking');
-        callback(err);
-      } else {
-        console.log('successfully created a booking');
-        callback(null, results);
-      }
+    const params = [booking.studentId, booking.availabilityId];
+    return new Promise((resolve, reject) => {
+      db.query(sql, params, (err, results) => {
+        if (err) {
+          console.log('error creating booking');
+          reject(err);
+        } else {
+          console.log('successfully created a booking');
+          resolve(results);
+        }
+      });
     });
   },
 
