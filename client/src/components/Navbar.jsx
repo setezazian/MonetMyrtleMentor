@@ -135,7 +135,7 @@ export default function Navbar() {
                 type="button"
                 className="login-profile-button"
                 style={{ backgroundImage: `url(${profilePic})` }}
-                onClick={() => history.push('/login')}
+                onClick={() => history.push('/profile')}
               />
             </li>
           )
