@@ -1,13 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Schedule from '../Profile/Schedule.jsx';
 
-const ScheduleModal = () => {
-  const [overlay, setOverlay] = useState('');
-
-  return (
-    <div>
-      <Schedule />
-    </div>
-  );
-};
+const ScheduleModal = () => (
+  <div>
+    <Schedule />
+  </div>
+);
 export default ScheduleModal;
