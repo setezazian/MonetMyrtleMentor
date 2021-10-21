@@ -6,8 +6,8 @@ import ContactModal from './offeringPage/ContactModal.jsx';
 import ScheduleModal from './offeringPage/ScheduleModal.jsx';
 import Navbar from './Navbar.jsx';
 import Profile from './Profile/Profile.jsx';
-import FormSignup from './FormSignup/FormSignup.jsx';
-import FormLogin from './FormSignup/FormLogin.jsx';
+import FormSignup from './Forms/FormSignup.jsx';
+import FormLogin from './Forms/FormLogin.jsx';
 import Debug from './Debug/Debug.jsx';
 import pageIdxContext, { loginContext, loginProfileContext } from '../context.jsx';
 

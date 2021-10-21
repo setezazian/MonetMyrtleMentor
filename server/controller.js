@@ -3,7 +3,7 @@ const offeringsModel = require('./models/offerings.js');
 const messagesModel = require('./models/messages.js');
 const AuthModel = require('./models/AuthModel.js');
 const AvailabilityModel = require('./models/AvailabilityModel.js');
-// const ScheduleModel = require('./models/bookings.js');
+const ScheduleModel = require('./models/schedules.js');
 
 const getOfferings = (req, res) => {
   const { id } = req.body;
@@ -63,30 +63,23 @@ const postMessage = (req, res) => {
 };
 
 const getSchedule = (req, res) => {
-  console.log(req.query);
   const dateStr = req.query.date;
   const date = new Date(dateStr);
-  if (Date.UTC(2021, 9, 31) === Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())) {
-    res.json([{
-      start_time: '2021-10-31 01:15:00',
-      end_time: '2021-10-31 02:15:00',
-      offering_name: 'painting',
-      offering_description: 'painting is fun. I will teach you to become Van Gogh!',
-    }, {
-      start_time: '2021-10-31 04:15:00',
-      end_time: '2021-10-31 05:15:00',
-      offering_name: 'carpentry',
-      offering_description: 'With over a decade experience in the field, I will teach you the craft of carpentry',
-    }]);
-  } else {
-    res.send('no data for this date');
-  }
-  // ScheduleModel.getSchedule()
-  //   .then((data) => {
-  //     console.log('successfully retrieved schedule');
-  //     res.status(200).send(data);
-  //   })
-  //   .catch((err) => console.log('Error retrieving schedule: ', err));
+
+  ScheduleModel.getOfferingSchedule(date.toISOString().slice(0, 10),
+    req.query.offeringId, (err, data) => {
+      if (err) {
+        console.log('error getting offering schedule', err);
+        res.status(500);
+      } else {
+        console.log(data);
+        res.json(data.map((item) => ({
+          availability_id: item.availability_id,
+          start_time: item.start_time.toTimeString().slice(0, 8),
+          end_time: item.end_time.toTimeString().slice(0, 8),
+        })));
+      }
+    });
 };
 
 const createProfile = (req, res) => {
@@ -104,6 +97,7 @@ const createAuthUser = (req, res) => {
     photo: req.body.photoUrl,
     mentor: req.body.isMentor,
   };
+  const user = {};
 
   profileModel.create(profile)
     .then((profileModelResults) => {
@@ -113,10 +107,15 @@ const createAuthUser = (req, res) => {
         email: req.body.email,
         password: req.body.password,
       };
+      user.profile_id = profileModelResults.insertId;
       AuthModel.create(authUser)
         .then((authModelResults) => {
           console.log(`Inserted ${authModelResults.affectedRows} rows into auth table`);
           if (!req.body.isMentor) {
+            user.id = authModelResults.insertId;
+            req.login(user, (err) => {
+              if (err) console.log('Error logging new user in: ', err);
+            });
             res.status(201).send('Created mentee');
           }
           return null;
