@@ -75,7 +75,7 @@ export default function FormSignup({ isMentor }) {
         // figure out the error and have user correct their form
       });
 
-    history.push('/offerings', { detail: [0, 1] });
+    // history.push('/offerings', { detail: [0, 1] });
   };
 
   const passwordChangeHandler = (e) => {
