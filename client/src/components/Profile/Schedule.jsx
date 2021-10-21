@@ -27,6 +27,20 @@ function Schedule(props) {
     }
   }, [date]);
 
+  const handleBooking = (e, availabilityId) => {
+    e.preventDefault();
+    const data = {
+      availabilityId,
+    };
+    axios.post('/api/booking', data)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div className="scheduling">
       <div className="calendar">
@@ -45,7 +59,7 @@ function Schedule(props) {
             <span>
               {availability.end_time}
             </span>
-            <button id="bookingButton" type="button">Book</button>
+            <button id="bookingButton" type="button" onClick={(e) => handleBooking(e, availability.availability_id)}>Book</button>
           </div>
         ))}
       </div>
