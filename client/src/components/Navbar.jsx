@@ -87,9 +87,14 @@ export default function Navbar(props) {
         </li>
         <li className={`${pageIdx === 0 ? 'searchBar-container' : 'searchBar-container2'}`}>
           {pageIdx === 0 ? null
-            : <div className="offering-title">Immersive learning with the best mentors
-              <div className="offering-sub">Teach or learn anything you want, learning can be so easy here</div>
-            </div>}
+            : (
+              <div className="offering-title">
+                Immersive learning with the best mentors
+                <div className="offering-sub">
+                  Teach or learn anything you want, learning can be so easy here
+                </div>
+              </div>
+            )}
           <div className={`${pageIdx === 0 ? 'searchBar' : 'searchBar2'}`}>
             <input
               type="text"
@@ -112,27 +117,28 @@ export default function Navbar(props) {
           </div>
         </li>
         {login
-          ?
-          <li className={`${pageIdx === 0 ? 'login-container' : 'login-container2'}`}>
-            <button
-              type="button"
-              className="login-profile-button"
-              style={ {backgroundImage: `url('https://source.unsplash.com/V-bW-TDTo2c')`}}
-              onClick={() => history.push('/login')}
-            >
-            </button>
-          </li>
-          :
-          <li className={`${pageIdx === 0 ? 'login-container' : 'login-container2'}`}>
-            <button
-              type="button"
-              className="login-button"
-              onClick={() => history.push('/login')}
-            >
+          ? (
+            <li className={`${pageIdx === 0 ? 'login-container' : 'login-container2'}`}>
+              <button
+                aria-label="login button"
+                type="button"
+                className="login-profile-button"
+                style={{ backgroundImage: `url('https://source.unsplash.com/V-bW-TDTo2c')` }}
+                onClick={() => history.push('/login')}
+              />
+            </li>
+          )
+          : (
+            <li className={`${pageIdx === 0 ? 'login-container' : 'login-container2'}`}>
+              <button
+                aria-label="login button"
+                type="button"
+                className="login-button"
+                onClick={() => history.push('/login')}
+              />
               Log in
-            </button>
-          </li>
-        }
+            </li>
+          )}
       </ul>
     </nav>
   );
