@@ -40,7 +40,7 @@ export default function FormSignup({ isMentor }) {
       email,
       photoUrl,
       password,
-      isMentor,
+      isMentor: !!isMentor,
       offeringName,
       offeringDesc,
       availabilities,
