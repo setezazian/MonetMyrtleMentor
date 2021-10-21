@@ -26,8 +26,8 @@ export default function FormSignup({ isMentor }) {
     console.log(startTime);
     console.log(endTime);
     const newTimeBlock = {
-      startTime: new Date(startTime).toISOString(),
-      endTime: new Date(endTime).toISOString(),
+      startTime: new Date(`${date} ${startTime}`).toISOString(),
+      endTime: new Date(`${date} ${endTime}`).toISOString(),
     };
     const newAvailabilities = [...availabilities];
     newAvailabilities.push(newTimeBlock);
