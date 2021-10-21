@@ -21,6 +21,7 @@ export default function FormLogin({ history }) {
           .then((res) => {
             if (res.data !== null) {
               setLogin(true);
+              console.log(res.data);
             }
           });
       })

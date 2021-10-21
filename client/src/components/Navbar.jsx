@@ -136,8 +136,9 @@ export default function Navbar() {
                 type="button"
                 className="login-button"
                 onClick={() => history.push('/login')}
-              />
-              Log in
+              >
+                Log in
+              </button>
             </li>
           )}
       </ul>
