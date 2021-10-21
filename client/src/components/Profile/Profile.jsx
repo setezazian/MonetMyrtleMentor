@@ -18,7 +18,8 @@ export default function Profile() {
   console.log(messages);
   return (
     <div>
-      <h1>Profile page</h1>
+      <div className="enrollmentTitle">Personal Profile
+      </div>
       <Schedule />
       <div className="messages-wrapper">
         {messages.map((element) => (

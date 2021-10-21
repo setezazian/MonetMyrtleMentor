@@ -3,16 +3,17 @@ import axios from 'axios';
 import Offering from './Offering.jsx';
 
 const Offerings = (props) => {
-  let testArray;
-  if (props.location.state === undefined) {
-    testArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-  } else {
+  const [renderArray, setRenderArray] = useState([1, 2]);
+  let testArray = [0, 1, 2, 3, 4, 5];
+
+  if (props.location.state !== undefined) {
     testArray = props.location.state.detail;
   }
-  const [renderArray, setRenderArray] = useState([1, 2]);
+
   function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
   }
+
   const filterArr = testArray.filter(onlyUnique);
 
   for (let i = 0; i < filterArr.length; i++) {
@@ -20,16 +21,15 @@ const Offerings = (props) => {
   }
 
   useEffect(() => {
-    let offerLeng = [];
+    console.log('mount');
+    const offerLeng = [];
     axios.get('/api/allOfferings')
       .then((res) => {
         res.data.forEach((element, index) => {
           offerLeng.push(index + 1);
         });
+        return axios.post('/api/multiOfferings', { filterArr: offerLeng });
       })
-      .catch((err) => console.error(err));
-
-    axios.post('/api/multiOfferings', { filterArr: offerLeng })
       .then((res) => {
         setRenderArray(res.data);
       })
@@ -37,6 +37,7 @@ const Offerings = (props) => {
   }, []);
 
   useEffect(() => {
+    console.log('testArr', testArray);
     axios.post('/api/multiOfferings', { filterArr })
       .then((res) => {
         setRenderArray(res.data);
