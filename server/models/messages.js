@@ -1,8 +1,9 @@
 const db = require('../db');
 
 module.exports = {
-  getMessages() {
-    const sql = 'SELECT messages.id, fromprofiles.name AS fromname, toprofiles.name AS toname, messages.body, messages.time, messages.from_id FROM messages JOIN profiles AS fromprofiles ON messages.from_id=fromprofiles.id JOIN profiles AS toprofiles ON messages.to_id=toprofiles.id WHERE to_id = 1 OR from_id = 1;';
+  getMessages(body) {
+    const userId = body.loginIdx;
+    const sql = `SELECT messages.id, fromprofiles.name AS fromname, toprofiles.name AS toname, messages.body, messages.time, messages.from_id FROM messages JOIN profiles AS fromprofiles ON messages.from_id=fromprofiles.id JOIN profiles AS toprofiles ON messages.to_id=toprofiles.id WHERE to_id = ${userId} OR from_id = ${userId};`;
     return new Promise((resolve, reject) => {
       db.query(sql, (err, results) => {
         if (err) {

@@ -46,7 +46,7 @@ const getProfile = (req, res) => {
 };
 
 const getMessages = (req, res) => {
-  messagesModel.getMessages() // (userId, withId = null, page = 1, count = 10)
+  messagesModel.getMessages(req.body) // (userId, withId = null, page = 1, count = 10)
     .then((data) => {
       console.log(data);
       res.status(200).send(data);
