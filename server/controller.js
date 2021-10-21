@@ -110,6 +110,7 @@ const createAuthUser = (req, res) => {
     photo: req.body.photoUrl,
     mentor: req.body.isMentor,
   };
+  const user = {};
 
   profileModel.create(profile)
     .then((profileModelResults) => {
@@ -119,10 +120,15 @@ const createAuthUser = (req, res) => {
         email: req.body.email,
         password: req.body.password,
       };
+      user.profile_id = profileModelResults.insertId;
       AuthModel.create(authUser)
         .then((authModelResults) => {
           console.log(`Inserted ${authModelResults.affectedRows} rows into auth table`);
           if (!req.body.isMentor) {
+            user.id = authModelResults.insertId;
+            req.login(user, (err) => {
+              if (err) console.log('Error logging new user in: ', err);
+            });
             res.status(201).send('Created mentee');
           }
           return null;
