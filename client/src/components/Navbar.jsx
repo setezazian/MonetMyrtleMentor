@@ -13,7 +13,7 @@ export default function Navbar() {
   const { pageIdx, setPageIdx } = useContext(pageIdxContext);
   const { login, setLogin } = useContext(loginContext);
   const { loginIdx, setLoginIdx } = useContext(loginProfileContext);
-  const [ profilePic, setProfilePic ] = useState('');
+  const [profilePic, setProfilePic] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const searchRef = useRef(null);
   const matchArr = [];
@@ -73,15 +73,14 @@ export default function Navbar() {
   useEffect(() => {
   }, [login]);
   useEffect(() => {
-    console.log(loginIdx);
     axios.post('/api/profile', { id: loginIdx })
       .then((res) => {
-        console.log(res.data[0].photo);
-        setProfilePic(res.data[0].photo);
+        if (res.data[0]) {
+          setProfilePic(res.data[0].photo);
+        }
       })
       .catch((err) => console.error(err));
   }, [loginIdx]);
-
 
   return (
     <nav className={`${pageIdx === 0 ? 'navbar' : 'navbar2'}`}>

@@ -175,7 +175,7 @@ a {
 
 .searchBar2 {
   position: relative;
-  top: 50px;
+  top: 30px;
   --button-size: calc(var(--nav-size) * 0.6);
   width: 350px;
   height: 50px;
