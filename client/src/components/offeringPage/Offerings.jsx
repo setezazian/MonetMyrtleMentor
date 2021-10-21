@@ -29,8 +29,6 @@ const Offerings = (props) => {
       })
       .catch((err) => console.error(err));
 
-
-
     axios.post('/api/multiOfferings', { filterArr: offerLeng })
       .then((res) => {
         setRenderArray(res.data);
@@ -46,7 +44,6 @@ const Offerings = (props) => {
       .catch((err) => console.error(err));
   }, [testArray]);
 
-  console.log(renderArray);
   return (
     <div>
       {renderArray.map((element) => (

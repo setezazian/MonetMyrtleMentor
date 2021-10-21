@@ -17,7 +17,7 @@ router.get('/allOfferings', getAllOfferings);
 
 router.post('/multiOfferings', getMultiOfferings);
 
-router.get('/profile', getProfile);
+router.post('/profile', getProfile);
 
 router.get('/messages', getMessages);
 

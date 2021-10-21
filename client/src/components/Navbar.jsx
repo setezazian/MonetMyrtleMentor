@@ -6,12 +6,14 @@ import React, {
 } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import pageIdxContext, { loginContext } from '../context.jsx';
+import pageIdxContext, { loginContext, loginProfileContext } from '../context.jsx';
 
 export default function Navbar() {
   const history = useHistory();
   const { pageIdx, setPageIdx } = useContext(pageIdxContext);
   const { login, setLogin } = useContext(loginContext);
+  const { loginIdx, setLoginIdx } = useContext(loginProfileContext);
+  const [profilePic, setProfilePic] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const searchRef = useRef(null);
   const matchArr = [];
@@ -69,8 +71,16 @@ export default function Navbar() {
   };
 
   useEffect(() => {
-    setLogin(login);
   }, [login]);
+  useEffect(() => {
+    axios.post('/api/profile', { id: loginIdx })
+      .then((res) => {
+        if (res.data[0]) {
+          setProfilePic(res.data[0].photo);
+        }
+      })
+      .catch((err) => console.error(err));
+  }, [loginIdx]);
 
   return (
     <nav className={`${pageIdx === 0 ? 'navbar' : 'navbar2'}`}>
@@ -124,8 +134,8 @@ export default function Navbar() {
                 aria-label="login button"
                 type="button"
                 className="login-profile-button"
-                style={{ backgroundImage: `url('https://source.unsplash.com/V-bW-TDTo2c')` }}
-                onClick={() => history.push('/login')}
+                style={{ backgroundImage: `url(${profilePic})` }}
+                onClick={() => history.push('/profile')}
               />
             </li>
           )
