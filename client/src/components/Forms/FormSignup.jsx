@@ -9,6 +9,7 @@ export default function FormSignup({ isMentor }) {
   const [email, setEmail] = useState('');
   const [photoUrl, setPhotoUrl] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPwd, setConfirmPwd] = useState('');
   const [offeringName, setOfferingName] = useState('');
   const [offeringDesc, setOfferingDesc] = useState('');
   const [availabilities, setAvailabilities] = useState([]);
@@ -32,8 +33,23 @@ export default function FormSignup({ isMentor }) {
     setAvailabilities(newAvailabilities);
   };
 
+  const validatePassword = () => {
+    const passwordField = document.getElementById('input-password');
+    const confirmPasswordField = document.getElementById('input-confirmpassword');
+
+    if (passwordField.value !== confirmPasswordField.value) {
+      confirmPasswordField.setCustomValidity('Passwords do not match');
+    } else {
+      confirmPasswordField.setCustomValidity('');
+    }
+    confirmPasswordField.reportValidity();
+  };
+
   const formSubmitHandler = (e) => {
     e.preventDefault();
+
+    validatePassword();
+
     const formData = {
       firstName: fname,
       lastName: lname,
@@ -56,6 +72,16 @@ export default function FormSignup({ isMentor }) {
       });
 
     history.push('/offerings', { detail: [0, 1] });
+  };
+
+  const passwordChangeHandler = (e) => {
+    if (e.target.name === 'password') {
+      setPassword(e.target.value);
+    }
+    if (e.target.name === 'confirmpassword') {
+      setConfirmPwd(e.target.value);
+      validatePassword();
+    }
   };
 
   const mentorFormComponents = (
@@ -103,27 +129,38 @@ export default function FormSignup({ isMentor }) {
       <form id="form-newuser">
         <label htmlFor="input-fname">
           First Name:&nbsp;
+          <br />
           <input id="input-fname" name="fname" type="text" placeholder="Enter your first name" value={fname} onChange={(e) => setFName(e.target.value)} />
         </label>
         <br />
         <label htmlFor="input-lname">
           Last Name:&nbsp;
+          <br />
           <input id="input-lname" name="lname" type="text" placeholder="Enter your last name" value={lname} onChange={(e) => setLName(e.target.value)} />
         </label>
         <br />
         <label htmlFor="input-email">
           Email:&nbsp;
+          <br />
           <input id="input-email" name="email" type="text" placeholder="Enter your email address" value={email} onChange={(e) => setEmail(e.target.value)} />
         </label>
         <br />
+
         <label htmlFor="input-photourl">
           URL to your photo:&nbsp;
+          <br />
           <input id="input-photourl" name="photourl" type="text" placeholder="Enter your last name" value={photoUrl} onChange={(e) => setPhotoUrl(e.target.value)} />
         </label>
         <br />
         <label htmlFor="input-password">
           Password:&nbsp;
-          <input id="input-password" name="password" type="password" placeholder="Create a password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <br />
+          <input id="input-password" name="password" type="password" placeholder="Create a password" value={password} onChange={passwordChangeHandler} />
+        </label>
+        <label htmlFor="input-confirmpassword">
+          Confirm Password:&nbsp;
+          <br />
+          <input id="input-confirmpassword" name="confirmpassword" type="password" placeholder="Confirm the password" value={confirmPwd} onChange={passwordChangeHandler} />
         </label>
         <br />
         {isMentor ? mentorFormComponents : null}
