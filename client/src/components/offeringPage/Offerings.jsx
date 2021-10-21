@@ -29,23 +29,23 @@ const Offerings = (props) => {
       })
       .catch((err) => console.error(err));
 
-
-
     axios.post('/api/multiOfferings', { filterArr: offerLeng })
       .then((res) => {
         setRenderArray(res.data);
       })
       .catch((err) => console.error(err));
+      console.log('mount')
   }, []);
 
   useEffect(() => {
     axios.post('/api/multiOfferings', { filterArr })
       .then((res) => {
         setRenderArray(res.data);
+        console.log('!');
       })
       .catch((err) => console.error(err));
   }, [testArray]);
-
+  console.log(renderArray);
   return (
     <div>
       {renderArray.map((element) => (
