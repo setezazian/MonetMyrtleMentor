@@ -35,6 +35,7 @@ export default function FormSignup({ isMentor }) {
   };
 
   const validatePassword = () => {
+    let valid = false;
     const passwordField = document.getElementById('input-password');
     const confirmPasswordField = document.getElementById('input-confirmpassword');
 
@@ -42,14 +43,16 @@ export default function FormSignup({ isMentor }) {
       confirmPasswordField.setCustomValidity('Passwords do not match');
     } else {
       confirmPasswordField.setCustomValidity('');
+      valid = true;
     }
     confirmPasswordField.reportValidity();
+    return valid;
   };
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
 
-    validatePassword();
+    if (!validatePassword()) return;
 
     const formData = {
       firstName: fname,
@@ -81,7 +84,6 @@ export default function FormSignup({ isMentor }) {
     }
     if (e.target.name === 'confirmpassword') {
       setConfirmPwd(e.target.value);
-      validatePassword();
     }
   };
 
@@ -116,15 +118,16 @@ export default function FormSignup({ isMentor }) {
       <br />
       <p>You&apos;ve added the following blocks of time:</p>
       {availabilities.map((timeBlock) => (
-        <>
-          <p key={timeBlock.startTime.toString()}>
-            Start:
-            {timeBlock.startTime}
+        <div key={timeBlock.startTime}>
+          <p>
+            Start:&nbsp;
+            {new Date(timeBlock.startTime).toLocaleString()}
             <br />
-            End:
-            {timeBlock.endTime}
+            End:&nbsp;
+            {new Date(timeBlock.endTime).toLocaleString()}
           </p>
-        </>
+          <hr />
+        </div>
       ))}
     </>
   );
