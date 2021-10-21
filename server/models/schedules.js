@@ -17,9 +17,9 @@ module.exports = {
     });
   },
 
-  createBooking(availabilityId, studentId, callback) {
-    const sql = 'INSERT INTO bookings (availability_id, student_id) VALUES (?, ?)';
-    const params = [availabilityId, studentId];
+  createBooking(studentId, availabilityId, callback) {
+    const sql = 'INSERT INTO bookings (booked_by_student_id, availability_id) VALUES (?, ?)';
+    const params = [studentId, availabilityId];
     db.query(sql, params, (err, results) => {
       if (err) {
         console.log('error creating booking');
