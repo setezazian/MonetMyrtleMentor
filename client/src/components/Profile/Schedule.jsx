@@ -3,25 +3,28 @@ import Calendar from 'react-calendar';
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 
-function Schedule() {
+function Schedule(props) {
   const [date, setDate] = useState(null);
-  const [availability, setAvailability] = useState(null);
+  const [availabilities, setAvailabilities] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/schedule', {
-      params: {
-        date,
-      },
-    })
-      .then((response) => {
-        console.log(response);
-        if (typeof (response.data) === 'object') {
-          setAvailability(response.data);
-        }
+    if (date !== null) {
+      axios.get('/api/schedule', {
+        params: {
+          date,
+          offeringId: props.offeringId,
+        },
       })
-      .catch((error) => {
-        console.log(error);
-      });
+        .then((response) => {
+          console.log(response);
+          if (typeof (response.data) === 'object') {
+            setAvailabilities(response.data);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   }, [date]);
 
   return (
@@ -33,10 +36,17 @@ function Schedule() {
         />
       </div>
       <div id="schedule" className={date === null ? 'hidden' : undefined}>
-        {availability && JSON.stringify(availability[0].start_time)}
-        {availability && JSON.stringify(availability[0].end_time)}
+        {availabilities.map((availability) => (
+          <div key={availability.availability_id}>
+            <span>
+              {availability.start_time}
+            </span>
+            <span>
+              {availability.end_time}
+            </span>
+          </div>
+        ))}
       </div>
-      {/* <div>{date.toString()}</div> */}
     </div>
   );
 }
