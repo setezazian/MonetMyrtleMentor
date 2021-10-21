@@ -111,11 +111,12 @@ const createAuthUser = (req, res) => {
       AuthModel.create(authUser)
         .then((authModelResults) => {
           console.log(`Inserted ${authModelResults.affectedRows} rows into auth table`);
+          user.id = authModelResults.insertId;
+          req.login({ user }, (err) => {
+            if (err) console.log('Error logging new user in: ', err);
+            console.log('This is the req.login callback. req.user should be: ', req.user);
+          });
           if (!req.body.isMentor) {
-            user.id = authModelResults.insertId;
-            req.login(user, (err) => {
-              if (err) console.log('Error logging new user in: ', err);
-            });
             res.status(201).send('Created mentee');
           }
           return null;
