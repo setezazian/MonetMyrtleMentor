@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Calendar from 'react-calendar';
 import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
+import { loginProfileContext } from '../../context.jsx';
 
 function Schedule(props) {
   const [date, setDate] = useState(null);
   const [availabilities, setAvailabilities] = useState([]);
+  const { loginIdx, setLoginIdx } = useContext(loginProfileContext);
 
   useEffect(() => {
     if (date !== null) {
@@ -27,18 +29,24 @@ function Schedule(props) {
     }
   }, [date]);
 
-  const handleBooking = (e, availabilityId) => {
+  const handleBooking = (e, availabilityId, studentId) => {
     e.preventDefault();
     const data = {
+      studentId: loginIdx,
       availabilityId,
     };
-    axios.post('/api/booking', data)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (studentId !== -1) {
+      console.log(studentId);
+      axios.post('/api/booking', data)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      alert('Please login');
+    }
   };
 
   return (
@@ -59,7 +67,13 @@ function Schedule(props) {
             <span>
               {availability.end_time}
             </span>
-            <button id="bookingButton" type="button" onClick={(e) => handleBooking(e, availability.availability_id)}>Book</button>
+            <button
+              id="bookingButton"
+              type="button"
+              onClick={(e) => handleBooking(e, availability.availability_id, loginIdx)}
+            >
+              Book
+            </button>
           </div>
         ))}
       </div>
