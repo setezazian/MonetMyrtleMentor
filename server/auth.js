@@ -21,11 +21,12 @@ module.exports = () => {
     */
     db.query('SELECT id, profile_id, email, password, salt FROM auth WHERE email = ?', [email], (errDb, row) => {
       if (errDb) { return cb(errDb); }
-      if (!row) { return cb(null, false, { message: 'Incorrect username or password.' }); }
+      if (!row || row.length < 1) { return cb(null, false, { message: 'Incorrect username or password.' }); }
       if (row.length > 1) {
         console.log('Multiple auth accounts found. Are DB fields properly UNIQUE?');
         return cb(null, false, { message: 'Non-unique auth account. Contact server administrator' });
       }
+
       console.log('found row(s) while verifiying creds: ', row);
       const authData = row[0];
 

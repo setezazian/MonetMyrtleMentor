@@ -139,6 +139,7 @@ a {
   align-items: center;
   justify-content: center;
   border: none;
+  color:whitesmoke;
 }
 
 .login-profile-button {
@@ -407,6 +408,16 @@ a {
   margin: 1rem;
   border-radius: 15px;
   align-self: center;
+  height: 50px;
+  border-radius: 30px;
+  font-family: 'Source Serif Pro';
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.offering-button:hover {
+  background-color: black;
+  color: white;
 }
 
 .contact-button {
@@ -564,6 +575,18 @@ a {
   width: 300px;
 }
 
+.enrollmentTitle {
+  font-family: 'Playfair Display';
+  font-size: 2.5rem;
+  padding: 10px;
+}
+
+.profile-enroll {
+  font-family: 'Playfair';
+  font-size: 1.5rem;
+
+}
+
 /*
 ===========================
 ===== Modal style =====
@@ -582,4 +605,22 @@ a {
   height: 100%;
   z-index: 10;
   background-color: hsla(0,0%,30%,0.7);
+}
+
+/*
+===========================
+===== Signup Form =====
+===========================
+*/
+
+#form-newuser {
+  box-sizing: border-box;
+  padding: 10px;
+  height: auto;
+  width: auto;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 2rem;
 }

@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import Messages from './Messages.jsx';
 import Schedule from './Schedule.jsx';
+import { loginProfileContext } from '../../context.jsx';
 
 export default function Profile() {
   const [messages, setMessages] = useState([]);
+  const { loginIdx } = useContext(loginProfileContext);
 
   useEffect(() => {
-    axios.get('/api/messages')
+    axios.post('/api/getMessages', { loginIdx })
       .then((res) => {
         setMessages(res.data);
       })
@@ -16,7 +18,8 @@ export default function Profile() {
   console.log(messages);
   return (
     <div>
-      <h1>Profile page</h1>
+      <div className="enrollmentTitle">Personal Profile
+      </div>
       <Schedule />
       <div className="messages-wrapper">
         {messages.map((element) => (
