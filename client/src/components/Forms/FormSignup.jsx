@@ -13,8 +13,9 @@ export default function FormSignup({ isMentor }) {
   const [offeringName, setOfferingName] = useState('');
   const [offeringDesc, setOfferingDesc] = useState('');
   const [availabilities, setAvailabilities] = useState([]);
-  const [startTime, setStartTime] = useState(new Date().toISOString());
-  const [endTime, setEndTime] = useState(new Date().toISOString());
+  const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
+  const [startTime, setStartTime] = useState(new Date().toTimeString().slice(0, 5));
+  const [endTime, setEndTime] = useState(new Date().toTimeString().slice(0, 5));
 
   useEffect(() => {
     console.log('availabilities array has changed to: ', availabilities);
@@ -96,14 +97,18 @@ export default function FormSignup({ isMentor }) {
         <input id="input-offeringdesc" name="offeringdesc" type="text" placeholder="A longer description of what you are offering" value={offeringDesc} onChange={(e) => setOfferingDesc(e.target.value)} />
       </label>
       <p>Add the blocks of time you want to have available to mentees:</p>
+      <label htmlFor="input-date">
+        Date:
+        <input id="input-date" type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+      </label>
       <label htmlFor="input-starttime">
         Start Time:
-        <input id="input-starttime" type="datetime-local" value={startTime} onChange={(e) => setStartTime(e.target.value)} />
+        <input id="input-starttime" type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)} />
         &nbsp;&nbsp;
       </label>
       <label htmlFor="input-endtime">
         End Time:
-        <input id="input-endtime" type="datetime-local" value={endTime} onChange={(e) => setEndTime(e.target.value)} />
+        <input id="input-endtime" type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)} />
       </label>
       &nbsp;
       <button id="button-availabilityadd" type="button" onClick={addAvailabilitiesHandler}>Add</button>
