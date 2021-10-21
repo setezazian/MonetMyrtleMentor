@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
-export default function FormSignup({ location, history }) {
-  const { isMentor } = location.state;
+export default function FormSignup({ isMentor }) {
+  const history = useHistory();
   const [fname, setFName] = useState('');
   const [lname, setLName] = useState('');
   const [email, setEmail] = useState('');

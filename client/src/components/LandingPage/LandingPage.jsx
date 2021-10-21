@@ -3,17 +3,16 @@ import { pageIdxContext } from '../App.jsx';
 import Modal from '../Modal/Modal.jsx';
 import FormSignup from '../Forms/FormSignup.jsx';
 
-export default function LandingPage({ history }) {
+export default function LandingPage() {
   const { pageIdx, setPageIdx } = useContext(pageIdxContext);
   const [component, setComponent] = useState(null);
 
   const studentSignupHandler = () => {
-    // history.push('/signup', { isMentor: false });
     setComponent(<FormSignup />);
   };
 
   const mentorSignupHandler = () => {
-    history.push('/signup', { isMentor: true });
+    setComponent(<FormSignup isMentor />);
   };
 
   useEffect(() => {
