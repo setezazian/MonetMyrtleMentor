@@ -589,14 +589,20 @@ a {
 ===========================
 */
 
-#form-newuser {
+#container-form {
   box-sizing: border-box;
   padding: 10px;
-  height: auto;
+  max-height: max-content;
   width: auto;
+  overflow-y: scroll;
   background-color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
   line-height: 2rem;
+}
+
+#form-newuser {
+  max-height: max-content;
+
 }
