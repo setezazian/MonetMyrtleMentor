@@ -47,7 +47,7 @@ module.exports = {
         }
       }
       console.log('extraStr', extraStr);
-      let sql = 'SELECT o.offering_name, o.description, p.name, p.photo, r.rating '
+      let sql = 'SELECT o.offering_name, o.description, p.name, p.photo, r.rating, o.mentor_id '
       + 'FROM offerings AS o '
       + 'JOIN profiles AS p ON p.id = o.mentor_id '
       + 'JOIN ratings as r  ON o.mentor_id = r.mentor_id '

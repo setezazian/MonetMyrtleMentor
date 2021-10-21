@@ -13,6 +13,7 @@ export default function Profile() {
       })
       .catch((err) => console.error(err));
   }, []);
+  console.log(messages);
   return (
     <div>
       <h1>Profile page</h1>
@@ -25,6 +26,7 @@ export default function Profile() {
             toName={element.toname}
             body={element.body}
             time={element.time}
+            fromId={element.from_id}
           />
         ))}
       </div>
