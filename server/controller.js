@@ -92,9 +92,10 @@ const createProfile = (req, res) => {
 
 const createAuthUser = (req, res) => {
   console.log('req.body: ', req.body);
+  const defaultPhotoUrl = 'https://t3.ftcdn.net/jpg/00/64/67/80/240_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg';
   const profile = {
     name: `${req.body.firstName} ${req.body.lastName}`,
-    photo: req.body.photoUrl,
+    photo: req.body.photoUrl === '' ? defaultPhotoUrl : req.body.photoUrl,
     mentor: req.body.isMentor,
   };
   const user = {};

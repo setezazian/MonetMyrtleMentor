@@ -94,31 +94,34 @@ export default function FormSignup({ isMentor }) {
       <label htmlFor="input-offeringname">
         Offering Name:&nbsp;
         <br />
-        <input id="input-offeringname" name="offeringname" type="text" placeholder="Name of what you are mentoring" value={offeringName} onChange={(e) => setOfferingName(e.target.value)} />
+        <input id="input-offeringname" name="offeringname" type="text" placeholder="Name of what you are mentoring" value={offeringName} onChange={(e) => setOfferingName(e.target.value)} requried />
       </label>
       <br />
       <label htmlFor="input-offeringdesc">
         Offering Description:&nbsp;
         <br />
-        <textarea id="input-offeringdesc" name="offeringdesc" type="text" placeholder="A longer description of what you are offering" value={offeringDesc} onChange={(e) => setOfferingDesc(e.target.value)} />
+        <textarea id="input-offeringdesc" name="offeringdesc" type="text" placeholder="A longer description of what you are offering (minimum 50 characters)" value={offeringDesc} onChange={(e) => setOfferingDesc(e.target.value)} required minLength="50" />
       </label>
       <p>Add the blocks of time you want to have available to mentees:</p>
       <label htmlFor="input-date">
         Date:&nbsp;
-        <input id="input-date" type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+        <input id="input-date" type="date" value={date} onChange={(e) => setDate(e.target.value)} required />
       </label>
+      <br />
       <label htmlFor="input-starttime">
         Start Time:&nbsp;
         <input id="input-starttime" type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)} />
       </label>
+      &nbsp;&nbsp;
       <label htmlFor="input-endtime">
         End Time:&nbsp;
         <input id="input-endtime" type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)} />
       </label>
+      &nbsp;&nbsp;
       <button id="button-availabilityadd" type="button" onClick={addAvailabilitiesHandler}>Add</button>
       <br />
-      <br />
-      <p>You&apos;ve added the following blocks of time:</p>
+      {availabilities.length === 0 ? (<p>You must add at least one block of time for your offering</p>) : null}
+      {availabilities.length > 0 ? (<p>You&apos;ve added the following blocks of time:</p>) : null}
       {availabilities.map((timeBlock) => (
         <div key={timeBlock.startTime}>
           <p>
@@ -135,42 +138,36 @@ export default function FormSignup({ isMentor }) {
   );
 
   return (
-    <div>
+    <div className="container-form">
       <form id="form-newuser">
         <label htmlFor="input-fname">
-          First Name:&nbsp;
-          <br />
-          <input id="input-fname" name="fname" type="text" placeholder="Enter your first name" value={fname} onChange={(e) => setFName(e.target.value)} />
+          First Name:&nbsp;&nbsp;
+          <input id="input-fname" name="fname" type="text" placeholder="Enter your first name" value={fname} onChange={(e) => setFName(e.target.value)} required />
         </label>
         <br />
         <label htmlFor="input-lname">
-          Last Name:&nbsp;
-          <br />
-          <input id="input-lname" name="lname" type="text" placeholder="Enter your last name" value={lname} onChange={(e) => setLName(e.target.value)} />
+          Last Name:&nbsp;&nbsp;
+          <input id="input-lname" name="lname" type="text" placeholder="Enter your last name" value={lname} onChange={(e) => setLName(e.target.value)} required />
         </label>
         <br />
         <label htmlFor="input-email">
-          Email:&nbsp;
-          <br />
-          <input id="input-email" name="email" type="text" placeholder="Enter your email address" value={email} onChange={(e) => setEmail(e.target.value)} />
+          Email:&nbsp;&nbsp;
+          <input id="input-email" name="email" type="email" placeholder="Enter your email address" value={email} onChange={(e) => setEmail(e.target.value)} />
         </label>
         <br />
-
         <label htmlFor="input-photourl">
-          URL to your photo:&nbsp;
-          <br />
+          URL to your photo:&nbsp;&nbsp;
           <input id="input-photourl" name="photourl" type="text" placeholder="Enter your last name" value={photoUrl} onChange={(e) => setPhotoUrl(e.target.value)} />
         </label>
         <br />
         <label htmlFor="input-password">
           Password:&nbsp;
           <br />
-          <input id="input-password" name="password" type="password" placeholder="Create a password" value={password} onChange={passwordChangeHandler} />
+          <input id="input-password" name="password" type="password" placeholder="Create a password" value={password} onChange={passwordChangeHandler} required />
         </label>
         <label htmlFor="input-confirmpassword">
-          Confirm Password:&nbsp;
           <br />
-          <input id="input-confirmpassword" name="confirmpassword" type="password" placeholder="Confirm the password" value={confirmPwd} onChange={passwordChangeHandler} />
+          <input id="input-confirmpassword" name="confirmpassword" type="password" placeholder="Confirm the password" value={confirmPwd} onChange={passwordChangeHandler} required />
         </label>
         <br />
         {isMentor ? mentorFormComponents : null}
