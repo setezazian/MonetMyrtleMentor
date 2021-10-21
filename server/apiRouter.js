@@ -22,6 +22,7 @@ router.get('/profile', getProfile);
 router.get('/messages', getMessages);
 
 router.post('/messages', postMessage);
+
 router.get('/schedule', getSchedule);
 
 router.post('/user/new', createAuthUser);
