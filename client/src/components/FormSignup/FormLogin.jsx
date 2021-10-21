@@ -1,11 +1,12 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
-import { loginContext } from '../../context.jsx';
+import { loginContext, loginProfileContext } from '../../context.jsx';
 
 export default function FormLogin({ history }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { login, setLogin } = useContext(loginContext);
+  const { loginIdx, setLoginIdx } = useContext(loginProfileContext);
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
@@ -21,7 +22,9 @@ export default function FormLogin({ history }) {
           .then((res) => {
             if (res.data !== null) {
               setLogin(true);
-              console.log(res.data);
+
+              setLoginIdx(res.data.profile_id);
+
             }
           });
       })

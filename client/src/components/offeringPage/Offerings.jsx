@@ -46,7 +46,6 @@ const Offerings = (props) => {
       .catch((err) => console.error(err));
   }, [testArray]);
 
-  console.log(renderArray);
   return (
     <div>
       {renderArray.map((element) => (
