@@ -7,6 +7,8 @@ import React, {
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import pageIdxContext, { loginContext, loginProfileContext } from '../context.jsx';
+import Modal from './Modal/Modal.jsx';
+import FormLogin from './Forms/FormLogin.jsx';
 
 export default function Navbar() {
   const history = useHistory();
@@ -17,6 +19,7 @@ export default function Navbar() {
   const [searchTerm, setSearchTerm] = useState('');
   const searchRef = useRef(null);
   const matchArr = [];
+  const [modalComp, setModalComp] = useState(null);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -145,13 +148,15 @@ export default function Navbar() {
                 aria-label="login button"
                 type="button"
                 className="login-button"
-                onClick={() => history.push('/login')}
+                // onClick={() => history.push('/login')}
+                onClick={() => setModalComp(<FormLogin />)}
               >
                 Log in
               </button>
             </li>
           )}
       </ul>
+      <Modal component={modalComp} setComponent={setModalComp} />
     </nav>
   );
 }
