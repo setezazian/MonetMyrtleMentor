@@ -17,6 +17,20 @@ module.exports = {
     });
   },
 
+  createBooking(availabilityId, studentId, callback) {
+    const sql = 'INSERT INTO bookings (availability_id, student_id) VALUES (?, ?)';
+    const params = [availabilityId, studentId];
+    db.query(sql, params, (err, results) => {
+      if (err) {
+        console.log('error retrieving offering schedule');
+        callback(err);
+      } else {
+        console.log('successfully retrieved offering schedule');
+        callback(null, results);
+      }
+    });
+  },
+
   getBooking(studentId, date, callback) {
     const sql = 'SELECT a.id AS availabilityId, start_time, end_time, offering_name '
     + 'FROM availabilities a '
