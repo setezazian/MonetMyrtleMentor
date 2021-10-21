@@ -32,6 +32,8 @@ export default function FormSignup({ isMentor }) {
     const newAvailabilities = [...availabilities];
     newAvailabilities.push(newTimeBlock);
     setAvailabilities(newAvailabilities);
+    setStartTime('');
+    setEndTime('');
   };
 
   const validatePassword = () => {
@@ -91,28 +93,28 @@ export default function FormSignup({ isMentor }) {
     <>
       <label htmlFor="input-offeringname">
         Offering Name:&nbsp;
-        <input id="input-offeringname" name="offeringname" type="text" placeholder="Brief name of what you are offering to mentor" value={offeringName} onChange={(e) => setOfferingName(e.target.value)} />
+        <br />
+        <input id="input-offeringname" name="offeringname" type="text" placeholder="Name of what you are mentoring" value={offeringName} onChange={(e) => setOfferingName(e.target.value)} />
       </label>
       <br />
       <label htmlFor="input-offeringdesc">
         Offering Description:&nbsp;
-        <input id="input-offeringdesc" name="offeringdesc" type="text" placeholder="A longer description of what you are offering" value={offeringDesc} onChange={(e) => setOfferingDesc(e.target.value)} />
+        <br />
+        <textarea id="input-offeringdesc" name="offeringdesc" type="text" placeholder="A longer description of what you are offering" value={offeringDesc} onChange={(e) => setOfferingDesc(e.target.value)} />
       </label>
       <p>Add the blocks of time you want to have available to mentees:</p>
       <label htmlFor="input-date">
-        Date:
+        Date:&nbsp;
         <input id="input-date" type="date" value={date} onChange={(e) => setDate(e.target.value)} />
       </label>
       <label htmlFor="input-starttime">
-        Start Time:
+        Start Time:&nbsp;
         <input id="input-starttime" type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)} />
-        &nbsp;&nbsp;
       </label>
       <label htmlFor="input-endtime">
-        End Time:
+        End Time:&nbsp;
         <input id="input-endtime" type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)} />
       </label>
-      &nbsp;
       <button id="button-availabilityadd" type="button" onClick={addAvailabilitiesHandler}>Add</button>
       <br />
       <br />
