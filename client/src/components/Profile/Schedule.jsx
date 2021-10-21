@@ -41,9 +41,11 @@ function Schedule(props) {
             <span>
               {availability.start_time}
             </span>
+            <span id="timeSpacing">-</span>
             <span>
               {availability.end_time}
             </span>
+            <button id="bookingButton" type="button">Book</button>
           </div>
         ))}
       </div>
