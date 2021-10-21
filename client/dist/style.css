@@ -145,6 +145,7 @@ a {
   border-radius: 50%;
   background-repeat: no-repeat;
   background-size: 60px 60px;
+  border: none;
 }
 
 .login-button:hover {

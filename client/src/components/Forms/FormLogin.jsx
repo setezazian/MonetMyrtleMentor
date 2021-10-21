@@ -31,7 +31,7 @@ export default function FormLogin({ history }) {
         axios.get('/api/allOfferings')
           .then((res) => {
             res.data.forEach((element, index) => {
-              offerLeng.push(index + 1);
+              offerLeng.push(index);
             });
           })
           .then(() => {
