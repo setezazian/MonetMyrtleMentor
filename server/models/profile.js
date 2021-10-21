@@ -22,7 +22,7 @@ function create(profile) {
 
 // get a profile's information by its ID (primary key)
 function getById(id) {
-  const sql = 'SELECT id, email, name, photo, mentor FROM profiles WHERE id = ?';
+  const sql = 'SELECT id, name, photo, mentor FROM profiles WHERE id = ?';
   const params = [id];
 
   return new Promise((resolve, reject) => {

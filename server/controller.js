@@ -36,7 +36,7 @@ const getProfile = (req, res) => {
   if (req.body.id === undefined) {
     res.status(400).send('Profile ID required');
   }
-
+  console.log(req.body.id);
   profileModel.getById(req.body.id)
     .then((data) => {
       console.log('successfully retrieved profile');

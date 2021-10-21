@@ -1,11 +1,12 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
-import { loginContext } from '../../context.jsx';
+import { loginContext, loginProfileContext } from '../../context.jsx';
 
 export default function FormLogin({ history }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { login, setLogin } = useContext(loginContext);
+  const { loginIdx, setLoginIdx } = useContext(loginProfileContext);
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
@@ -21,16 +22,27 @@ export default function FormLogin({ history }) {
           .then((res) => {
             if (res.data !== null) {
               setLogin(true);
-              console.log(res.data);
+              setLoginIdx(res.data.profile_id);
             }
           });
+      })
+      .then(() => {
+        const offerLeng = [];
+        axios.get('/api/allOfferings')
+          .then((res) => {
+            res.data.forEach((element, index) => {
+              offerLeng.push(index + 1);
+            });
+          })
+          .then(() => {
+            history.push('/offerings', { detail: offerLeng });
+          })
+          .catch((err) => console.error(err));
       })
       .catch((err) => {
         console.log('Error POSTing form data: ', err);
         // figure out the error and have user correct their form
       });
-
-    history.push('/offerings', { detail: [0, 1] });
   };
 
   return (
