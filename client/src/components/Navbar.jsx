@@ -8,13 +8,14 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import pageIdxContext, { loginContext } from '../context.jsx';
 
-export default function Navbar(props) {
+export default function Navbar() {
   const history = useHistory();
   const { pageIdx, setPageIdx } = useContext(pageIdxContext);
   const { login, setLogin } = useContext(loginContext);
   const [searchTerm, setSearchTerm] = useState('');
   const searchRef = useRef(null);
   const matchArr = [];
+
   const handleClick = (e) => {
     e.preventDefault();
     setPageIdx(1);
