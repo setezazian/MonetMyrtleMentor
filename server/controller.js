@@ -46,7 +46,7 @@ const getProfile = (req, res) => {
 };
 
 const getMessages = (req, res) => {
-  messagesModel.getMessages() // (userId, withId = null, page = 1, count = 10)
+  messagesModel.getMessages(req.body) // (userId, withId = null, page = 1, count = 10)
     .then((data) => {
       console.log(data);
       res.status(200).send(data);
@@ -111,11 +111,12 @@ const createAuthUser = (req, res) => {
       AuthModel.create(authUser)
         .then((authModelResults) => {
           console.log(`Inserted ${authModelResults.affectedRows} rows into auth table`);
+          user.id = authModelResults.insertId;
+          req.login({ user }, (err) => {
+            if (err) console.log('Error logging new user in: ', err);
+            console.log('This is the req.login callback. req.user should be: ', req.user);
+          });
           if (!req.body.isMentor) {
-            user.id = authModelResults.insertId;
-            req.login(user, (err) => {
-              if (err) console.log('Error logging new user in: ', err);
-            });
             res.status(201).send('Created mentee');
           }
           return null;

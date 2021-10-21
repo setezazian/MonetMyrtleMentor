@@ -21,6 +21,8 @@ router.post('/profile', getProfile);
 
 router.get('/messages', getMessages);
 
+router.post('/getMessages', getMessages);
+
 router.post('/messages', postMessage);
 
 router.get('/schedule', getSchedule);
