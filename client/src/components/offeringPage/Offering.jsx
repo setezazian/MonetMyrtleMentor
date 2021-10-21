@@ -3,12 +3,12 @@ import { useHistory } from 'react-router-dom';
 
 const Offering = (props) => {
   const {
-    name, teaches, star, desc, photo,
+    name, teaches, star, desc, photo, mentorId,
   } = props;
   const history = useHistory();
 
   const contactHandler = () => {
-    history.push('/offerings/contact');
+    history.push('/offerings/contact', { toId: mentorId, navigatedFrom: '/offerings' });
   };
 
   const availHandler = () => {

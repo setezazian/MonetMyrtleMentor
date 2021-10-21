@@ -6,9 +6,6 @@ const AvailabilityModel = require('./models/AvailabilityModel.js');
 // const ScheduleModel = require('./models/bookings.js');
 
 const getOfferings = (req, res) => {
-  // Read req params into vars
-  // const page = 1;
-  // const count = 10;
   const { id } = req.body;
   offeringsModel.getOfferings(id) // (count, page)
     .then((data) => {
@@ -18,9 +15,6 @@ const getOfferings = (req, res) => {
 };
 
 const getAllOfferings = (req, res) => {
-  // Read req params into vars
-  // const page = 1;
-  // const count = 10;
   offeringsModel.getAllOfferings() // (count, page)
     .then((data) => {
       res.status(200).send(data);

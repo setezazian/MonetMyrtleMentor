@@ -20,7 +20,18 @@ const Offerings = (props) => {
   }
 
   useEffect(() => {
-    axios.post('/api/multiOfferings', { filterArr: [1, 2, 3, 4, 5, 6, 7, 8, 9] })
+    let offerLeng = [];
+    axios.get('/api/allOfferings')
+      .then((res) => {
+        res.data.forEach((element, index) => {
+          offerLeng.push(index + 1);
+        });
+      })
+      .catch((err) => console.error(err));
+
+
+
+    axios.post('/api/multiOfferings', { filterArr: offerLeng })
       .then((res) => {
         setRenderArray(res.data);
       })
@@ -35,6 +46,7 @@ const Offerings = (props) => {
       .catch((err) => console.error(err));
   }, [testArray]);
 
+  console.log(renderArray);
   return (
     <div>
       {renderArray.map((element) => (
@@ -45,6 +57,7 @@ const Offerings = (props) => {
           star={element.rating}
           desc={element.description}
           photo={element.photo}
+          mentorId={element.mentor_id}
         />
       ))}
     </div>
