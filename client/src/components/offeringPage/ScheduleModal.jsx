@@ -1,9 +1,9 @@
 import React from 'react';
 import Schedule from '../Profile/Schedule.jsx';
 
-const ScheduleModal = () => (
+const ScheduleModal = ({ offeringId }) => (
   <div>
-    <Schedule />
+    <Schedule offeringId="1" />
   </div>
 );
 export default ScheduleModal;
