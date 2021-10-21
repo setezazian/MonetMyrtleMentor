@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
+import { loginContext } from '../../context.jsx';
 
 export default function FormLogin({ history }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { login, setLogin } = useContext(loginContext);
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
@@ -15,6 +17,12 @@ export default function FormLogin({ history }) {
     axios.post('/api/user/login', formData)
       .then(() => {
         // POST and user creation is good, so move on to application
+        axios.get('/api/me')
+          .then((res) => {
+            if (res.data !== null) {
+              setLogin(true);
+            }
+          });
       })
       .catch((err) => {
         console.log('Error POSTing form data: ', err);
