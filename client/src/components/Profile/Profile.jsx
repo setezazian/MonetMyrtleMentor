@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import Messages from './Messages.jsx';
 import Schedule from './Schedule.jsx';
+import { loginProfileContext } from '../../context.jsx';
 
 export default function Profile() {
   const [messages, setMessages] = useState([]);
+  const { loginIdx, setLoginIdx } = useContext(loginProfileContext);
 
   useEffect(() => {
     axios.get('/api/messages')
@@ -17,7 +19,7 @@ export default function Profile() {
   return (
     <div>
       <h1>Profile page</h1>
-      <Schedule />
+      <Schedule profileId={1} />
       <div className="messages-wrapper">
         {messages.map((element) => (
           <Messages
