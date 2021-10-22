@@ -189,7 +189,7 @@ export default function FormSignup({ isMentor }) {
         <br />
         {isMentor ? mentorFormComponents : null}
         <button id="button-formsubmit" type="submit" onClick={formSubmitHandler}>Submit</button>
-        {generalMessage ? (<p>generalMessage</p>) : null}
+        {generalMessage ? (<p>{generalMessage}</p>) : null}
       </form>
     </div>
   );
