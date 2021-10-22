@@ -41,12 +41,12 @@ export default function FormLogin({ setModal }) {
       <form>
         <label htmlFor="input-email">
           Email:&nbsp;
-          <input id="input-email" name="email" type="email" placeholder="Enter your email address" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <input id="input-email" name="email" type="email" placeholder="" value={email} onChange={(e) => setEmail(e.target.value)} required />
         </label>
         <br />
         <label htmlFor="input-password">
           Password:&nbsp;
-          <input id="input-password" name="password" type="password" placeholder="Create a password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          <input id="input-password" name="password" type="password" placeholder="" value={password} onChange={(e) => setPassword(e.target.value)} required />
         </label>
         <br />
         <button id="button-formsubmit" type="submit" onClick={formSubmitHandler} className="login-button">Submit</button>
