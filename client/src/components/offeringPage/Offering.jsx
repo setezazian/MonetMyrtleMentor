@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 const Offering = (props) => {
   const {
-    name, teaches, star, desc, photo, mentorId,
+    offeringId, name, teaches, star, desc, photo, mentorId,
   } = props;
   const history = useHistory();
 
@@ -11,7 +11,7 @@ const Offering = (props) => {
     history.push('/offerings/contact', { toId: mentorId, navigatedFrom: '/offerings' });
   };
 
-  const availHandler = (offeringId) => {
+  const availHandler = () => {
     history.push('/offerings/availabillity', { offeringId });
   };
 
@@ -33,7 +33,7 @@ const Offering = (props) => {
           <div className="offering-desc">{desc}</div>
         </div>
         <button className="offering-button contact-button" type="button" onClick={contactHandler}>Contact</button>
-        <button className="offering-button availablity-button" type="button" onClick={() => availHandler(id)}>Availablity</button>
+        <button className="offering-button availablity-button" type="button" onClick={availHandler}>Availablity</button>
       </div>
     </div>
   );
