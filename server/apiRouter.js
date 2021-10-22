@@ -9,6 +9,7 @@ const {
   createAuthUser,
   postMessage,
   getSchedule,
+  searchOfferings,
 } = require('./controller');
 
 router.get('/offerings', getOfferings);
@@ -16,6 +17,8 @@ router.get('/offerings', getOfferings);
 router.get('/allOfferings', getAllOfferings);
 
 router.post('/multiOfferings', getMultiOfferings);
+
+router.post('/searchOfferings', searchOfferings);
 
 router.post('/profile', getProfile);
 

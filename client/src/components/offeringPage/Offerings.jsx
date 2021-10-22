@@ -4,13 +4,15 @@ import Offering from './Offering.jsx';
 
 const Offerings = (props) => {
   const [renderArray, setRenderArray] = useState([1, 2]);
-  let testArray = [0, 1, 2, 3, 4, 5];
+  // let testArray = [0, 1, 2, 3, 4, 5];
+  const [testArray, setTestArray] = useState([0, 1, 2, 3, 4, 5]);
 
-  if (props.location.state !== undefined) {
-    testArray = props.location.state.detail;
-  }
+  // if (props.location.state !== undefined) {
+  //   testArray = props.location.state.detail;
+  //   console.log('undefined!!!!');
+  // }
 
-  function onlyUnique(value, index, self) {
+/*   function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
   }
 
@@ -18,10 +20,13 @@ const Offerings = (props) => {
 
   for (let i = 0; i < filterArr.length; i++) {
     filterArr[i] += 1;
-  }
-
+  } */
+/*
   useEffect(() => {
     console.log('mount');
+    if (props.location.state !== undefined) {
+      setTestArray(props.location.state.detail);
+    }
     const offerLeng = [];
     axios.get('/api/allOfferings')
       .then((res) => {
@@ -35,7 +40,27 @@ const Offerings = (props) => {
       })
       .catch((err) => console.error(err));
   }, []);
+ */
 
+  useEffect(() => {
+    console.log('mount');
+    if (props.location.state === undefined) {
+      console.log('Getting all offerings');
+      axios.get('/api/allOfferings')
+        .then((res) => {
+          setRenderArray(res.data);
+        })
+        .catch((err) => console.error(err));
+    } else {
+      console.log('using a search term');
+      axios.post('/api/searchOfferings', { search: props.location.state.detail })
+        .then((res) => {
+          setRenderArray(res.data);
+        })
+        .catch((err) => console.error(err));
+    }
+  }, [props.location.state.detail]);
+/*
   useEffect(() => {
     console.log('testArr', testArray);
     axios.post('/api/multiOfferings', { filterArr })
@@ -44,7 +69,7 @@ const Offerings = (props) => {
       })
       .catch((err) => console.error(err));
   }, [testArray]);
-
+ */
   return (
     <div>
       {renderArray.map((element) => (

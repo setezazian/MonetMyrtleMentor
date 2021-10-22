@@ -67,6 +67,28 @@ module.exports = {
       });
     });
   },
+  searchOfferings(searchTerm) {
+    return new Promise((resolve, reject) => {
+      // search through the mentor name, offering name, offering description
+      const sql = 'SELECT o.offering_name, o.description, p.name, p.photo, r.rating, o.mentor_id '
+      + 'FROM offerings AS o '
+      + 'JOIN profiles AS p ON p.id = o.mentor_id '
+      + 'LEFT JOIN ratings as r  ON o.mentor_id = r.mentor_id '
+      // + `WHERE p.name LIKE '%?%' OR o.offering_name LIKE '%?%' OR o.description LIKE '%?%'`;
+      + `WHERE p.name LIKE '%${searchTerm}%' OR o.offering_name LIKE '%${searchTerm}%' OR o.description LIKE '%${searchTerm}%'`;
+      console.log('sql', sql);
+
+      db.query(sql, (err, results) => {
+        if (err) {
+          console.log('error searching offerings');
+          reject(err);
+        } else {
+          console.log('searched and retrieved matching offerings');
+          resolve(results);
+        }
+      });
+    });
+  },
   insertOne(offering) {
     return new Promise((resolve, reject) => {
       // offering is an object

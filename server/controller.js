@@ -32,6 +32,16 @@ const getMultiOfferings = (req, res) => {
     .catch((err) => console.log('Error retrieving offerings from model: ', err));
 };
 
+const searchOfferings = (req, res) => {
+  console.log('!');
+  console.log('search term: ', req.body.search);
+  offeringsModel.searchOfferings(req.body.search)
+    .then((data) => {
+      res.status(200).send(data);
+    })
+    .catch((err) => console.log('Error retrieving offerings from model: ', err));
+};
+
 const getProfile = (req, res) => {
   if (req.body.id === undefined) {
     res.status(400).send('Profile ID required');
@@ -171,4 +181,5 @@ module.exports = {
   createAuthUser,
   postMessage,
   getSchedule,
+  searchOfferings,
 };
