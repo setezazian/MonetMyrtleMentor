@@ -118,13 +118,13 @@ export default function FormSignup({ isMentor }) {
       <label htmlFor="input-offeringname">
         Offering Name:&nbsp;
         <br />
-        <input id="input-offeringname" name="offeringname" type="text" placeholder="Name of what you are mentoring" value={offeringName} onChange={(e) => setOfferingName(e.target.value)} requried />
+        <input id="input-offeringname" name="offeringname" type="text" placeholder="mentoring topic" value={offeringName} onChange={(e) => setOfferingName(e.target.value)} requried />
       </label>
       <br />
       <label htmlFor="input-offeringdesc">
         Offering Description:&nbsp;
         <br />
-        <textarea id="input-offeringdesc" name="offeringdesc" type="text" placeholder="A longer description of what you are offering (minimum 50 characters)" value={offeringDesc} onChange={(e) => setOfferingDesc(e.target.value)} required minLength="50" />
+        <textarea id="input-offeringdesc" name="offeringdesc" type="text" placeholder="description of your topic/offering (minimum 50 characters)" value={offeringDesc} onChange={(e) => setOfferingDesc(e.target.value)} required minLength="50" rows="4" cols="45" />
       </label>
       <p>Add the blocks of time you want to have available to mentees:</p>
       <label htmlFor="input-date">
@@ -168,36 +168,36 @@ export default function FormSignup({ isMentor }) {
       <form id="form-newuser">
         <label htmlFor="input-fname">
           First Name:&nbsp;&nbsp;
-          <input id="input-fname" name="fname" type="text" placeholder="Enter your first name" value={fname} onChange={(e) => setFName(e.target.value)} required />
+          <input id="input-fname" name="fname" type="text" placeholder="first name" value={fname} onChange={(e) => setFName(e.target.value)} required />
         </label>
         <br />
         <label htmlFor="input-lname">
           Last Name:&nbsp;&nbsp;
-          <input id="input-lname" name="lname" type="text" placeholder="Enter your last name" value={lname} onChange={(e) => setLName(e.target.value)} required />
+          <input id="input-lname" name="lname" type="text" placeholder="last name" value={lname} onChange={(e) => setLName(e.target.value)} required />
         </label>
         <br />
         <label htmlFor="input-email">
           Email:&nbsp;&nbsp;
-          <input id="input-email" name="email" type="email" placeholder="Enter your email address" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input id="input-email" name="email" type="email" placeholder="email address" value={email} onChange={(e) => setEmail(e.target.value)} />
         </label>
         <br />
         <label htmlFor="input-photourl">
           URL to your photo:&nbsp;&nbsp;
-          <input id="input-photourl" name="photourl" type="text" placeholder="Enter your last name" value={photoUrl} onChange={(e) => setPhotoUrl(e.target.value)} />
+          <input id="input-photourl" name="photourl" type="text" placeholder="photo url" value={photoUrl} onChange={(e) => setPhotoUrl(e.target.value)} />
         </label>
         <br />
         <label htmlFor="input-password">
           Password:&nbsp;
           <br />
-          <input id="input-password" name="password" type="password" placeholder="Create a password" value={password} onChange={passwordChangeHandler} minLength="8" required />
+          <input id="input-password" name="password" type="password" placeholder="password" value={password} onChange={passwordChangeHandler} minLength="8" required />
         </label>
         <label htmlFor="input-confirmpassword">
           <br />
-          <input id="input-confirmpassword" name="confirmpassword" type="password" placeholder="Confirm the password" value={confirmPwd} onChange={passwordChangeHandler} minLength="8" required />
+          <input id="input-confirmpassword" name="confirmpassword" type="password" placeholder="confirm password" value={confirmPwd} onChange={passwordChangeHandler} minLength="8" required />
         </label>
         <br />
         {isMentor ? mentorFormComponents : null}
-        <button id="button-formsubmit" type="submit" onClick={formSubmitHandler}>Submit</button>
+        <button id="button-formsubmit" type="submit" onClick={formSubmitHandler} className="login-button">Submit</button>
         {generalMessage ? (<p>{generalMessage}</p>) : null}
       </form>
     </div>

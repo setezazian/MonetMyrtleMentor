@@ -718,6 +718,21 @@ button.booking {
   line-height: 2rem;
 }
 
+.container-form input[type="text"], input[type="email"], input[type="date"], input[type="time"], input[type="password"] {
+  height: 1.5rem;
+  width: 10rem;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 1px dashed;
+  border-left: 0;
+  font-size: 0.9rem;
+  font-family: 'Montserrat',sans-serif;
+}
+
+.container-form textarea {
+  border: 1px dashed;
+}
+
 #form-newuser {
   max-height: max-content;
 
