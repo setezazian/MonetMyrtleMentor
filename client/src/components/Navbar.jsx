@@ -13,12 +13,11 @@ import FormLogin from './Forms/FormLogin.jsx';
 export default function Navbar() {
   const history = useHistory();
   const { pageIdx, setPageIdx } = useContext(pageIdxContext);
-  const { login, setLogin } = useContext(loginContext);
-  const { loginIdx, setLoginIdx } = useContext(loginProfileContext);
+  const { login } = useContext(loginContext);
+  const { loginIdx } = useContext(loginProfileContext);
   const [profilePic, setProfilePic] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const searchRef = useRef(null);
-  const matchArr = [];
   const [modalComp, setModalComp] = useState(null);
 
   const handleClick = (e) => {
@@ -28,39 +27,6 @@ export default function Navbar() {
       pathname: '/offerings',
       state: { detail: searchTerm },
     });
-    /* axios.get('/api/allOfferings')
-      .then((res) => res.data)
-      .then((results) => {
-        if (searchTerm !== '') {
-          results.forEach((element, index) => {
-            Object.values(element).forEach((v) => {
-              if (v.toLowerCase().includes(searchTerm.toLowerCase())) {
-                matchArr.push(index);
-              }
-            });
-          });
-        } else if (searchTerm === '') {
-          axios.get('/api/allOfferings')
-            .then((res) => {
-              res.data.forEach((element, index) => {
-                matchArr.push(index);
-              });
-            })
-            .catch((err) => console.error(err));
-        }
-      })
-      .then(() => {
-        history.push({
-          pathname: '/offerings',
-          state: { detail: searchTerm },
-        });
-        while (matchArr.length > 0) {
-          matchArr.pop();
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      }); */
   };
 
   const handleChange = (e) => {
@@ -149,7 +115,6 @@ export default function Navbar() {
                 aria-label="login button"
                 type="button"
                 className="login-button"
-                // onClick={() => history.push('/login')}
                 onClick={() => setModalComp(<FormLogin setModal={setModalComp} />)}
               >
                 Log in
