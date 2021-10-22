@@ -18,7 +18,8 @@ export default function Profile() {
   console.log(messages);
   return (
     <div>
-      <div className="enrollmentTitle">Personal Profile
+      <div className="enrollmentTitle">
+        Personal Profile
       </div>
       <Schedule />
       <div className="messages-wrapper">
