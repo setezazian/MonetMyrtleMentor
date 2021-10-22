@@ -5,9 +5,9 @@ const AuthModel = require('./models/AuthModel.js');
 const AvailabilityModel = require('./models/AvailabilityModel.js');
 const ScheduleModel = require('./models/schedules.js');
 
-const getOfferings = (req, res) => {
+const getOfferingsByProfile = (req, res) => {
   const { id } = req.body;
-  offeringsModel.getOfferings(id) // (count, page)
+  offeringsModel.getOfferingsByProfile(id) // (count, page)
     .then((data) => {
       res.status(200).send(data);
     })
@@ -182,7 +182,7 @@ const createNewUser = (req, res) => {
 };
 
 module.exports = {
-  getOfferings,
+  getOfferingsByProfile,
   getAllOfferings,
   getMultiOfferings,
   getProfile,

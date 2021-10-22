@@ -15,20 +15,17 @@ const CustomCursor = () => {
   });
 
   useEffect(() => {
-    document.addEventListener("mousemove", (event) => {
+    document.addEventListener('mousemove', (event) => {
       const { clientX, clientY } = event;
       // const mouseX = clientX - mainCursor.current.clientWidth / 2;
       // const mouseY = clientY - mainCursor.current.clientHeight / 2;
       // mainCursor.current.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
 
-
       const mouseX = clientX;
       const mouseY = clientY;
 
-      positionRef.current.mouseX =
-        mouseX - secondaryCursor.current.clientWidth / 2;
-      positionRef.current.mouseY =
-        mouseY - secondaryCursor.current.clientHeight / 2;
+      positionRef.current.mouseX = mouseX - secondaryCursor.current.clientWidth / 2;
+      positionRef.current.mouseY = mouseY - secondaryCursor.current.clientHeight / 2;
 
       mainCursor.current.style.transform = `translate3d(${mouseX - mainCursor.current.clientWidth / 2}px,
         ${mouseY - mainCursor.current.clientHeight / 2}px, 0)`;
@@ -59,8 +56,8 @@ const CustomCursor = () => {
       }
 
       if (
-        Math.abs(positionRef.current.distanceX) +
-         Math.abs(positionRef.current.distanceY) < 0.1
+        Math.abs(positionRef.current.distanceX)
+          + Math.abs(positionRef.current.distanceY) < 0.1
       ) {
         positionRef.current.destinationX = mouseX;
         positionRef.current.destinationY = mouseY;
@@ -76,10 +73,10 @@ const CustomCursor = () => {
   }, []);
   return (
     <div>
-      <div className="main-cursor" ref={mainCursor}></div>
-      <div className="secondary-cursor" ref={secondaryCursor}></div>
+      <div className="main-cursor" ref={mainCursor} />
+      <div className="secondary-cursor" ref={secondaryCursor} />
     </div>
   );
 };
 
-export default CustomCursor
+export default CustomCursor;
