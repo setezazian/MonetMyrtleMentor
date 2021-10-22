@@ -39,8 +39,6 @@ const ContactModal = (props) => {
               console.log(res);
             })
             .catch((err) => console.log(err));
-          // history.push(navigatedFrom);
-          /////////
           const offerLeng = [];
           axios.get('/api/allOfferings')
             .then((res) => {
@@ -49,7 +47,7 @@ const ContactModal = (props) => {
               });
             })
             .then(() => {
-              history.push(navigatedFrom, { detail: offerLeng });
+              history.push(navigatedFrom);
             })
             .catch((err) => console.error(err));
         }}
