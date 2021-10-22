@@ -90,7 +90,12 @@ const createProfile = (req, res) => {
     .catch((err) => console.log('Error creating user" ', err));
 };
 
-const createAuthUser = (req, res) => {
+const goodAuth = (req, res) => {
+  // This function only gets called after passport authenticates successfully.
+  res.status(200).send(req.user);
+};
+
+const createNewUser = (req, res) => {
   console.log('req.body: ', req.body);
   const profile = {
     name: `${req.body.firstName} ${req.body.lastName}`,
@@ -167,7 +172,8 @@ module.exports = {
   getProfile,
   getMessages,
   createProfile,
-  createAuthUser,
+  goodAuth,
+  createNewUser,
   postMessage,
   getSchedule,
 };
