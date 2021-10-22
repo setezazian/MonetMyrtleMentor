@@ -104,7 +104,7 @@ function Schedule(props) {
             <span>
               {booking.end_time}
             </span>
-            <span>
+            <span style={{ margin: '0 10px' }}>
               {booking.offering_name}
             </span>
             <button type="button">Cancel Booking</button>
