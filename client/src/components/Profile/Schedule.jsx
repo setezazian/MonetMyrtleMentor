@@ -68,6 +68,20 @@ function Schedule(props) {
     }
   };
 
+  const handleBooking = (e, availabilityId) => {
+    e.preventDefault();
+    const data = {
+      availabilityId,
+    };
+    axios.post('/api/booking', data)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div className="scheduling">
       <div className="calendar">
