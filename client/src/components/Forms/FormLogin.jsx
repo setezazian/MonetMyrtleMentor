@@ -25,14 +25,7 @@ export default function FormLogin({ setModal }) {
           setLogin(true);
           setLoginIdx(loginResponse.data.profile_id);
         }
-      })
-      .then(() => axios.get('/api/allOfferings'))
-      .then((res) => {
-        const offerLeng = [];
-        res.data.forEach((element, index) => {
-          offerLeng.push(index);
-        });
-        history.push('/offerings', { detail: offerLeng });
+        history.push('/offerings');
         setModal(null);
       })
       .catch((err) => {
