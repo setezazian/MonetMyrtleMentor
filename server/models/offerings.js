@@ -21,7 +21,7 @@ module.exports = {
   },
   getAllOfferings() {
     return new Promise((resolve, reject) => {
-      const sql = 'SELECT o.offering_name, o.description, p.name, p.photo, r.rating, o.mentor_id '
+      const sql = 'SELECT o.id AS offering_id, o.offering_name, o.description, p.name, p.photo, r.rating, o.mentor_id '
         + 'FROM offerings AS o '
         + 'JOIN profiles AS p ON p.id = o.mentor_id '
         + 'LEFT JOIN ratings as r  ON o.mentor_id = r.mentor_id ';
@@ -48,13 +48,13 @@ module.exports = {
         }
       }
       console.log('extraStr', extraStr);
-      let sql = 'SELECT o.offering_name, o.description, p.name, p.photo, r.rating, o.mentor_id '
+      const sql = `${'SELECT o.offering_name, o.description, p.name, p.photo, r.rating, o.mentor_id '
       + 'FROM offerings AS o '
       + 'JOIN profiles AS p ON p.id = o.mentor_id '
       + 'LEFT JOIN ratings as r  ON o.mentor_id = r.mentor_id '
-      + 'WHERE o.id IN ('
-      +  extraStr
-      + ')';
+      + 'WHERE o.id IN ('}${
+        extraStr
+      })`;
       console.log('sql', sql);
 
       db.query(sql, params, (err, results) => {
@@ -71,7 +71,7 @@ module.exports = {
   searchOfferings(searchTerm) {
     return new Promise((resolve, reject) => {
       // search through the mentor name, offering name, offering description
-      const sql = 'SELECT o.offering_name, o.description, p.name, p.photo, r.rating, o.mentor_id '
+      const sql = 'SELECT o.id AS offering_id, o.offering_name, o.description, p.name, p.photo, r.rating, o.mentor_id '
       + 'FROM offerings AS o '
       + 'JOIN profiles AS p ON p.id = o.mentor_id '
       + 'LEFT JOIN ratings as r  ON o.mentor_id = r.mentor_id '
