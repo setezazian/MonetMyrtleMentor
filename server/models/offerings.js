@@ -5,7 +5,7 @@ module.exports = {
   getOfferingsByProfile(profileId) {
     return new Promise((resolve, reject) => {
       const sql = 'SELECT o.id, o.offering_name, o.description, o.mentor_id, p.photo '
-        + 'FROM profiles AS p'
+        + 'FROM profiles AS p '
         + 'JOIN offerings AS o ON p.id = o.mentor_id '
         + 'WHERE p.id = ?';
       const params = [profileId];
@@ -39,8 +39,8 @@ module.exports = {
   },
   getMultiOfferings(offeringIds) {
     return new Promise((resolve, reject) => {
+      // Params is an array of IDs
       const params = offeringIds;
-      console.log('params', params);
       const extraStr = [];
       for (let i = 0; i < params.length; i += 1) {
         extraStr.push('?');
@@ -82,8 +82,8 @@ module.exports = {
       WHERE p.name LIKE ?
         OR o.offering_name LIKE ?
         OR o.description LIKE ?`, [wildSearchTerm, wildSearchTerm, wildSearchTerm]);
-      console.log('searchOfferings - Formatted SQL: ', sql);
 
+      console.log('searchOfferings - Formatted SQL: ', sql);
       db.query(sql, (err, results) => {
         if (err) {
           console.log('error searching offerings');
