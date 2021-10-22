@@ -34,11 +34,11 @@ module.exports = {
   },
 
   getBooking(studentId, date, callback) {
-    const sql = 'SELECT a.id AS availabilityId, start_time, end_time, offering_name '
+    const sql = 'SELECT b.id AS booking_id, start_time, end_time, offering_name '
     + 'FROM availabilities a '
     + 'JOIN offerings o ON a.offering_id = o.id '
     + 'JOIN bookings b ON b.availability_id = a.id '
-    + 'WHERE student_id= ? AND Date(start_time) = ?';
+    + 'WHERE booked_by_student_id= ? AND Date(start_time) = ?';
     // BETWEEN '? 00:00:00' AND '? 23:59:59'';
     const params = [studentId, date];
     db.query(sql, params, (err, results) => {
