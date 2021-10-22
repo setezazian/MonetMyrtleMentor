@@ -75,7 +75,7 @@ const postMessage = (req, res) => {
 const getSchedule = (req, res) => {
   const dateStr = req.query.date;
   const date = new Date(dateStr);
-
+  console.log(req.query);
   ScheduleModel.getOfferingSchedule(date.toISOString().slice(0, 10),
     req.query.offeringId, (err, data) => {
       if (err) {
@@ -85,8 +85,8 @@ const getSchedule = (req, res) => {
         console.log(data);
         res.json(data.map((item) => ({
           availability_id: item.availability_id,
-          start_time: item.start_time.toTimeString().slice(0, 8),
-          end_time: item.end_time.toTimeString().slice(0, 8),
+          start_time: item.start_time.toTimeString().slice(0, 5),
+          end_time: item.end_time.toTimeString().slice(0, 5),
         })));
       }
     });
@@ -115,8 +115,8 @@ const getProfileSchedule = (req, res) => {
         console.log('successfully retrieved schedule', data);
         res.json(data.map((item) => ({
           booking_id: item.booking_id,
-          start_time: item.start_time.toTimeString().slice(0, 8),
-          end_time: item.end_time.toTimeString().slice(0, 8),
+          start_time: item.start_time.toTimeString().slice(0, 5),
+          end_time: item.end_time.toTimeString().slice(0, 5),
           offering_name: item.offering_name,
         })));
       }
