@@ -10,6 +10,7 @@ import FormSignup from './Forms/FormSignup.jsx';
 import FormLogin from './Forms/FormLogin.jsx';
 import Debug from './Debug/Debug.jsx';
 import pageIdxContext, { loginContext, loginProfileContext } from '../context.jsx';
+import CustomCursor from './customCursor/CustomCursor.jsx';
 
 const App = () => {
   const [pageIdx, setPageIdx] = useState(-1);
@@ -24,6 +25,7 @@ const App = () => {
         <pageIdxContext.Provider value={{ pageIdx, setPageIdx }}>
           <div>
             <BrowserRouter>
+              <CustomCursor />
               <Navbar />
               <Switch>
                 <Route exact path="/" component={LandingPage} />

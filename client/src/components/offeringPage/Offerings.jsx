@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Offering from './Offering.jsx';
+import CustomCursor from '../CustomCursor/CustomCursor.jsx'
 
 const Offerings = (props) => {
   const [renderArray, setRenderArray] = useState([1, 2]);
@@ -46,7 +47,8 @@ const Offerings = (props) => {
   }, [testArray]);
 
   return (
-    <div>
+    <>
+    <div className="offerings-overall">
       {renderArray.map((element) => (
         <Offering
           key={Math.random()}
@@ -59,6 +61,7 @@ const Offerings = (props) => {
         />
       ))}
     </div>
+    </>
   );
 };
 export default Offerings;
