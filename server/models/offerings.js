@@ -2,13 +2,13 @@ const mysql = require('mysql');
 const db = require('../db');
 
 module.exports = {
-  getOfferings(offeringId) {
+  getOfferingsByProfile(profileId) {
     return new Promise((resolve, reject) => {
       const sql = 'SELECT o.id, o.offering_name, o.description, o.mentor_id, p.photo '
         + 'FROM profiles AS p'
         + 'JOIN offerings AS o ON p.id = o.mentor_id '
         + 'WHERE p.id = ?';
-      const params = [offeringId];
+      const params = [profileId];
       db.query(sql, params, (err, results) => {
         if (err) {
           console.log('error retrieving offerings');
@@ -41,24 +41,20 @@ module.exports = {
     return new Promise((resolve, reject) => {
       const params = offeringIds;
       console.log('params', params);
-      let extraStr = '';
-      for (let i = 0; i < params.length; i++) {
-        extraStr += '?';
-        if (i !== params.length - 1) {
-          extraStr += ',';
-        }
+      const extraStr = [];
+      for (let i = 0; i < params.length; i += 1) {
+        extraStr.push('?');
       }
       console.log('extraStr', extraStr);
-      let sql = 'SELECT o.offering_name, o.description, p.name, p.photo, r.rating, o.mentor_id '
-      + 'FROM offerings AS o '
-      + 'JOIN profiles AS p ON p.id = o.mentor_id '
-      + 'LEFT JOIN ratings as r  ON o.mentor_id = r.mentor_id '
-      + 'WHERE o.id IN ('
-      +  extraStr
-      + ')';
-      console.log('sql', sql);
+      const sql = mysql.format(`SELECT 
+        o.offering_name, o.description, p.name, p.photo, r.rating, o.mentor_id 
+        FROM offerings AS o 
+        JOIN profiles AS p ON p.id = o.mentor_id 
+        LEFT JOIN ratings as r  ON o.mentor_id = r.mentor_id 
+        WHERE o.id IN (${extraStr.join(',')})`, params);
 
-      db.query(sql, params, (err, results) => {
+      console.log('getMultiOfferings - Formatted SQL: ', sql);
+      db.query(sql, (err, results) => {
         if (err) {
           console.log('error retrieving offerings');
           reject(err);
@@ -86,7 +82,7 @@ module.exports = {
       WHERE p.name LIKE ?
         OR o.offering_name LIKE ?
         OR o.description LIKE ?`, [wildSearchTerm, wildSearchTerm, wildSearchTerm]);
-      console.log('Formatted SQL: ', sql);
+      console.log('searchOfferings - Formatted SQL: ', sql);
 
       db.query(sql, (err, results) => {
         if (err) {
