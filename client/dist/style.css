@@ -601,7 +601,8 @@ a {
   color: black;
   background-color: rgb(166, 205, 218);
   margin-left: 10px;
-  max-width: 650px;
+  width: 650px;
+  padding: 10px;
 }
 
 .calendar {
