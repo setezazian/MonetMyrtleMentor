@@ -24,7 +24,11 @@ export default function Navbar() {
   const handleClick = (e) => {
     e.preventDefault();
     setPageIdx(1);
-    axios.get('/api/allOfferings')
+    history.push({
+      pathname: '/offerings',
+      state: { detail: searchTerm },
+    });
+    /* axios.get('/api/allOfferings')
       .then((res) => res.data)
       .then((results) => {
         if (searchTerm !== '') {
@@ -48,7 +52,7 @@ export default function Navbar() {
       .then(() => {
         history.push({
           pathname: '/offerings',
-          state: { detail: matchArr },
+          state: { detail: searchTerm },
         });
         while (matchArr.length > 0) {
           matchArr.pop();
@@ -56,7 +60,7 @@ export default function Navbar() {
       })
       .catch((err) => {
         console.error(err);
-      });
+      }); */
   };
 
   const handleChange = (e) => {
