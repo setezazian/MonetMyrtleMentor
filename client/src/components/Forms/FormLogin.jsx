@@ -3,7 +3,7 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { loginContext, loginProfileContext } from '../../context.jsx';
 
-export default function FormLogin() {
+export default function FormLogin({ setModal }) {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -20,13 +20,10 @@ export default function FormLogin() {
 
     axios.post('/api/user/login', formData)
       .then((loginResponse) => {
-        console.log('Successful login');
-        return axios.get('/api/me');
-      })
-      .then((res) => {
-        if (res.data !== null) {
+        if (loginResponse.data !== null) {
+          console.log('Successful login');
           setLogin(true);
-          setLoginIdx(res.data.profile_id);
+          setLoginIdx(loginResponse.data.profile_id);
         }
       })
       .then(() => axios.get('/api/allOfferings'))
@@ -36,6 +33,7 @@ export default function FormLogin() {
           offerLeng.push(index);
         });
         history.push('/offerings', { detail: offerLeng });
+        setModal(null);
       })
       .catch((err) => {
         console.log('Error logging in: ', err);

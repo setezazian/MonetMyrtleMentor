@@ -149,7 +149,7 @@ export default function Navbar() {
                 type="button"
                 className="login-button"
                 // onClick={() => history.push('/login')}
-                onClick={() => setModalComp(<FormLogin />)}
+                onClick={() => setModalComp(<FormLogin setModal={setModalComp} />)}
               >
                 Log in
               </button>
