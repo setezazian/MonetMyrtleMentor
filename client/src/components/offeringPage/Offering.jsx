@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 const Offering = (props) => {
   const {
-    name, teaches, star, desc, photo, mentorId,
+    offeringId, name, teaches, star, desc, photo, mentorId,
   } = props;
   const history = useHistory();
 
@@ -12,7 +12,7 @@ const Offering = (props) => {
   };
 
   const availHandler = () => {
-    history.push('/offerings/availabillity');
+    history.push('/offerings/availabillity', { offeringId });
   };
 
   return (
