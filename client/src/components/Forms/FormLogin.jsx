@@ -46,18 +46,20 @@ export default function FormLogin({ history }) {
   };
 
   return (
-    <form>
-      <label htmlFor="input-email">
-        Email:&nbsp;
-        <input id="input-email" name="email" type="text" placeholder="Enter your email address" value={email} onChange={(e) => setEmail(e.target.value)} />
-      </label>
-      <br />
-      <label htmlFor="input-password">
-        Password:&nbsp;
-        <input id="input-password" name="password" type="password" placeholder="Create a password" value={password} onChange={(e) => setPassword(e.target.value)} />
-      </label>
-      <br />
-      <button id="button-formsubmit" type="submit" onClick={formSubmitHandler}>Submit</button>
-    </form>
+    <div className="container-form">
+      <form>
+        <label htmlFor="input-email">
+          Email:&nbsp;
+          <input id="input-email" name="email" type="email" placeholder="Enter your email address" value={email} onChange={(e) => setEmail(e.target.value)} required />
+        </label>
+        <br />
+        <label htmlFor="input-password">
+          Password:&nbsp;
+          <input id="input-password" name="password" type="password" placeholder="Create a password" value={password} onChange={(e) => setPassword(e.target.value)} minLength="8" required />
+        </label>
+        <br />
+        <button id="button-formsubmit" type="submit" onClick={formSubmitHandler}>Submit</button>
+      </form>
+    </div>
   );
 }
