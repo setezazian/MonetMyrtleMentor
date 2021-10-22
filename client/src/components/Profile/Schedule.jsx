@@ -84,7 +84,7 @@ function Schedule(props) {
           console.log(error);
         });
     } else {
-      alert('Please login');
+      alert('Please login to be able to book.');
     }
   };
 
