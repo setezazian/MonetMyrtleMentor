@@ -45,9 +45,10 @@ export default function Profile() {
 
   return (
     <div>
-      <div className="enrollmentTitle">Personal Profile
+      <div className="enrollmentTitle">
+        Personal Profile
       </div>
-      <Schedule />
+      <Schedule profileId={loginIdx} />
       {conditionalReturn()}
     </div>
   );

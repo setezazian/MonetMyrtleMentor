@@ -37,6 +37,7 @@ const Offerings = (props) => {
         {renderArray.map((element) => (
           <Offering
             key={Math.random()}
+            offeringId={element.offering_id}
             name={element.name}
             teaches={element.offering_name}
             star={element.rating}
