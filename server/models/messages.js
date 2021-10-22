@@ -9,11 +9,9 @@ module.exports = {
         if (err) {
           console.log('error retrieving messages');
           reject(err);
-          // callback(err);
         } else {
           console.log('successfully retrieved all messages');
           resolve(results);
-          // callback(null, results);
         }
       });
     });
@@ -26,11 +24,9 @@ module.exports = {
         if (err) {
           console.log('error posting message ', err);
           reject(err);
-          // callback(err);
         } else {
           console.log('successfully posted message');
           resolve(null, result);
-          // callback(null, results);
         }
       });
     });
