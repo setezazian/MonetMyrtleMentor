@@ -18,9 +18,10 @@ export default function Profile() {
   console.log(messages);
   return (
     <div>
-      <div className="enrollmentTitle">Personal Profile
+      <div className="enrollmentTitle">
+        Personal Profile
       </div>
-      <Schedule />
+      <Schedule profileId={1} />
       <div className="messages-wrapper">
         {messages.map((element) => (
           <Messages
