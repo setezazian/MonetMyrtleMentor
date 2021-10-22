@@ -73,7 +73,6 @@ const postMessage = (req, res) => {
 };
 
 const getSchedule = (req, res) => {
-  console.log('offering id', req.query.offeringId);
   const dateStr = req.query.date;
   const date = new Date(dateStr);
 
@@ -104,18 +103,18 @@ const createBooking = (req, res) => {
 
 const getProfileSchedule = (req, res) => {
   const dateStr = req.query.date;
-  console.log('student id', req.query.studentId);
+  console.log('student id', req.query);
   const date = new Date(dateStr);
 
   ScheduleModel.getBooking(req.query.studentId, date.toISOString().slice(0, 10),
     (err, data) => {
       if (err) {
-        console.log('error getting booking schedule', err);
+        console.log('error getting schedule', err);
         res.status(500);
       } else {
-        console.log(data);
+        console.log('successfully retrieved schedule', data);
         res.json(data.map((item) => ({
-          availability_id: item.availability_id,
+          booking_id: item.booking_id,
           start_time: item.start_time.toTimeString().slice(0, 8),
           end_time: item.end_time.toTimeString().slice(0, 8),
           offering_name: item.offering_name,
