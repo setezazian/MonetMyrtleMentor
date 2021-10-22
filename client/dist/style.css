@@ -535,19 +535,19 @@ a {
   color: black;
   background-color: rgb(166, 205, 218);
   margin-left: 10px;
-  width: 200px;
+  max-width: 650px;
 }
 
 .calendar {
   width: 300px;
 }
 
-#timeSpacing {
+.timeSpacing {
   margin-left: 2px;
   margin-right: 2px;
 }
 
-#bookingButton {
+button.booking {
   margin-left: 10px;
   width: 50px;
 }
