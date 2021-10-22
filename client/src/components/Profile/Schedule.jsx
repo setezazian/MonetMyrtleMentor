@@ -68,18 +68,24 @@ function Schedule(props) {
     }
   };
 
-  const handleBooking = (e, availabilityId) => {
+  const handleBooking = (e, availabilityId, studentId) => {
     e.preventDefault();
     const data = {
+      studentId: loginIdx,
       availabilityId,
     };
-    axios.post('/api/booking', data)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (studentId !== -1) {
+      console.log(studentId);
+      axios.post('/api/booking', data)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      alert('Please login');
+    }
   };
 
   return (
