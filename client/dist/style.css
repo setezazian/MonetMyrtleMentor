@@ -534,16 +534,16 @@ a {
 */
 
 .messages-wrapper {
-  width: 50%;
+  width: 99%;
   /* border: solid grey 1px; */
   margin: 0.5rem;
   overflow-y: auto;
-  max-height: 75vh;
+  max-height: 33vh;
 }
 
 .message-wrapper {
   display: grid;
-  grid-template-columns: 75px 1fr 3fr;
+  grid-template-columns: 75px 1fr 4fr;
   margin: 0.5rem;
   padding: 0.5rem;
   border: solid grey 1px;
