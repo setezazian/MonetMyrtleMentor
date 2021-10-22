@@ -124,24 +124,25 @@ const createNewUser = (req, res) => {
         password: req.body.password,
       };
       user.profile_id = profileModelResults.insertId;
-      AuthModel.create(authUser)
-        .then((authModelResults) => {
-          console.log(`Inserted ${authModelResults.affectedRows} rows into auth table`);
-          user.id = authModelResults.insertId;
-          req.login({ user }, (err) => {
-            if (err) console.log('Error logging new user in: ', err);
-            console.log('This is the req.login callback. req.user should be: ', req.user);
-          });
-          if (!req.body.isMentor) {
-            res.status(201).send('Created mentee');
-          }
-          return null;
-        })
-        .catch((err) => {
-          res.status(500).send('Internal server error');
-          console.log('Error inserting into auth table: ', err);
+      return AuthModel.create(authUser);
+    })
+    .then((authModelResults) => {
+      console.log(`Inserted ${authModelResults.affectedRows} rows into auth table`);
+      user.id = authModelResults.insertId;
+      if (!req.body.isMentor) {
+        req.login(user, (err) => {
+          if (err) console.log('Error logging new user in: ', err);
+          console.log('This is the req.login callback. req.user should be: ', req.user);
+          res.status(201).send(req.user);
         });
-
+      }
+      return null;
+    })
+    .catch((err) => {
+      res.status(500).send('Internal server error');
+      console.log('Error inserting into auth table: ', err);
+    })
+    .then(() => {
       if (!req.body.isMentor) {
         return null;
       }
@@ -149,7 +150,7 @@ const createNewUser = (req, res) => {
       const offering = {
         name: req.body.offeringName,
         description: req.body.offeringDesc,
-        mentor_id: profileModelResults.insertId,
+        mentor_id: user.profile_id,
       };
       return offeringsModel.insertOne(offering);
     })
@@ -167,7 +168,11 @@ const createNewUser = (req, res) => {
       }
 
       console.log(`Inserted ${availabilityModelResults.affectedRows} row(s) into availabilities table`);
-      res.status(201).send('Created mentor');
+      req.login(user, (err) => {
+        if (err) console.log('Error logging new user in: ', err);
+        console.log('This is the req.login callback. req.user should be: ', req.user);
+        res.status(201).send(req.user);
+      });
       return null;
     })
     .catch((err) => {

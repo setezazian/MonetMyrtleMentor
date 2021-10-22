@@ -7,8 +7,8 @@ export default function FormLogin({ setModal }) {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { login, setLogin } = useContext(loginContext);
-  const { loginIdx, setLoginIdx } = useContext(loginProfileContext);
+  const { setLogin } = useContext(loginContext);
+  const { setLoginIdx } = useContext(loginProfileContext);
   const [generalMsg, setGeneralMsg] = useState(null);
 
   const formSubmitHandler = (e) => {
