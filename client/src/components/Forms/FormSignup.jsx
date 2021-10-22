@@ -16,6 +16,7 @@ export default function FormSignup({ isMentor }) {
   const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
   const [startTime, setStartTime] = useState(new Date().toTimeString().slice(0, 5));
   const [endTime, setEndTime] = useState(new Date().toTimeString().slice(0, 5));
+  const [generalMessage, setGeneralMessage] = useState(null);
 
   useEffect(() => {
     console.log('availabilities array has changed to: ', availabilities);
@@ -51,6 +52,19 @@ export default function FormSignup({ isMentor }) {
     return valid;
   };
 
+  const clearFields =() => {
+    setFName('');
+    setLName('');
+    setEmail('');
+    setPassword('');
+    setConfirmPwd('');
+    setPhotoUrl('');
+    if (isMentor) {
+      setOfferingName('');
+      setOfferingDesc('');
+    }
+  };
+
   const formSubmitHandler = (e) => {
     e.preventDefault();
 
@@ -69,12 +83,15 @@ export default function FormSignup({ isMentor }) {
     };
 
     axios.post('/api/user/new', formData)
-      .then(() => {
-        // POST and user creation is good, so move on to application
+      .then((response) => {
+        if (response.status === 201) {
+          setGeneralMessage('Your account has been created! Please login.');
+          clearFields();
+        }
       })
       .catch((err) => {
         console.log('Error POSTing form data: ', err);
-        // figure out the error and have user correct their form
+        setGeneralMessage('There was an error creating your account');
       });
 
     // history.push('/offerings', { detail: [0, 1] });
@@ -172,6 +189,7 @@ export default function FormSignup({ isMentor }) {
         <br />
         {isMentor ? mentorFormComponents : null}
         <button id="button-formsubmit" type="submit" onClick={formSubmitHandler}>Submit</button>
+        {generalMessage ? (<p>generalMessage</p>) : null}
       </form>
     </div>
   );
