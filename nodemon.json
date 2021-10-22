@@ -1,4 +1,3 @@
 {
-  "watch": "webpack/webpack.config.js",
-  "exec": "webpack-dev-server --config webpack/webpack.config.js"
+  "watch": "webpack/webpack.config.js"
 }
