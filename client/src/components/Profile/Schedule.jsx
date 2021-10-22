@@ -8,7 +8,7 @@ function Schedule(props) {
   const [date, setDate] = useState(null);
   const [availabilities, setAvailabilities] = useState([]);
   const [bookings, setBookings] = useState([]);
-  const { loginIdx, setLoginIdx } = useContext(loginProfileContext);
+  const { loginIdx } = useContext(loginProfileContext);
 
   useEffect(() => {
     if (date !== null) {
@@ -47,26 +47,6 @@ function Schedule(props) {
       }
     }
   }, [date]);
-
-  const handleBooking = (e, availabilityId, studentId) => {
-    e.preventDefault();
-    const data = {
-      studentId: loginIdx,
-      availabilityId,
-    };
-    if (studentId !== -1) {
-      console.log(studentId);
-      axios.post('/api/booking', data)
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    } else {
-      alert('Please login to be able to book.');
-    }
-  };
 
   const handleBooking = (e, availabilityId, studentId) => {
     e.preventDefault();

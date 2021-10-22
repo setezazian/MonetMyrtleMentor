@@ -123,37 +123,6 @@ const getProfileSchedule = (req, res) => {
     });
 };
 
-const createBooking = (req, res) => {
-  console.log(req.body);
-  ScheduleModel.createBooking(req.body)
-    .then(() => {
-      res.status(201).send('Created booking');
-    })
-    .catch((err) => console.log('Error creating booking" ', err));
-};
-
-const getProfileSchedule = (req, res) => {
-  const dateStr = req.query.date;
-  console.log('student id', req.query);
-  const date = new Date(dateStr);
-
-  ScheduleModel.getBooking(req.query.studentId, date.toISOString().slice(0, 10),
-    (err, data) => {
-      if (err) {
-        console.log('error getting schedule', err);
-        res.status(500);
-      } else {
-        console.log('successfully retrieved schedule', data);
-        res.json(data.map((item) => ({
-          booking_id: item.booking_id,
-          start_time: item.start_time.toTimeString().slice(0, 8),
-          end_time: item.end_time.toTimeString().slice(0, 8),
-          offering_name: item.offering_name,
-        })));
-      }
-    });
-};
-
 const createProfile = (req, res) => {
   profileModel.create(req.body)
     .then(() => {
