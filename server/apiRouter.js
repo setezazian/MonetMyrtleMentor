@@ -11,6 +11,8 @@ const {
   getSchedule,
   searchOfferings,
   goodAuth,
+  createBooking,
+  getProfileSchedule,
 } = require('./controller');
 
 router.get('/offerings', getOfferings);
@@ -32,6 +34,11 @@ router.post('/messages', postMessage);
 router.get('/schedule', getSchedule);
 
 router.post('/user/new', createNewUser);
+router.post('/booking', createBooking);
+
+router.get('/profile/schedule', getProfileSchedule);
+
+router.post('/user/new', createAuthUser);
 
 router.post('/user/login', passport.authenticate('local',
   {
