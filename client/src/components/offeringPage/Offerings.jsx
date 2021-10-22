@@ -4,20 +4,26 @@ import Offering from './Offering.jsx';
 
 const Offerings = (props) => {
   const { location } = props;
-  const [renderArray, setRenderArray] = useState([1, 2]);
+  const [renderArray, setRenderArray] = useState([]);
 
   useEffect(() => {
+    console.log('location.state: ', location.state);
     console.log('mount');
-    if (location.state === undefined) {
-      console.log('Getting all offerings');
-      axios.get('/api/allOfferings')
+    let searchTermExists = true;
+    if (location.state === undefined || location.state.detail === undefined || location.state.detail === '') {
+      searchTermExists = false;
+    }
+
+    if (searchTermExists) {
+      console.log('using a search term');
+      axios.post('/api/searchOfferings', { search: location.state.detail })
         .then((res) => {
           setRenderArray(res.data);
         })
         .catch((err) => console.error(err));
     } else {
-      console.log('using a search term');
-      axios.post('/api/searchOfferings', { search: location.state.detail })
+      console.log('Getting all offerings');
+      axios.get('/api/allOfferings')
         .then((res) => {
           setRenderArray(res.data);
         })

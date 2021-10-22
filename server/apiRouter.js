@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const passport = require('passport');
 const {
-  getOfferings,
+  getOfferingsByProfile,
   getAllOfferings,
   getMultiOfferings,
   getProfile,
@@ -15,7 +15,7 @@ const {
   getProfileSchedule,
 } = require('./controller');
 
-router.get('/offerings', getOfferings);
+router.get('/offerings', getOfferingsByProfile);
 
 router.get('/allOfferings', getAllOfferings);
 

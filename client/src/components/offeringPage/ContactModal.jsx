@@ -3,11 +3,12 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 const ContactModal = (props) => {
+  const { location } = props;
   const [message, setMessage] = useState('');
   const [fromUser, setFromUser] = useState(null);
   const history = useHistory();
 
-  const { toId, navigatedFrom } = props.location.state;
+  const { toId, navigatedFrom } = location.state;
   useEffect(() => {
     axios.get('/api/me')
       .then((response) => {
@@ -40,7 +41,6 @@ const ContactModal = (props) => {
             })
             .catch((err) => console.log(err));
           // history.push(navigatedFrom);
-          /////////
           const offerLeng = [];
           axios.get('/api/allOfferings')
             .then((res) => {

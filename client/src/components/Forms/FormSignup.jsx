@@ -1,7 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { loginContext, loginProfileContext } from '../../context.jsx';
 
 export default function FormSignup({ isMentor }) {
+  const history = useHistory();
+  const { setLogin } = useContext(loginContext);
+  const { setLoginIdx } = useContext(loginProfileContext);
   const [fname, setFName] = useState('');
   const [lname, setLName] = useState('');
   const [email, setEmail] = useState('');
@@ -67,6 +72,7 @@ export default function FormSignup({ isMentor }) {
     e.preventDefault();
 
     if (!validatePassword()) return;
+    if (password.length < 8) return;
 
     const formData = {
       firstName: fname,
@@ -83,8 +89,13 @@ export default function FormSignup({ isMentor }) {
     axios.post('/api/user/new', formData)
       .then((response) => {
         if (response.status === 201) {
-          setGeneralMessage('Your account has been created! Please login.');
+          setGeneralMessage('Your account has been created! Redirecting you in 3 seconds.');
           clearFields();
+          setLoginIdx(response.data.profile_id);
+          setLogin(true);
+          setTimeout(() => {
+            history.push('/offerings');
+          }, 3000);
         }
       })
       .catch((err) => {
@@ -178,11 +189,11 @@ export default function FormSignup({ isMentor }) {
         <label htmlFor="input-password">
           Password:&nbsp;
           <br />
-          <input id="input-password" name="password" type="password" placeholder="Create a password" value={password} onChange={passwordChangeHandler} required />
+          <input id="input-password" name="password" type="password" placeholder="Create a password" value={password} onChange={passwordChangeHandler} minLength="8" required />
         </label>
         <label htmlFor="input-confirmpassword">
           <br />
-          <input id="input-confirmpassword" name="confirmpassword" type="password" placeholder="Confirm the password" value={confirmPwd} onChange={passwordChangeHandler} required />
+          <input id="input-confirmpassword" name="confirmpassword" type="password" placeholder="Confirm the password" value={confirmPwd} onChange={passwordChangeHandler} minLength="8" required />
         </label>
         <br />
         {isMentor ? mentorFormComponents : null}
@@ -192,8 +203,3 @@ export default function FormSignup({ isMentor }) {
     </div>
   );
 }
-
-/*
-TODO:
-availabilities of offering - an arbitrary (!?) number of start and end times...
-*/
