@@ -1,12 +1,15 @@
+import { useHistory } from 'react-router-dom';
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { loginContext, loginProfileContext } from '../../context.jsx';
 
-export default function FormLogin({ history }) {
+export default function FormLogin({ setModal }) {
+  const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { login, setLogin } = useContext(loginContext);
   const { loginIdx, setLoginIdx } = useContext(loginProfileContext);
+  const [generalMsg, setGeneralMsg] = useState(null);
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
@@ -16,33 +19,21 @@ export default function FormLogin({ history }) {
     };
 
     axios.post('/api/user/login', formData)
-      .then(() => {
-        // POST and user creation is good, so move on to application
-        axios.get('/api/me')
-          .then((res) => {
-            if (res.data !== null) {
-              setLogin(true);
-              setLoginIdx(res.data.profile_id);
-            }
-          });
-      })
-      .then(() => {
-        const offerLeng = [];
-        axios.get('/api/allOfferings')
-          .then((res) => {
-            res.data.forEach((element, index) => {
-              offerLeng.push(index);
-            });
-          })
-          .then(() => {
-            history.push('/offerings', { detail: offerLeng });
-          })
-          .catch((err) => console.error(err));
+      .then((loginResponse) => {
+        if (loginResponse.data !== null) {
+          console.log('Successful login');
+          setLogin(true);
+          setLoginIdx(loginResponse.data.profile_id);
+        }
+        history.push('/offerings');
+        setModal(null);
       })
       .catch((err) => {
-        console.log('Error POSTing form data: ', err);
-        // figure out the error and have user correct their form
+        console.log('Error logging in: ', err);
+        setGeneralMsg('Incorrect username or password');
       });
+    setEmail('');
+    setPassword('');
   };
 
   return (
@@ -60,6 +51,7 @@ export default function FormLogin({ history }) {
         <br />
         <button id="button-formsubmit" type="submit" onClick={formSubmitHandler}>Submit</button>
       </form>
+      {generalMsg ? (<p>{generalMsg}</p>) : null}
     </div>
   );
 }

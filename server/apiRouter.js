@@ -6,10 +6,14 @@ const {
   getMultiOfferings,
   getProfile,
   getMessages,
-  createAuthUser,
+  createNewUser,
   postMessage,
   getSchedule,
+<<<<<<< HEAD
   searchOfferings,
+=======
+  goodAuth,
+>>>>>>> main
 } = require('./controller');
 
 router.get('/offerings', getOfferings);
@@ -30,14 +34,12 @@ router.post('/messages', postMessage);
 
 router.get('/schedule', getSchedule);
 
-router.post('/user/new', createAuthUser);
+router.post('/user/new', createNewUser);
 
 router.post('/user/login', passport.authenticate('local',
   {
-    successRedirect: '/',
-    failureRedirect: '/login',
     failureMessage: true,
-  }));
+  }), goodAuth);
 
 router.get('/logout', (req, res) => {
   req.logout();
