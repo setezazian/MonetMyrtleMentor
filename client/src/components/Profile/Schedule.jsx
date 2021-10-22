@@ -7,25 +7,44 @@ import { loginProfileContext } from '../../context.jsx';
 function Schedule(props) {
   const [date, setDate] = useState(null);
   const [availabilities, setAvailabilities] = useState([]);
+  const [bookings, setBookings] = useState([]);
   const { loginIdx, setLoginIdx } = useContext(loginProfileContext);
 
   useEffect(() => {
     if (date !== null) {
-      axios.get('/api/schedule', {
-        params: {
-          date,
-          offeringId: props.offeringId,
-        },
-      })
-        .then((response) => {
-          console.log(response);
-          if (typeof (response.data) === 'object') {
-            setAvailabilities(response.data);
-          }
+      if (props.profileId !== undefined) {
+        // show schedule for profile
+        axios.get('/api/profile/schedule', {
+          params: {
+            studentId: props.profileId,
+            date,
+          },
         })
-        .catch((error) => {
-          console.log(error);
-        });
+          .then((response) => {
+            console.log(response);
+            setBookings(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        // show schedule for offering
+        axios.get('/api/schedule', {
+          params: {
+            date,
+            offeringId: props.offeringId,
+          },
+        })
+          .then((response) => {
+            console.log(response);
+            if (typeof (response.data) === 'object') {
+              setAvailabilities(response.data);
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
     }
   }, [date]);
 
@@ -45,7 +64,7 @@ function Schedule(props) {
           console.log(error);
         });
     } else {
-      alert('Please login');
+      alert('Please login to be able to book.');
     }
   };
 
@@ -63,17 +82,32 @@ function Schedule(props) {
             <span>
               {availability.start_time}
             </span>
-            <span id="timeSpacing">-</span>
+            <span className="timeSpacing">-</span>
             <span>
               {availability.end_time}
             </span>
             <button
-              id="bookingButton"
+              className="booking"
               type="button"
               onClick={(e) => handleBooking(e, availability.availability_id, loginIdx)}
             >
               Book
             </button>
+          </div>
+        ))}
+        {bookings.map((booking) => (
+          <div key={booking.booking_id}>
+            <span>
+              {booking.start_time}
+            </span>
+            <span className="timeSpacing">-</span>
+            <span>
+              {booking.end_time}
+            </span>
+            <span>
+              {booking.offering_name}
+            </span>
+            <button type="button">Cancel Booking</button>
           </div>
         ))}
       </div>
