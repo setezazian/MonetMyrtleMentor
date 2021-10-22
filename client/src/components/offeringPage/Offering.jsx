@@ -33,7 +33,7 @@ const Offering = (props) => {
           <div className="offering-desc">{desc}</div>
         </div>
         <button className="offering-button contact-button" type="button" onClick={contactHandler}>Contact</button>
-        <button className="offering-button availablity-button" type="button" onClick={availHandler}>Availablity</button>
+        <button className="offering-button availablity-button" type="button" onClick={() => availHandler(id)}>Availablity</button>
       </div>
     </div>
   );
