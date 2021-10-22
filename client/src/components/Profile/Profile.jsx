@@ -14,7 +14,7 @@ export default function Profile() {
         setMessages(res.data);
       })
       .catch((err) => console.error(err));
-  }, []);
+  }, [loginIdx]);
 
   const conditionalReturn = () => {
     if (messages.length > 0) {
