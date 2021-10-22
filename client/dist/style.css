@@ -538,7 +538,7 @@ a {
   /* border: solid grey 1px; */
   margin: 0.5rem;
   overflow-y: auto;
-  max-height: 33vh;
+  max-height: 40vh;
 }
 
 .message-wrapper {
