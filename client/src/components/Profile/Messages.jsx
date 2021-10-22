@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 const Messages = (props) => {
   const {
-    fromName, toName, body, time, fromId, photo,
+    toName, body, time, fromId, photo,
   } = props;
   const messageDate = new Date(time).toLocaleString('default', {
     weekday: 'short', month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric',
@@ -14,12 +14,13 @@ const Messages = (props) => {
   };
   return (
     <div className="message-wrapper">
-      <span className="messages-from" onClick={replyHandler}>
+      <span className="messages-from" onClick={replyHandler} aria-hidden="true">
         <img src={photo} alt="From" />
-        {/* From: {fromName} */}
       </span>
       <span className="messages-to">
-        To: {toName}
+        To:
+        {' '}
+        {toName}
       </span>
       <span className="messages-message">
         {body}

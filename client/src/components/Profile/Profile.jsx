@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import Messages from './Messages.jsx';
 import Schedule from './Schedule.jsx';
 import pageIdxContext, { loginContext, loginProfileContext } from '../../context.jsx';
-import { useHistory } from 'react-router-dom';
 
 export default function Profile() {
   const [messages, setMessages] = useState([]);
@@ -62,7 +62,7 @@ export default function Profile() {
     <div>
       <div className="enrollmentTitle">
         Personal Profile
-        <button className="logout-btn" onClick={logout}>Log out</button>
+        <button type="button" className="logout-btn" onClick={logout}>Log out</button>
       </div>
       <Schedule profileId={loginIdx} />
       {conditionalReturn()}
