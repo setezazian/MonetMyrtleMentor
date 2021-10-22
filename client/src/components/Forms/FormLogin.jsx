@@ -46,7 +46,7 @@ export default function FormLogin({ setModal }) {
         <br />
         <label htmlFor="input-password">
           Password:&nbsp;
-          <input id="input-password" name="password" type="password" placeholder="Create a password" value={password} onChange={(e) => setPassword(e.target.value)} minLength="8" required />
+          <input id="input-password" name="password" type="password" placeholder="Create a password" value={password} onChange={(e) => setPassword(e.target.value)} required />
         </label>
         <br />
         <button id="button-formsubmit" type="submit" onClick={formSubmitHandler}>Submit</button>

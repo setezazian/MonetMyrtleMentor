@@ -72,6 +72,7 @@ export default function FormSignup({ isMentor }) {
     e.preventDefault();
 
     if (!validatePassword()) return;
+    if (password.length < 8) return;
 
     const formData = {
       firstName: fname,
@@ -188,11 +189,11 @@ export default function FormSignup({ isMentor }) {
         <label htmlFor="input-password">
           Password:&nbsp;
           <br />
-          <input id="input-password" name="password" type="password" placeholder="Create a password" value={password} onChange={passwordChangeHandler} required />
+          <input id="input-password" name="password" type="password" placeholder="Create a password" value={password} onChange={passwordChangeHandler} minLength="8" required />
         </label>
         <label htmlFor="input-confirmpassword">
           <br />
-          <input id="input-confirmpassword" name="confirmpassword" type="password" placeholder="Confirm the password" value={confirmPwd} onChange={passwordChangeHandler} required />
+          <input id="input-confirmpassword" name="confirmpassword" type="password" placeholder="Confirm the password" value={confirmPwd} onChange={passwordChangeHandler} minLength="8" required />
         </label>
         <br />
         {isMentor ? mentorFormComponents : null}
