@@ -30,6 +30,7 @@ export default function Profile() {
             body={element.body}
             time={element.time}
             fromId={element.from_id}
+            photo={element.photo}
           />
         ))}
       </div>
