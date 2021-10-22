@@ -75,7 +75,6 @@ const postMessage = (req, res) => {
 const getSchedule = (req, res) => {
   const dateStr = req.query.date;
   const date = new Date(dateStr);
-  console.log(req.query);
   ScheduleModel.getOfferingSchedule(date.toISOString().slice(0, 10),
     req.query.offeringId, (err, data) => {
       if (err) {
@@ -93,7 +92,6 @@ const getSchedule = (req, res) => {
 };
 
 const createBooking = (req, res) => {
-  console.log(req.body);
   ScheduleModel.createBooking(req.body)
     .then(() => {
       res.status(201).send('Created booking');
@@ -103,9 +101,7 @@ const createBooking = (req, res) => {
 
 const getProfileSchedule = (req, res) => {
   const dateStr = req.query.date;
-  console.log('student id', req.query);
   const date = new Date(dateStr);
-
   ScheduleModel.getBooking(req.query.studentId, date.toISOString().slice(0, 10),
     (err, data) => {
       if (err) {
@@ -121,6 +117,17 @@ const getProfileSchedule = (req, res) => {
         })));
       }
     });
+};
+
+const deleteBooking = (req, res) => {
+  ScheduleModel.deleteBooking(req.query.id, (err, data) => {
+    if (err) {
+      console.log('error deleting booking', err);
+      res.status(500);
+    } else {
+      console.log('successfully deleted booking', data);
+    }
+  });
 };
 
 const createProfile = (req, res) => {
@@ -226,4 +233,5 @@ module.exports = {
   searchOfferings,
   createBooking,
   getProfileSchedule,
+  deleteBooking,
 };

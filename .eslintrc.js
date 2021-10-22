@@ -21,5 +21,6 @@ module.exports = {
     'import/extensions': 'off',
     'no-console': 'off',
     'react/prop-types': 0,
+    'no-alert': 'off',
   },
 };

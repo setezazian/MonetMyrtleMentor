@@ -13,6 +13,7 @@ const {
   goodAuth,
   createBooking,
   getProfileSchedule,
+  deleteBooking,
 } = require('./controller');
 
 router.get('/offerings', getOfferingsByProfile);
@@ -36,6 +37,8 @@ router.get('/schedule', getSchedule);
 router.post('/user/new', createNewUser);
 
 router.post('/booking', createBooking);
+
+router.delete('/booking', deleteBooking);
 
 router.get('/profile/schedule', getProfileSchedule);
 

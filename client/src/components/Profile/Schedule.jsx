@@ -55,7 +55,6 @@ function Schedule(props) {
       availabilityId,
     };
     if (studentId !== -1) {
-      console.log(studentId);
       axios.post('/api/booking', data)
         .then((response) => {
           console.log(response);
@@ -66,6 +65,10 @@ function Schedule(props) {
     } else {
       alert('Please login to be able to book.');
     }
+  };
+
+  const handleCanceling = (e, bookingId) => {
+    axios.delete('/api/booking', { params: { id: bookingId } }).then((response) => console.log(response));
   };
 
   return (
@@ -107,7 +110,7 @@ function Schedule(props) {
             <span style={{ margin: '0 10px' }}>
               {booking.offering_name}
             </span>
-            <button type="button">Cancel Booking</button>
+            <button type="button" onClick={(e) => handleCanceling(e, booking.booking_id)}>Cancel Booking</button>
           </div>
         ))}
       </div>

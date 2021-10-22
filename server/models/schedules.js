@@ -39,7 +39,6 @@ module.exports = {
     + 'JOIN offerings o ON a.offering_id = o.id '
     + 'JOIN bookings b ON b.availability_id = a.id '
     + 'WHERE booked_by_student_id= ? AND Date(start_time) = ?';
-    // BETWEEN '? 00:00:00' AND '? 23:59:59'';
     const params = [studentId, date];
     db.query(sql, params, (err, results) => {
       if (err) {
@@ -49,6 +48,22 @@ module.exports = {
         console.log('successfully retrieved booked schedule');
         callback(null, results);
       }
+    });
+  },
+
+  deleteBooking(bookingId) {
+    const sql = 'DELETE FROM bookings WHERE id = ?';
+    const params = [bookingId];
+    return new Promise((resolve, reject) => {
+      db.query(sql, params, (err, result) => {
+        if (err) {
+          console.log('error deleted booking');
+          reject(err);
+        } else {
+          console.log('successfully deleted a booking');
+          resolve(result);
+        }
+      });
     });
   },
 
