@@ -9,11 +9,8 @@ const {
   createNewUser,
   postMessage,
   getSchedule,
-<<<<<<< HEAD
   searchOfferings,
-=======
   goodAuth,
->>>>>>> main
 } = require('./controller');
 
 router.get('/offerings', getOfferings);

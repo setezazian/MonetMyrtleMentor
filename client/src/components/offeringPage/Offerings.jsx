@@ -5,43 +5,7 @@ import CustomCursor from '../CustomCursor/CustomCursor.jsx'
 
 const Offerings = (props) => {
   const [renderArray, setRenderArray] = useState([1, 2]);
-  // let testArray = [0, 1, 2, 3, 4, 5];
   const [testArray, setTestArray] = useState([0, 1, 2, 3, 4, 5]);
-
-  // if (props.location.state !== undefined) {
-  //   testArray = props.location.state.detail;
-  //   console.log('undefined!!!!');
-  // }
-
-/*   function onlyUnique(value, index, self) {
-    return self.indexOf(value) === index;
-  }
-
-  const filterArr = testArray.filter(onlyUnique);
-
-  for (let i = 0; i < filterArr.length; i++) {
-    filterArr[i] += 1;
-  } */
-/*
-  useEffect(() => {
-    console.log('mount');
-    if (props.location.state !== undefined) {
-      setTestArray(props.location.state.detail);
-    }
-    const offerLeng = [];
-    axios.get('/api/allOfferings')
-      .then((res) => {
-        res.data.forEach((element, index) => {
-          offerLeng.push(index + 1);
-        });
-        return axios.post('/api/multiOfferings', { filterArr: offerLeng });
-      })
-      .then((res) => {
-        setRenderArray(res.data);
-      })
-      .catch((err) => console.error(err));
-  }, []);
- */
 
   useEffect(() => {
     console.log('mount');
@@ -60,17 +24,8 @@ const Offerings = (props) => {
         })
         .catch((err) => console.error(err));
     }
-  }, [props.location.state.detail]);
-/*
-  useEffect(() => {
-    console.log('testArr', testArray);
-    axios.post('/api/multiOfferings', { filterArr })
-      .then((res) => {
-        setRenderArray(res.data);
-      })
-      .catch((err) => console.error(err));
-  }, [testArray]);
- */
+  }, [props.location.state]);
+
   return (
     <>
     <div className="offerings-overall">

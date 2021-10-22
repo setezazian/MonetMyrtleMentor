@@ -3,15 +3,15 @@ const db = require('../db');
 module.exports = {
   getOfferings(offeringId) {
     return new Promise((resolve, reject) => {
-      const sql = 'SELECT o.id, o.offering_name, o.description, o.mentor_id '
-        + 'FROM offerings AS o '
-        + 'JOIN profiles AS p ON p.id = o.mentor_id '
+      const sql = 'SELECT o.id, o.offering_name, o.description, o.mentor_id, p.photo '
+        + 'FROM profiles AS p'
+        + 'JOIN offerings AS o ON p.id = o.mentor_id '
         + 'WHERE p.id = ?';
       const params = [offeringId];
       db.query(sql, params, (err, results) => {
         if (err) {
           console.log('error retrieving offerings');
-          reject(err)
+          reject(err);
         } else {
           console.log('successfully retrieved all offerings');
           resolve(results);
@@ -21,9 +21,10 @@ module.exports = {
   },
   getAllOfferings() {
     return new Promise((resolve, reject) => {
-      const sql = 'SELECT o.offering_name, o.description, p.name '
+      const sql = 'SELECT o.offering_name, o.description, p.name, p.photo, r.rating, o.mentor_id '
         + 'FROM offerings AS o '
-        + 'JOIN profiles AS p ON p.id = o.mentor_id ';
+        + 'JOIN profiles AS p ON p.id = o.mentor_id '
+        + 'LEFT JOIN ratings as r  ON o.mentor_id = r.mentor_id ';
       db.query(sql, (err, results) => {
         if (err) {
           console.log('error retrieving offerings');
