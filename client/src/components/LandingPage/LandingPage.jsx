@@ -1,10 +1,10 @@
 import React, { useEffect, useContext, useState } from 'react';
-import { pageIdxContext } from '../App.jsx';
+import pageIdxContext from '../../context.jsx';
 import Modal from '../Modal/Modal.jsx';
 import FormSignup from '../Forms/FormSignup.jsx';
 
 export default function LandingPage() {
-  const { pageIdx, setPageIdx } = useContext(pageIdxContext);
+  const { setPageIdx } = useContext(pageIdxContext);
   const [component, setComponent] = useState(null);
 
   const studentSignupHandler = () => {
@@ -37,5 +37,5 @@ export default function LandingPage() {
       <Modal component={component} setComponent={setComponent} />
     </>
 
-  )
+  );
 }
