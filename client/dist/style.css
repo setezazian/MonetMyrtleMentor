@@ -648,6 +648,7 @@ a {
   box-sizing: border-box;
   padding: 10px;
   max-height: max-content;
+  min-height: 40vh;
   width: auto;
   overflow-y: scroll;
   background-color: white;

@@ -90,7 +90,12 @@ const createProfile = (req, res) => {
     .catch((err) => console.log('Error creating user" ', err));
 };
 
-const createAuthUser = (req, res) => {
+const goodAuth = (req, res) => {
+  // This function only gets called after passport authenticates successfully.
+  res.status(200).send(req.user);
+};
+
+const createNewUser = (req, res) => {
   console.log('req.body: ', req.body);
   const defaultPhotoUrl = 'https://t3.ftcdn.net/jpg/00/64/67/80/240_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg';
   const profile = {
@@ -168,7 +173,8 @@ module.exports = {
   getProfile,
   getMessages,
   createProfile,
-  createAuthUser,
+  goodAuth,
+  createNewUser,
   postMessage,
   getSchedule,
 };
