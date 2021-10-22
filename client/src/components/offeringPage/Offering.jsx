@@ -11,8 +11,8 @@ const Offering = (props) => {
     history.push('/offerings/contact', { toId: mentorId, navigatedFrom: '/offerings' });
   };
 
-  const availHandler = () => {
-    history.push('/offerings/availabillity');
+  const availHandler = (offeringId) => {
+    history.push('/offerings/availabillity', { offeringId });
   };
 
   return (
@@ -33,7 +33,7 @@ const Offering = (props) => {
           <div className="offering-desc">{desc}</div>
         </div>
         <button className="offering-button contact-button" type="button" onClick={contactHandler}>Contact</button>
-        <button className="offering-button availablity-button" type="button" onClick={availHandler}>Availablity</button>
+        <button className="offering-button availablity-button" type="button" onClick={() => availHandler(id)}>Availablity</button>
       </div>
     </div>
   );
