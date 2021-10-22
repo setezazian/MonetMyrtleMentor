@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import { loginContext } from '../../context.jsx';
 
 const Offering = (props) => {
   const {
     offeringId, name, teaches, star, desc, photo, mentorId,
   } = props;
   const history = useHistory();
-
+  const { login } = useContext(loginContext);
   const contactHandler = () => {
-    history.push('/offerings/contact', { toId: mentorId, navigatedFrom: '/offerings' });
+    if (login) {
+      history.push('/offerings/contact', { toId: mentorId, navigatedFrom: '/offerings' });
+    } else {
+      alert('please login to contact a mentor.');
+      history.push('/login');
+    }
   };
 
   const availHandler = () => {
