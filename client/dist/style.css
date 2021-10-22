@@ -538,7 +538,7 @@ a {
   /* border: solid grey 1px; */
   margin: 0.5rem;
   overflow-y: auto;
-  max-height: 33vh;
+  max-height: 40vh;
 }
 
 .message-wrapper {
@@ -598,8 +598,11 @@ a {
 
 #schedule {
   border-radius: 5px;
-  background-color: lightblue;
+  color: black;
+  background-color: rgb(166, 205, 218);
   margin-left: 10px;
+  width: 650px;
+  padding: 10px;
 }
 
 .calendar {
@@ -615,7 +618,16 @@ a {
 .profile-enroll {
   font-family: 'Playfair';
   font-size: 1.5rem;
+}
 
+.timeSpacing {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+button.booking {
+  margin-left: 10px;
+  width: 50px;
 }
 
 /*
