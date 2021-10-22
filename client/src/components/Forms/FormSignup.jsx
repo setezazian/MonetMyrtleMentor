@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 export default function FormSignup({ isMentor }) {
-  const history = useHistory();
   const [fname, setFName] = useState('');
   const [lname, setLName] = useState('');
   const [email, setEmail] = useState('');
@@ -52,7 +50,7 @@ export default function FormSignup({ isMentor }) {
     return valid;
   };
 
-  const clearFields =() => {
+  const clearFields = () => {
     setFName('');
     setLName('');
     setEmail('');
@@ -93,8 +91,6 @@ export default function FormSignup({ isMentor }) {
         console.log('Error POSTing form data: ', err);
         setGeneralMessage('There was an error creating your account');
       });
-
-    // history.push('/offerings', { detail: [0, 1] });
   };
 
   const passwordChangeHandler = (e) => {
@@ -137,7 +133,9 @@ export default function FormSignup({ isMentor }) {
       &nbsp;&nbsp;
       <button id="button-availabilityadd" type="button" onClick={addAvailabilitiesHandler}>Add</button>
       <br />
-      {availabilities.length === 0 ? (<p>You must add at least one block of time for your offering</p>) : null}
+      {availabilities.length === 0
+        ? (<p>You must add at least one block of time for your offering</p>)
+        : null}
       {availabilities.length > 0 ? (<p>You&apos;ve added the following blocks of time:</p>) : null}
       {availabilities.map((timeBlock) => (
         <div key={timeBlock.startTime}>
