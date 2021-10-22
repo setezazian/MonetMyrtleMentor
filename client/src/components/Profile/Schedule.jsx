@@ -55,7 +55,6 @@ function Schedule(props) {
       availabilityId,
     };
     if (studentId !== -1) {
-      console.log(studentId);
       axios.post('/api/booking', data)
         .then((response) => {
           console.log(response);
@@ -69,7 +68,7 @@ function Schedule(props) {
   };
 
   const handleCanceling = (e, bookingId) => {
-    axios.delete('/api/bookig', { params: { id: bookingId } }).then((response) => console.log(response));
+    axios.delete('/api/booking', { params: { id: bookingId } }).then((response) => console.log(response));
   };
 
   return (
