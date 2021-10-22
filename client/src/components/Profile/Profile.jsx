@@ -21,7 +21,7 @@ export default function Profile() {
       <div className="enrollmentTitle">
         Personal Profile
       </div>
-      <Schedule profileId={1} />
+      <Schedule profileId={loginIdx} />
       <div className="messages-wrapper">
         {messages.map((element) => (
           <Messages
