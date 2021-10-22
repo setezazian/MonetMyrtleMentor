@@ -1,3 +1,4 @@
+const mysql = require('mysql');
 const db = require('../db');
 
 module.exports = {
@@ -71,13 +72,21 @@ module.exports = {
   searchOfferings(searchTerm) {
     return new Promise((resolve, reject) => {
       // search through the mentor name, offering name, offering description
-      const sql = 'SELECT o.offering_name, o.description, p.name, p.photo, r.rating, o.mentor_id '
-      + 'FROM offerings AS o '
-      + 'JOIN profiles AS p ON p.id = o.mentor_id '
-      + 'LEFT JOIN ratings as r  ON o.mentor_id = r.mentor_id '
-      // + `WHERE p.name LIKE '%?%' OR o.offering_name LIKE '%?%' OR o.description LIKE '%?%'`;
-      + `WHERE p.name LIKE '%${searchTerm}%' OR o.offering_name LIKE '%${searchTerm}%' OR o.description LIKE '%${searchTerm}%'`;
-      console.log('sql', sql);
+      const wildSearchTerm = `%${searchTerm}%`;
+      const sql = mysql.format(`SELECT
+        o.offering_name,
+        o.description,
+        p.name,
+        p.photo,
+        r.rating,
+        o.mentor_id
+      FROM offerings AS o
+        JOIN profiles AS p ON p.id = o.mentor_id
+        LEFT JOIN ratings as r  ON o.mentor_id = r.mentor_id
+      WHERE p.name LIKE ?
+        OR o.offering_name LIKE ?
+        OR o.description LIKE ?`, [wildSearchTerm, wildSearchTerm, wildSearchTerm]);
+      console.log('Formatted SQL: ', sql);
 
       db.query(sql, (err, results) => {
         if (err) {
