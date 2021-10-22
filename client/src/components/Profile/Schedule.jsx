@@ -68,6 +68,10 @@ function Schedule(props) {
     }
   };
 
+  const handleCanceling = (e, bookingId) => {
+    axios.delete('/api/bookig', { params: { id: bookingId } }).then((response) => console.log(response));
+  };
+
   return (
     <div className="scheduling">
       <div className="calendar">
@@ -107,7 +111,7 @@ function Schedule(props) {
             <span style={{ margin: '0 10px' }}>
               {booking.offering_name}
             </span>
-            <button type="button">Cancel Booking</button>
+            <button type="button" onClick={(e) => handleCanceling(e, booking.booking_id)}>Cancel Booking</button>
           </div>
         ))}
       </div>
