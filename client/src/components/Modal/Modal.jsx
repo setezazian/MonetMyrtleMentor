@@ -11,7 +11,7 @@ export default function Modal(props) {
 
   if (component) {
     return (
-      <div id='ModalWrap' onClick={clickHandler}>
+      <div id="ModalWrap" onClick={clickHandler} onKeyDown={clickHandler} role="presentation">
         { component }
       </div>
     );

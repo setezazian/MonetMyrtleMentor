@@ -1,5 +1,6 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import axios from 'axios';
 import LandingPage from './LandingPage/LandingPage.jsx';
 import Offerings from './offeringPage/Offerings.jsx';
 import ContactModal from './offeringPage/ContactModal.jsx';
@@ -10,12 +11,22 @@ import FormSignup from './Forms/FormSignup.jsx';
 import FormLogin from './Forms/FormLogin.jsx';
 import Debug from './Debug/Debug.jsx';
 import pageIdxContext, { loginContext, loginProfileContext } from '../context.jsx';
-import CustomCursor from './customCursor/CustomCursor.jsx';
+import CustomCursor from './CustomCursor/CustomCursor.jsx';
 
 const App = () => {
   const [pageIdx, setPageIdx] = useState(-1);
   const [login, setLogin] = useState(false);
   const [loginIdx, setLoginIdx] = useState(-1);
+
+  useEffect(() => {
+    axios.get('/api/me')
+      .then((response) => {
+        setLoginIdx(response.data.profile_id);
+        setLogin(true);
+      })
+      .catch((err) => console.log('Not currently logged in. ', err));
+  }, []);
+
   return (
     // <div>
     //   Loading...
@@ -47,4 +58,3 @@ const App = () => {
 };
 
 export default App;
-export { pageIdxContext };
