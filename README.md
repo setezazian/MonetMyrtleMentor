@@ -1,7 +1,7 @@
 # MentorUp
+<img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" /> <img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white" /> <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" /> <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" /> <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" /> <img src="https://img.shields.io/badge/Webpack-8DD6F9?style=for-the-badge&logo=Webpack&logoColor=white" /> <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" /> <img src="https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white" />
 
-## Introduction
-This project was a brief 1-week sprint where our team built a full stack web application from scratch for an external user. 
+This project was a brief 1-week sprint where our team built a full stack web application from scratch following requirements from a client. 
 
 Contributors:
 
@@ -19,7 +19,7 @@ MentorUp is a full stack web app that allows mentors and mentees to find each ot
 - All users are able to create a profile, search offerings, book, and message mentors.
 ---
 
-## Demo Video
+## Demo
 [![MentorUp](http://img.youtube.com/vi/HLhvpfoR7Nc/0.jpg)](https://www.youtube.com/watch?v=HLhvpfoR7Nc "MentorUp Demo Video")
 ---
 
