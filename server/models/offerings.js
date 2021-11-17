@@ -46,11 +46,11 @@ module.exports = {
         extraStr.push('?');
       }
       console.log('extraStr', extraStr);
-      const sql = mysql.format(`SELECT 
-        o.offering_name, o.description, p.name, p.photo, r.rating, o.mentor_id 
-        FROM offerings AS o 
-        JOIN profiles AS p ON p.id = o.mentor_id 
-        LEFT JOIN ratings as r  ON o.mentor_id = r.mentor_id 
+      const sql = mysql.format(`SELECT
+        o.offering_name, o.description, p.name, p.photo, r.rating, o.mentor_id
+        FROM offerings AS o
+        JOIN profiles AS p ON p.id = o.mentor_id
+        LEFT JOIN ratings as r  ON o.mentor_id = r.mentor_id
         WHERE o.id IN (${extraStr.join(',')})`, params);
 
       console.log('getMultiOfferings - Formatted SQL: ', sql);
@@ -70,6 +70,7 @@ module.exports = {
       // search through the mentor name, offering name, offering description
       const wildSearchTerm = `%${searchTerm}%`;
       const sql = mysql.format(`SELECT
+        o.id AS offering_id,
         o.offering_name,
         o.description,
         p.name,

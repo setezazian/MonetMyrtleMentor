@@ -11,7 +11,7 @@ module.exports = {
         console.log('error retrieving offering schedule');
         callback(err);
       } else {
-        console.log('successfully retrieved offering schedule');
+        console.log(`successfully retrieved offering ${offeringId} schedule`);
         callback(null, results);
       }
     });
